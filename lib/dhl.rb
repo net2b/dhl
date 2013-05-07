@@ -8,7 +8,7 @@ module Dhl
     yield self.configuration
   end
 
-  def self.configuration
+  def self.config
     @config ||= Configuration.new
   end
 
