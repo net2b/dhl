@@ -65,7 +65,7 @@
           service_type: 'N',
           currency: 'EUR',
           unit_of_measurement: 'SI', # Or SU, UK, US
-          account: account,
+          account: ENV['DHL_CUSTOMER_CODE'],
 
         },
         ship_timestamp: Time.now.+(5.days).strftime('%Y-%m-%dT19:%M:%SGMT+01:00'), # When is the shipment going to be ready for pickup?
