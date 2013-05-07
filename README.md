@@ -1,6 +1,8 @@
 # Dhl
 
-TODO: Write a gem description
+This gem will provide a wrapper to DHL SOAP API. Given DHL credentials and the addresses, will generate a shipping label.
+
+The gem is still unpublished on Rubygems.
 
 ## Installation
 
@@ -18,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+TODO: Will be complted later.
 
 ## Contributing
 

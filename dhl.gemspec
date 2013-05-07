@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Dhl::VERSION
   spec.authors       = ["Alessandro Mencarini"]
   spec.email         = ["a.mencarini@freegoweb.it"]
-  spec.description   = %q{TODO: Write a gem description}
+  spec.description   = %q{This gem will provide a wrapper to DHL SOAP API. Given DHL credentials and the addresses, will generate a shipping label. }
   spec.summary       = %q{TODO: Write a gem summary}
   spec.homepage      = ""
   spec.license       = "MIT"
