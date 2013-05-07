@@ -18,9 +18,111 @@ module Dhl
       response = client.call(:create_shipment_request, message: { requested_shipment: nil } )
     end
 
-    small_hash = {}
+    def request_rate
+      response = client.call(:get_rate_request, message: request_rate_hash )
+    end
 
-    hash = {
+    # request_rate examples
+
+    request_rate_small_hash = {
+      requested_shipment: {
+        drop_off_type: "REGULAR_PICKUP",
+        ship: {
+          shipper: address_structure,
+          recipient: address_structure
+        },
+        packages: {
+          requested_packages: [
+            {
+              weight: {
+                value: '15'
+              },
+              dimensions: {
+                length: '3',
+                width: '3',
+                height: '3'
+              }
+            }
+          ]
+        },
+        ship_timestamp: Time.now.strftime('%Y-%m-%dT%H:%M:%SGMT%z'), # When is the shipment going to be ready for pickup?
+        account: 999999999,
+        unit_of_measurement: 'SI' # Or SU, UK, US,
+      }
+    }
+    response = client.call(:get_rate_request, message: request_rate_small_hash )
+
+    request_rate_hash = {
+      requested_shipment: {
+        drop_off_type: "REGULAR_PICKUP",
+        next_business_day: nil, # Optional, Y or N
+        ship: {
+          shipper: address_structure,
+          recipient: address_structure
+        },
+        packages: {
+          requested_packages: [
+            1 => {
+              weight: '15',
+              dimensions: {
+                length: '3,0',
+                width: '3,0',
+                height: '3,0'
+              }
+            }
+          ]
+        },
+        ship_timestamp: Time.now.strftime('%Y-%m-%dT%H:%M:%SGMT%z'), # When is the shipment going to be ready for pickup?
+        unit_of_measurement: 'SI', # Or SU, UK, US
+        content: '', # Optional
+        payment_info: '', # Optional
+        account: '', # Optional
+        billing: {}, # Optional
+        special_services: {} # Optional
+      }
+    }
+
+
+    # request_shipment examples
+    request_shipment_small_hash = {
+      requested_shipment: {
+        shipment_info: {
+          drop_off_type: "REGULAR_PICKUP",
+          service_type: 'U',
+          currency: 'EUR',
+          unit_of_measurement: 'SI', # Or SU, UK, US
+        },
+        ship_timestamp: Time.now.strftime('%Y-%m-%dT%H:%M:%SGMT%z'), # When is the shipment going to be ready for pickup?
+        payment_info: 'DDP',
+        international_detail: {
+          commodities: {
+            number_of_pieces: 1,
+            description: 'Goods',
+          }
+        },
+        ship: {
+          shipper: contact_structure,
+          recipient: recipient_contact_structure,
+        },
+        packages: [
+          requested_packages: {
+            :@number => 1,
+            :content! => {
+              weight: '15',
+              dimensions: {
+                length: '3',
+                width: '3',
+                height: '3'
+              },
+              customer_references: 'ewqqwe'
+            },
+          }
+        ]
+      }
+    }
+    response = client.call(:create_shipment_request, message: request_shipment_small_hash )
+
+    request_shipment_hash = {
       requested_shipment: {
 
         shipment_info: {
@@ -62,7 +164,7 @@ module Dhl
         },
         packages: {
           requested_packages: [
-            1: {
+            {
               weight: '15.000',
               dimensions: {
                 length: '3,0',
@@ -77,27 +179,58 @@ module Dhl
       }
     }
 
+    def address_structure
+      {
+        street_lines: 'Loc Bellocchi 68B',
+        city: 'Fano',
+        postal_code: '61032',
+        country_code: 'IT',
+        street_name: 'Loc Bellocchi', # Optional
+        street_number: '68B', # Optional
+        # street_lines_2: '', # Optional
+        # street_lines_3: '', # Optional
+        state_or_province_code: 'PU' # Optional
+      }
+    end
+
+    def recipient_address_structure
+      {
+        street_lines: 'via Stephenson 48',
+        city: 'Milano',
+        postal_code: '20028',
+        country_code: 'IT',
+        street_name: 'via Stephenson', # Optional
+        street_number: '48', # Optional
+        # street_lines_2: '', # Optional
+        # street_lines_3: '', # Optional
+        state_or_province_code: 'MI' # Optional
+      }
+    end
+
+
     def contact_structure
       {
         contact: {
-          person_name: 'Alessandro Mencarini'
-          company_name: 'freego'
-          phone_number: '+391234567890'
+          person_name: 'Alessandro Mencarini',
+          company_name: 'freego',
+          phone_number: '+391234567890',
           email_address: 'a.mencarini@freegoweb.it' # Optional
         },
-        address: {
-          street_lines: 'Via dei Baruffi 52',
-          city: 'Paesello',
-          postal_code: '12345',
-          country_code: 'IT',
-          street_name: 'Via dei Baruffi', # Optional
-          street_number: '52', # Optional
-          street_lines_2: '', # Optional
-          street_lines_3: '', # Optional
-          state_or_province_code: 'Androcchialand' # Optional
-        }
+        address: address_structure
       }
     end
+    def recipient_contact_structure
+      {
+        contact: {
+          person_name: 'Maurizio de Magnis',
+          company_name: 'Momit',
+          phone_number: '+390987654321',
+          email_address: 'maurizio.demagnis@momit.it' # Optional
+        },
+        address: recipient_address_structure
+      }
+    end
+
 
     # SOAP Client operations:
     # => [:get_rate_request, :create_shipment_request, :delete_shipment_request]
