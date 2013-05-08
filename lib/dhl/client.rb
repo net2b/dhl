@@ -19,6 +19,13 @@ module Dhl
         wsse_timestamp: true,
         convert_request_keys_to: :camelcase
       )
+
+      @tracking_soap_client = Savon.client(
+        wsdl: "https://wsbuat.dhl.com:8300/gbl/glDHLExpressTrack?WSDL",
+        wsse_auth: [config.username, config.password],
+        wsse_timestamp: true,
+        convert_request_keys_to: :camelcase
+      )
     end
 
     def soap_client
@@ -26,6 +33,13 @@ module Dhl
       # => [:get_rate_request, :create_shipment_request, :delete_shipment_request]
       @soap_client
     end
+
+    def tracking_soap_client
+      # SOAP Client operations:
+      # => [:track_shipment_request]
+      @tracking_soap_client
+    end
+
 
     def request_shipment(shipment_request)
       response = @soap_client.call(:create_shipment_request, message: shipment_request.to_hash )
@@ -42,6 +56,12 @@ module Dhl
       result = {}
       result[:tracking_numbers] = response.body[:shipment_response][:packages_result][:package_result].map{|r| r[:tracking_number]}
       result
+    end
+
+    def track(numbers)
+      request = Dhl::TrackingRequest.new(numbers)
+      response = tracking_soap_client.call(:track_shipment_request, message: request.to_hash)
+      response.body
     end
 
     # def request_rate

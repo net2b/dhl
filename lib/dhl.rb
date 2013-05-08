@@ -7,6 +7,7 @@ require "dhl/packages"
 require "dhl/package"
 require "dhl/shipment"
 require "dhl/shipment_request"
+require "dhl/tracking_request"
 
 module Dhl
 
