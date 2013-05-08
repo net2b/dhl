@@ -1,10 +1,12 @@
 require "dhl/version"
+require 'savon'
 require "dhl/client"
 require "dhl/configuration"
 require "dhl/contact"
 require "dhl/packages"
 require "dhl/package"
 require "dhl/shipment"
+require "dhl/shipment_request"
 
 module Dhl
 
@@ -16,8 +18,8 @@ module Dhl
     @config ||= Configuration.new
   end
 
-  def self.client
-    @client ||= Client.new.soap_client
+  def self.client(options={})
+    @client ||= Client.new(options)
   end
 
 end

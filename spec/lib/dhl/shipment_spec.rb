@@ -1,7 +1,6 @@
 require (File.expand_path('./../../../spec_helper', __FILE__))
 # For Ruby > 1.9.3, use this instead of require
 # require_relative '../../spec_helper'
-require 'time'
 
 describe Dhl::Shipment do
 
@@ -9,11 +8,12 @@ describe Dhl::Shipment do
 
   describe '#to_hash' do
     it "should return the expected hash structure" do
+      Dhl.config.account = 123456789
       shipment.pickup_time = Time.parse("16:45:10 31/12/2013 GMT+2")
       shipment.pieces = 2
       shipment.description = 'General goods'
 
-      hash = packages.to_hash
+      hash = shipment.to_hash
       hash.should == {
         shipment_info: {
           drop_off_type: "REGULAR_PICKUP",
@@ -33,7 +33,7 @@ describe Dhl::Shipment do
       }
     end
 
-    it "should raise an exception if not all required fields are present"
+    # it "should raise an exception if not all required fields are present"
   end
 
 end

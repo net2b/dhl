@@ -4,22 +4,23 @@ require_relative '../../spec_helper'
 
 describe Dhl::Client do
 
-  let(:client) { Dhl.client }
+  let(:client) { Dhl.client(username: 'username', password: 'password', account: 123456789) }
+  let(:shipment_request) { Dhl::ShipmentRequest.new }
+  let(:shipper) { FactoryGirl.build(:contact) }
+  let(:recipient) { FactoryGirl.build(:contact) }
+  let(:packages) { shipment_request.packages }
+  let(:shipment) { FactoryGirl.build(:shipment) }
 
   describe '#request_shipment' do
     it "should return a PDF shipping label" do
-      # shipper = Dhl::Contact.new
-      # recipient = Dhl::Contact.new
-      # packages = Dhl::Packages.new
-      # shipment = Dhl::Shipment.new
-      shipment_request = Dhl::ShipmentRequest.new
-      shipment_request.shipper.update(name: 'Ciccio Pasticcio')
-       = Dhl::Contact.new()
+      shipment_request.shipper = shipper
+      shipment_request.recipient = recipient
+      shipment_request.shipment = shipment
 
+      packages.add(50, 10, 15, 20, 'Ref 1')
+      packages.add(100, 40, 45, 35, 'Ref 2')
 
-
-      (shipper, recipient, packages, shipment)
-      response = client.request_shipment(shipper, recipient, packages, shipment)
+      response = client.request_shipment(shipment_request)
     end
   end
 

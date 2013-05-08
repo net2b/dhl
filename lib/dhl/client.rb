@@ -5,17 +5,17 @@ module Dhl
       Dhl.config
     end
 
-    def initialize
-      username = config.username
-      password = config.password
-      raise 'Provide username and password (e.g.: `export DHL_USERNAME=dhlusername`).' if !@username || @password
+    def initialize(options)
+      config.username ||= options[:username]
+      config.password ||= options[:password]
+      raise 'Provide username and password (e.g.: `export DHL_USERNAME=dhlusername`).' if !config.username || !config.password
 
-      account = config.account
-      raise 'Provide a DHL account number (e.g.: `export DHL_ACCOUNT=123456789`).' if !@username || @password
+      config.account ||= options[:account]
+      raise 'Provide a DHL account number (e.g.: `export DHL_ACCOUNT=123456789`).' if !config.account
 
       @soap_client = Savon.client(
         wsdl: "https://wsbuat.dhl.com:8300/amer/GEeuExpressRateBook?WSDL",
-        wsse_auth: [username, password],
+        wsse_auth: [config.username, config.password],
         wsse_timestamp: true,
         convert_request_keys_to: :camelcase
       )
@@ -27,15 +27,13 @@ module Dhl
       @soap_client
     end
 
-    def request_shipment
-      response = client.call(:create_shipment_request, message: { requested_shipment: nil } )
+    def request_shipment(shipment_request)
+      response = @soap_client.call(:create_shipment_request, message: shipment_request.to_hash )
     end
 
-    def request_rate
-      response = client.call(:get_rate_request, message: request_rate_hash )
-    end
-
-
+    # def request_rate
+    #   response = @soap_client.call(:get_rate_request, message: request_rate_hash )
+    # end
 
   end
 end

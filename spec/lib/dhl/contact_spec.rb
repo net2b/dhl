@@ -4,24 +4,10 @@ require (File.expand_path('./../../../spec_helper', __FILE__))
 
 describe Dhl::Contact do
 
-  let(:contact) { Dhl::Contact.new }
+  let(:contact) { FactoryGirl.build(:contact) }
 
   describe '#to_hash' do
     it "should return the expected hash structure" do
-      contact.name = "John Doe"
-      contact.company = "ACME Inc"
-      contact.phone = "+391234567890"
-      contact.email = "john@example.com"
-      contact.address = "Piazza Duomo, 1234"
-      contact.address2 = "Scala B"
-      contact.address3 = ""
-      contact.street_name = "Piazza Duomo"
-      contact.street_number = "1234"
-      contact.state_name = "MI"
-      contact.city = "Milano"
-      contact.postal_code = "20100"
-      contact.country_code = "IT"
-
       hash = contact.to_hash
       hash.should == {
         contact: {
@@ -44,7 +30,7 @@ describe Dhl::Contact do
       hash[:address].should_not have_key(:street_lines_3)
     end
 
-    it "should raise an exception if not all required fields are present"
+    # it "should raise an exception if not all required fields are present"
   end
 
 end

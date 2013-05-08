@@ -37,7 +37,7 @@ describe Dhl::Packages do
       }
     end
 
-    it "should raise an exception if not all required fields are present"
+    # it "should raise an exception if not all required fields are present"
   end
 
 end
