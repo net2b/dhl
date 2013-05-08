@@ -11,7 +11,7 @@ FactoryGirl.define do
     street_number "1234"
     state_name "MI"
     city "Milano"
-    postal_code "20100"
+    postal_code "20121"
     country_code "IT"
   end
 end

@@ -20,7 +20,7 @@ describe Dhl::Contact do
           street_lines: 'Piazza Duomo, 1234',
           street_lines_2: 'Scala B', # Optional
           city: 'Milano',
-          postal_code: '20100',
+          postal_code: '20121',
           country_code: 'IT',
           street_name: 'Piazza Duomo', # Optional
           street_number: '1234', # Optional

@@ -29,6 +29,19 @@ module Dhl
 
     def request_shipment(shipment_request)
       response = @soap_client.call(:create_shipment_request, message: shipment_request.to_hash )
+      if response.body[:shipment_response][:notification][:@code] != '0'
+        raise "Error: #{response.body[:shipment_response][:notification][:message]}"
+      end
+      image_format = response.body[:shipment_response][:label_image][:label_image_format]
+      shipment_identification_number = response.body[:shipment_response][:shipment_identification_number]
+      shipping_label_filename = "#{shipment_identification_number}.#{image_format.downcase}"
+      Dir.mkdir('labels') unless File.exists?('labels')
+      File.open("labels/#{shipping_label_filename}", 'wb') do |f|
+        f.write( Base64.decode64( response.body[:shipment_response][:label_image][:graphic_image]) )
+      end
+      result = {}
+      result[:tracking_numbers] = response.body[:shipment_response][:packages_result][:package_result].map{|r| r[:tracking_number]}
+      result
     end
 
     # def request_rate

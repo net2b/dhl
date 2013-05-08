@@ -1,0 +1,704 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://wsbuat.dhl.com:8300/amer/GEeuExpressRateBook?WSDL
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 08 May 2013 12:36:28 GMT
+      Server:
+      - ACE XML Gateway
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '49982'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<wsdl:definitions xmlns:mime=\"http://schemas.xmlsoap.org/wsdl/mime/\"
+        xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:http=\"http://schemas.xmlsoap.org/wsdl/http/\"
+        xmlns:tns=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/RateMsgRequest\"
+        xmlns:tm=\"http://microsoft.com/wsdl/mime/textMatching/\" xmlns:s5=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/DeleteShipmentResponse\"
+        xmlns:s3=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/ShipmentMsgRequest\"
+        xmlns:soap12=\"http://schemas.xmlsoap.org/wsdl/soap12/\" xmlns:s2=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/ShipmentMsgResponse\"
+        xmlns:soap=\"http://schemas.xmlsoap.org/wsdl/soap/\" xmlns:s6=\"http://www.reactivity.com/xsdbundle/\"
+        xmlns:s4=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/DeleteShipmentRequest\"
+        xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:s1=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/RateMsgResponse\"
+        xmlns:s0=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/providerServices/ShipmentHandlingServices\"
+        targetNamespace=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/RateMsgRequest\"><wsdl:types><xsd:schema
+        targetNamespace=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/ShipmentMsgRequest\">\n\t<xsd:element
+        name=\"ShipmentRequest\" type=\"s3:docTypeRef_ProcessShipmentRequestType\"/>\n\t<xsd:complexType
+        name=\"docTypeRef_ProcessShipmentRequestType\">\n\t\t<xsd:all>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"ClientDetail\" type=\"s3:docTypeRef_ClientDetailType2\"/>\n\t\t\t<xsd:element
+        name=\"RequestedShipment\" type=\"s3:docTypeRef_RequestedShipmentType\"/>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"docTypeRef_ClientDetailType2\">\n\t\t<xsd:all>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"sso\" type=\"s3:sso\"/>\n\t\t\t<xsd:element minOccurs=\"0\"
+        name=\"plant\" type=\"s3:plant\"/>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"sso\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"0\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"plant\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"0\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"docTypeRef_RequestedShipmentType\">\n\t\t<xsd:all>\n\t\t\t<xsd:element
+        name=\"ShipmentInfo\" type=\"s3:docTypeRef_ShipmentInfoType\"/>\n\t\t\t<xsd:element
+        name=\"ShipTimestamp\" type=\"s3:ShipTimestamp\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>Identifies
+        the date and time the package is tendered. Both the date and time portions
+        of\n\t\t\t\t\t the string are expected to be used. The date should not be
+        a past date or a date more than 10 days in the\n\t\t\t\t\t future. The time
+        is the local time of the shipment based on the shipper's time zone. The date
+        component\n\t\t\t\t\t must be in the format: YYYY-MM-DD; the time component
+        must be in the format: HH:MM:SS using a 24 hour\n\t\t\t\t\t  clock. The date
+        and time parts are separated by the letter T (e.g. 2010-02-05T14:00:00 GMT+01:00).\n
+        \                   </xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        name=\"PaymentInfo\" type=\"s3:PaymentInfo\"/>\n\t\t\t<xsd:element name=\"InternationalDetail\"
+        type=\"s3:docTypeRef_InternationDetailType\"/>\n\t\t\t<xsd:element name=\"Ship\"
+        type=\"s3:docTypeRef_ShipType\"/>\n\t\t\t<xsd:element name=\"Packages\" type=\"s3:docTypeRef_PackagesType\"/>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"docTypeRef_ShipmentInfoType\">\n\t\t<xsd:all>\n\t\t\t<xsd:element name=\"DropOffType\"
+        type=\"s3:DropOffType\"/>\n\t\t\t<xsd:element name=\"ServiceType\" type=\"s3:ServiceType\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"Account\" type=\"s3:Account\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"Billing\" type=\"s3:Billing\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"SpecialServices\" type=\"s3:Services\"/>\n\t\t\t<xsd:element
+        name=\"Currency\" type=\"s3:Currency\"/>\n\t\t\t<xsd:element name=\"UnitOfMeasurement\"
+        type=\"s3:UnitOfMeasurement\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>SI=the
+        preferred system of weights and measures for Italian trade and\n\t\t\t\t\t
+        commerce; SU=the preferred\tsystem of weights and measures for U.S. trade
+        and commerce;\n\t\t\t\t\t Weight unit: if Type is SI it can be KG\t(kilograms),
+        if Type is SU it can be LB (pounds).\n\t\t\t\t\t Dimention unit: if Type is
+        SI it can be CM, if Type is SU it can be IN (inch)\n    \t\t\t\t</xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"ShipmentIdentificationNumber\" type=\"s3:ShipmentIdentificationNumber2\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"PackagesCount\" type=\"s3:PackagesCount\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"SendPackage\" type=\"s3:SendPackage\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"LabelType\" type=\"s3:LabelType\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"LabelTemplate\" type=\"s3:LabelTemplate\"/>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"DropOffType\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t\t<xsd:enumeration
+        value=\"REGULAR_PICKUP\"/>\n\t\t\t<xsd:enumeration value=\"REQUEST_COURIER\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"ServiceType\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:maxLength value=\"1\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"Account\">\n\t\t<xsd:restriction base=\"xsd:string\">\n\t\t\t<xsd:minLength
+        value=\"0\"/>\n\t\t\t<xsd:maxLength value=\"12\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"Currency\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"3\"/>\n\t\t\t<xsd:maxLength value=\"3\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"UnitOfMeasurement\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:enumeration value=\"SI\"/>\n\t\t\t<xsd:enumeration
+        value=\"SU\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"ShipmentIdentificationNumber2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"PackagesCount\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"SendPackage\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"ShipTimestamp\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:maxLength
+        value=\"29\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"PaymentInfo\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:enumeration value=\"CFR\"/>\n\t\t\t<xsd:enumeration
+        value=\"CIF\"/>\n\t\t\t<xsd:enumeration value=\"CIP\"/>\n\t\t\t<xsd:enumeration
+        value=\"CPT\"/>\n\t\t\t<xsd:enumeration value=\"DAF\"/>\n\t\t\t<xsd:enumeration
+        value=\"DDP\"/>\n\t\t\t<xsd:enumeration value=\"DDU\"/>\n\t\t\t<xsd:enumeration
+        value=\"DAP\"/>\n\t\t\t<xsd:enumeration value=\"DEQ\"/>\n\t\t\t<xsd:enumeration
+        value=\"DES\"/>\n\t\t\t<xsd:enumeration value=\"EXW\"/>\n\t\t\t<xsd:enumeration
+        value=\"FAS\"/>\n\t\t\t<xsd:enumeration value=\"FCA\"/>\n\t\t\t<xsd:enumeration
+        value=\"FOB\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"docTypeRef_InternationDetailType\">\n\t\t<xsd:all>\n\t\t\t<xsd:element
+        name=\"Commodities\" type=\"s3:docTypeRef_CommoditiesType\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"Content\" type=\"s3:Content\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"ExportReference\" type=\"s3:ExportReference\"/>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"docTypeRef_CommoditiesType\">\n\t\t<xsd:all>\n\t\t\t<xsd:element minOccurs=\"0\"
+        name=\"NumberOfPieces\" type=\"s3:NumberOfPieces\"/>\n\t\t\t<xsd:element name=\"Description\"
+        type=\"s3:Description\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"CountryOfManufacture\"
+        type=\"s3:CountryOfManufacture\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"Quantity\"
+        type=\"s3:Quantity\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"UnitPrice\"
+        type=\"s3:UnitPrice\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"CustomsValue\"
+        type=\"s3:CustomsValue\"/>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"NumberOfPieces\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"Description\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:maxLength value=\"35\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"CountryOfManufacture\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"Quantity\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"UnitPrice\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"CustomsValue\">\n\t\t<xsd:restriction base=\"xsd:decimal\">\n\t\t\t<xsd:totalDigits
+        value=\"18\"/>\n\t\t\t<xsd:fractionDigits value=\"3\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"Content\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:enumeration value=\"DOCUMENTS\"/>\n\t\t\t<xsd:enumeration
+        value=\"NON_DOCUMENTS\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"ExportReference\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"0\"/>\n\t\t\t<xsd:maxLength value=\"40\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"docTypeRef_ShipType\">\n\t\t<xsd:all>\n\t\t\t<xsd:element name=\"Shipper\"
+        type=\"s3:docTypeRef_ContactInfoType\"/>\n\t\t\t<xsd:element minOccurs=\"0\"
+        name=\"Pickup\" type=\"s3:docTypeRef_ContactInfoType\"/>\n\t\t\t<xsd:element
+        name=\"Recipient\" type=\"s3:docTypeRef_ContactInfoType\"/>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"docTypeRef_ContactInfoType\">\n\t\t<xsd:all>\n\t\t\t<xsd:element name=\"Contact\"
+        type=\"s3:docTypeRef_ContactType\"/>\n\t\t\t<xsd:element name=\"Address\"
+        type=\"s3:docTypeRef_AddressType\"/>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"docTypeRef_ContactType\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element name=\"PersonName\"
+        type=\"s3:PersonName\"/>\n\t\t\t<xsd:element name=\"CompanyName\" type=\"s3:CompanyName\"/>\n\t\t\t<xsd:element
+        name=\"PhoneNumber\" type=\"s3:PhoneNumber\"/>\n\t\t\t<xsd:element minOccurs=\"0\"
+        name=\"EmailAddress\" type=\"s3:EmailAddress\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"PersonName\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:maxLength value=\"45\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"CompanyName\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:maxLength value=\"35\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"PhoneNumber\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:maxLength value=\"25\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"EmailAddress\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:maxLength value=\"50\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"docTypeRef_AddressType\">\n\t\t<xsd:all>\n\t\t\t<xsd:element name=\"StreetLines\"
+        type=\"s3:StreetLines\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"StreetName\"
+        type=\"s3:StreetName\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"StreetNumber\"
+        type=\"s3:StreetNumber\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"StreetLines2\"
+        type=\"s3:StreetLines2\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"StreetLines3\"
+        type=\"s3:StreetLines3\"/>\n\t\t\t<xsd:element name=\"City\" type=\"s3:City\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"StateOrProvinceCode\" type=\"s3:StateOrProvinceCode\"/>\n\t\t\t<xsd:element
+        name=\"PostalCode\" type=\"s3:PostalCode\"/>\n\t\t\t<xsd:element name=\"CountryCode\"
+        type=\"s3:CountryCode\"/>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"StreetLines\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:maxLength value=\"35\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"StreetName\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:maxLength value=\"35\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"StreetNumber\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:maxLength value=\"15\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"StreetLines2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:maxLength value=\"35\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"StreetLines3\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:maxLength value=\"35\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"City\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:maxLength value=\"35\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"StateOrProvinceCode\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"PostalCode\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"0\"/>\n\t\t\t<xsd:maxLength value=\"12\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"CountryCode\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"2\"/>\n\t\t\t<xsd:maxLength value=\"2\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"docTypeRef_PackagesType\">\n\t\t<xsd:sequence maxOccurs=\"unbounded\">\n\t\t\t<xsd:element
+        name=\"RequestedPackages\" type=\"s3:docTypeRef_RequestedPackagesType\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"docTypeRef_RequestedPackagesType\">\n\t\t<xsd:all>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"InsuredValue\" type=\"s3:InsuredValue\"/>\n\t\t\t<xsd:element
+        name=\"Weight\" type=\"s3:Weight\"/>\n\t\t\t<xsd:element name=\"Dimensions\"
+        type=\"s3:docTypeRef_DimensionsType\"/>\n\t\t\t<xsd:element name=\"CustomerReferences\"
+        type=\"s3:CustomerReferences\"/>\n\t\t</xsd:all>\n\t\t<xsd:attribute name=\"number\"
+        type=\"s3:_x0040_number\" use=\"required\"/>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"_x0040_number\">\n\t\t<xsd:restriction base=\"xsd:integer\">\n\t\t\t<xsd:minInclusive
+        value=\"1\"/>\n\t\t\t<xsd:maxInclusive value=\"50\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"InsuredValue\">\n\t\t<xsd:restriction base=\"xsd:decimal\">\n\t\t\t<xsd:totalDigits
+        value=\"15\"/>\n\t\t\t<xsd:fractionDigits value=\"3\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"Weight\">\n\t\t<xsd:restriction base=\"xsd:decimal\">\n\t\t\t<xsd:totalDigits
+        value=\"12\"/>\n\t\t\t<xsd:fractionDigits value=\"3\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"docTypeRef_DimensionsType\">\n\t\t<xsd:all>\n\t\t\t<xsd:element name=\"Length\"
+        type=\"s3:Length\"/>\n\t\t\t<xsd:element name=\"Width\" type=\"s3:Width\"/>\n\t\t\t<xsd:element
+        name=\"Height\" type=\"s3:Height\"/>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"Length\">\n\t\t<xsd:restriction base=\"xsd:decimal\">\n\t\t\t<xsd:totalDigits
+        value=\"7\"/>\n\t\t\t<xsd:fractionDigits value=\"3\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"Width\">\n\t\t<xsd:restriction base=\"xsd:decimal\">\n\t\t\t<xsd:totalDigits
+        value=\"7\"/>\n\t\t\t<xsd:fractionDigits value=\"3\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"Height\">\n\t\t<xsd:restriction base=\"xsd:decimal\">\n\t\t\t<xsd:totalDigits
+        value=\"7\"/>\n\t\t\t<xsd:fractionDigits value=\"3\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"CustomerReferences\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:maxLength value=\"35\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"Billing\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element name=\"ShipperAccountNumber\"
+        type=\"s3:Account\"/>\n\t\t\t<xsd:element name=\"ShippingPaymentType\" type=\"s3:ShipmentPaymentType\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"BillingAccountNumber\" type=\"s3:Account\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"ShipmentPaymentType\">\n\t\t<xsd:annotation>\n\t\t\t<xsd:documentation>\n\t\t\t
+        \  S=Bill-To Shipper, R=Bill-To Receiver, T=Bill-To Third Party\n    \t</xsd:documentation>\n\t\t</xsd:annotation>\n\t\t<xsd:restriction
+        base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t\t<xsd:enumeration
+        value=\"S\"/>\n\t\t\t<xsd:enumeration value=\"R\"/>\n\t\t\t<xsd:enumeration
+        value=\"T\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"Services\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element maxOccurs=\"unbounded\"
+        name=\"Service\" type=\"s3:Service\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"Service\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element name=\"ServiceType\"
+        type=\"s3:ServiceTypeCode\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"ServiceValue\"
+        type=\"s3:Money\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"CurrencyCode\"
+        type=\"s3:CurrencyCode\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"PaymentCode\"
+        type=\"s3:PaymentCode\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"StartDate\"
+        type=\"xsd:date\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"EndDate\" type=\"xsd:date\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"TextInstruction\" type=\"s3:TextType\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"ServiceTypeCode\">\n\t\t<xsd:restriction base=\"xsd:string\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:minLength value=\"1\"/>\n\t\t\t<xsd:maxLength
+        value=\"3\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"Money\">\n\t\t<xsd:restriction base=\"xsd:decimal\">\n\t\t\t<xsd:totalDigits
+        value=\"12\"/>\n\t\t\t<xsd:fractionDigits value=\"2\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"CurrencyCode\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"3\"/>\n\t\t\t<xsd:maxLength value=\"3\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"PaymentCode\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"3\"/>\n\t\t\t<xsd:maxLength value=\"3\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"TextType\">\n\t\t<xsd:restriction base=\"xsd:string\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:maxLength value=\"50\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        final=\"list\" name=\"LabelType\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"3\"/>\n\t\t\t<xsd:maxLength value=\"3\"/>\n\t\t\t<xsd:enumeration
+        value=\"PDF\"/>\n\t\t\t<xsd:enumeration value=\"ZPL\"/>\n\t\t\t<xsd:enumeration
+        value=\"EPL\"/>\n\t\t\t<xsd:enumeration value=\"LP2\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        final=\"list\" name=\"LabelTemplate\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:maxLength
+        value=\"20\"/>\n\t\t\t<xsd:enumeration value=\"ECOM26_A6_001\"/>\n\t\t\t<xsd:enumeration
+        value=\"ECOM26_84_001\"/>\n\t\t\t<xsd:enumeration value=\"ECOM26_84CI_001\"/>\n\t\t\t<xsd:enumeration
+        value=\"ECOM26_A4_001\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n</xsd:schema><xsd:schema
+        targetNamespace=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/RateMsgRequest\">\n\t<xsd:element
+        name=\"RateRequest\" type=\"tns:docTypeRef_RateRequestType\"/>\n\t<xsd:complexType
+        name=\"docTypeRef_RateRequestType\">\n\t\t<xsd:all>\n\t\t\t<xsd:element minOccurs=\"0\"
+        name=\"ClientDetail\" type=\"tns:docTypeRef_ClientDetailType3\"/>\n\t\t\t<xsd:element
+        name=\"RequestedShipment\" type=\"tns:docTypeRef_RequestedShipmentType2\"/>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"docTypeRef_ClientDetailType3\">\n\t\t<xsd:all>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"sso\" type=\"tns:sso2\"/>\n\t\t\t<xsd:element minOccurs=\"0\"
+        name=\"plant\" type=\"tns:plant2\"/>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"sso2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"0\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"plant2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"0\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"docTypeRef_RequestedShipmentType2\">\n\t\t<xsd:all>\n\t\t\t<xsd:element
+        name=\"DropOffType\" type=\"tns:DropOffType2\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>\n
+        \   \t\t\t\t\tRequested value are REGULAR_PICKUP or\n    \t\t\t\t\tREQUEST_COURIER,
+        it identifies the method by\n    \t\t\t\t\twhich the package is to be tendered.\n
+        \   \t\t\t\t</xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"NextBusinessDay\" type=\"tns:NextBusinessDay2\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>\n
+        \   \t\t\t\t\tThis indicator is a Y-N flag which indicates whether an error
+        should be returned if no products are available that day (N) or if the next
+        business day should be evaluated (Y).  Default is N if not included.\n    \t\t\t\t</xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        name=\"Ship\" type=\"tns:docTypeRef_ShipType2\"/>\n\t\t\t<xsd:element name=\"Packages\"
+        type=\"tns:docTypeRef_PackagesType2\"/>\n\t\t\t<xsd:element name=\"ShipTimestamp\"
+        type=\"tns:ShipTimestamp2\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>\n
+        \   \t\t\t\t\tIdentifies the date and time the package is tendered. Both the
+        date and time portions of the\n    \t\t\t\t\tstring are expected to be used.
+        The date should\n    \t\t\t\t\tnot be a past date or a date more than 10 days\n
+        \   \t\t\t\t\tin the future. The time is the local time of the\n    \t\t\t\t\tshipment
+        based on the shipper's time zone. The\n    \t\t\t\t\tdate component must be
+        in the format:\n    \t\t\t\t\tYYYY-MM-DD; the time component must be in the\n
+        \   \t\t\t\t\tformat: HH:MM:SS using a 24 hour clock. The date\n    \t\t\t\t\tand
+        time parts are separated by the letter T\n    \t\t\t\t\t(e.g. 2006-06-26T17:00:00
+        GMT+01:00).\n    \t\t\t\t</xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        name=\"UnitOfMeasurement\" type=\"tns:UnitOfMeasurement2\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>\n
+        \   \t\t\t\t\tSI=the preferred system of weights and measures\n    \t\t\t\t\tfor
+        Italian trade and commerce; SU=the preferred\n    \t\t\t\t\tsystem of weights
+        and measures for U.S. trade\n    \t\t\t\t\tand commerce; Weight unit: if Type
+        is SI it can\n    \t\t\t\t\tbe KG (kilograms), if Type is SU it can be LB\n
+        \   \t\t\t\t\t(pounds). Dimention unit: if Type is SI it can\n    \t\t\t\t\tbe
+        CM, if Type is SU it can be IN (inch)\n    \t\t\t\t</xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"Content\" type=\"tns:Content2\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"DeclaredValue\">\n\t\t\t\t<xsd:simpleType>\n\t\t\t\t\t<xsd:restriction
+        base=\"xsd:decimal\">\n\t\t\t\t\t\t<xsd:totalDigits value=\"18\"/>\n\t\t\t\t\t\t<xsd:fractionDigits
+        value=\"3\"/>\n\t\t\t\t\t</xsd:restriction>\n\t\t\t\t</xsd:simpleType>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"DeclaredValueCurrencyCode\">\n\t\t\t\t<xsd:simpleType>\n\t\t\t\t\t<xsd:restriction
+        base=\"xsd:string\">\n\t\t\t\t\t\t<xsd:maxLength value=\"3\"/>\n\t\t\t\t\t</xsd:restriction>\n\t\t\t\t</xsd:simpleType>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"PaymentInfo\" type=\"tns:PaymentInfo2\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"Account\" type=\"tns:Account2\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"Billing\" type=\"tns:Billing2\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"SpecialServices\" type=\"tns:Services2\"/>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"DropOffType2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t\t<xsd:enumeration
+        value=\"REGULAR_PICKUP\"/>\n\t\t\t<xsd:enumeration value=\"REQUEST_COURIER\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"NextBusinessDay2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:enumeration value=\"Y\"/>\n\t\t\t<xsd:enumeration
+        value=\"N\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"docTypeRef_ShipType2\">\n\t\t<xsd:all>\n\t\t\t<xsd:element name=\"Shipper\"
+        type=\"tns:docTypeRef_AddressType2\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>Shipper
+        address.</xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        name=\"Recipient\" type=\"tns:docTypeRef_AddressType2\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>Recipeint
+        address.</xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"docTypeRef_AddressType2\">\n\t\t<xsd:all>\n\t\t\t<xsd:element minOccurs=\"0\"
+        name=\"StreetLines\" type=\"tns:StreetLines4\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>\n
+        \   \t\t\t\t\tThe shipper/recipient's street address.\n    \t\t\t\t</xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"StreetLines2\" type=\"tns:StreetLines22\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>\n
+        \   \t\t\t\t\tAdditional shipper/recipient address\n    \t\t\t\t\tinformation,
+        preferably room or floor.\n    \t\t\t\t</xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"StreetLines3\" type=\"tns:StreetLines32\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>Additional
+        shipper address\n\t\t\t\t\t information, preferably department name.\n\t\t\t\t\t
+        </xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"StreetName\" type=\"tns:StreetName2\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>The
+        shipper/recipient's street name.</xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"StreetNumber\" type=\"tns:StreetNumber2\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>The
+        shipper/recipient's street number.</xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        name=\"City\" type=\"tns:City2\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"StateOrProvinceCode\"
+        type=\"xsd:token\"/>\n\t\t\t<xsd:element name=\"PostalCode\" type=\"tns:PostalCode2\"/>\n\t\t\t<xsd:element
+        name=\"CountryCode\">\n\t\t\t\t<xsd:simpleType>\n\t\t\t\t\t<xsd:restriction
+        base=\"tns:CountryCode2\">\n\t\t\t\t\t\t<xsd:minLength value=\"2\"/>\n\t\t\t\t\t</xsd:restriction>\n\t\t\t\t</xsd:simpleType>\n\t\t\t</xsd:element>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"StreetLines4\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:minLength value=\"1\"/>\n\t\t\t<xsd:maxLength
+        value=\"35\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"StreetLines22\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:minLength value=\"1\"/>\n\t\t\t<xsd:maxLength
+        value=\"35\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"StreetLines32\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:minLength value=\"1\"/>\n\t\t\t<xsd:maxLength
+        value=\"35\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"StreetName2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:minLength value=\"1\"/>\n\t\t\t<xsd:maxLength
+        value=\"35\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"StreetNumber2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:minLength value=\"1\"/>\n\t\t\t<xsd:maxLength
+        value=\"15\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"City2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:minLength value=\"1\"/>\n\t\t\t<xsd:maxLength
+        value=\"45\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"PostalCode2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:minLength value=\"0\"/>\n\t\t\t<xsd:maxLength
+        value=\"12\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"CountryCode2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:maxLength value=\"2\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"docTypeRef_PackagesType2\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element
+        maxOccurs=\"unbounded\" name=\"RequestedPackages\" type=\"tns:docTypeRef_RequestedPackagesType2\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"docTypeRef_RequestedPackagesType2\">\n\t\t<xsd:sequence maxOccurs=\"50\">\n\t\t\t<xsd:element
+        name=\"Weight\" type=\"tns:docTypeRef_WeightType\"/>\n\t\t\t<xsd:element name=\"Dimensions\"
+        type=\"tns:docTypeRef_DimensionsType2\"/>\n\t\t</xsd:sequence>\n\t\t<xsd:attribute
+        name=\"number\" type=\"tns:_x0040_number3\"/>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"_x0040_number3\">\n\t\t<xsd:restriction base=\"xsd:int\">\n\t\t\t<xsd:minInclusive
+        value=\"1\"/>\n\t\t\t<xsd:maxInclusive value=\"50\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"docTypeRef_WeightType\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element name=\"Value\"
+        type=\"tns:Value\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"Value\">\n\t\t<xsd:restriction base=\"xsd:decimal\">\n\t\t\t<xsd:totalDigits
+        value=\"12\"/>\n\t\t\t<xsd:fractionDigits value=\"3\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"docTypeRef_DimensionsType2\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element
+        name=\"Length\" type=\"tns:Length2\"/>\n\t\t\t<xsd:element name=\"Width\"
+        type=\"tns:Width2\"/>\n\t\t\t<xsd:element name=\"Height\" type=\"tns:Height2\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"Length2\">\n\t\t<xsd:restriction base=\"xsd:decimal\">\n\t\t\t<xsd:totalDigits
+        value=\"7\"/>\n\t\t\t<xsd:fractionDigits value=\"3\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"Width2\">\n\t\t<xsd:restriction base=\"xsd:decimal\">\n\t\t\t<xsd:totalDigits
+        value=\"7\"/>\n\t\t\t<xsd:fractionDigits value=\"3\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"Height2\">\n\t\t<xsd:restriction base=\"xsd:decimal\">\n\t\t\t<xsd:totalDigits
+        value=\"7\"/>\n\t\t\t<xsd:fractionDigits value=\"3\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"ShipTimestamp2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:maxLength value=\"29\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"UnitOfMeasurement2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:enumeration value=\"SI\"/>\n\t\t\t<xsd:enumeration
+        value=\"SU\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"Content2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:enumeration value=\"DOCUMENTS\"/>\n\t\t\t<xsd:enumeration
+        value=\"NON_DOCUMENTS\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"PaymentInfo2\">\n\t\t<xsd:annotation>\n\t\t\t<xsd:documentation>\n\t\t\t\tCFR
+        = Cost And Freight\n\t\t\t\tCIF = Cost, Insurance And Freight\n\t\t\t\tCIP
+        = Carriage And Insurance Paid To\n\t\t\t\tCPT = Carriage Paid To\n\t\t\t\tDAF
+        = Delivered At Frontier\n\t\t\t\tDDP = Delivered Duty Paid\n\t\t\t\tDDU =
+        Delivered Duty Unpaid\n\t\t\t\tDAP = Delivered At Place (formerly DDU)\n\t\t\t\tDEQ
+        = Delivered Ex Quay (Duty Paid)\n\t\t\t\tDES = Delivered Ex Ship\n\t\t\t\tEXW
+        = Ex Works\n\t\t\t\tFAS = Free Alongside Ship\n\t\t\t\tFCA = Free Carrier\n\t\t\t\tFOB
+        = Free On Board\n    \t</xsd:documentation>\n\t\t</xsd:annotation>\n\t\t<xsd:restriction
+        base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t\t<xsd:enumeration
+        value=\"CFR\"/>\n\t\t\t<xsd:enumeration value=\"CIF\"/>\n\t\t\t<xsd:enumeration
+        value=\"CIP\"/>\n\t\t\t<xsd:enumeration value=\"CPT\"/>\n\t\t\t<xsd:enumeration
+        value=\"DAF\"/>\n\t\t\t<xsd:enumeration value=\"DDP\"/>\n\t\t\t<xsd:enumeration
+        value=\"DDU\"/>\n\t\t\t<xsd:enumeration value=\"DAP\"/>\n\t\t\t<xsd:enumeration
+        value=\"DEQ\"/>\n\t\t\t<xsd:enumeration value=\"DES\"/>\n\t\t\t<xsd:enumeration
+        value=\"EXW\"/>\n\t\t\t<xsd:enumeration value=\"FAS\"/>\n\t\t\t<xsd:enumeration
+        value=\"FCA\"/>\n\t\t\t<xsd:enumeration value=\"FOB\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"Account2\">\n\t\t<xsd:restriction base=\"xsd:string\">\n\t\t\t<xsd:whiteSpace
+        value=\"preserve\"/>\n\t\t\t<xsd:minLength value=\"1\"/>\n\t\t\t<xsd:maxLength
+        value=\"12\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"Billing2\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element name=\"ShipperAccountNumber\"
+        type=\"tns:Account2\"/>\n\t\t\t<xsd:element name=\"ShippingPaymentType\" type=\"tns:ShipmentPaymentType2\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"BillingAccountNumber\" type=\"tns:Account2\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"ShipmentPaymentType2\">\n\t\t<xsd:annotation>\n\t\t\t<xsd:documentation>\n\t\t\t
+        \  S=Bill-To Shipper, R=Bill-To Receiver, T=Bill-To Third Party\n    \t</xsd:documentation>\n\t\t</xsd:annotation>\n\t\t<xsd:restriction
+        base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t\t<xsd:enumeration
+        value=\"S\"/>\n\t\t\t<xsd:enumeration value=\"R\"/>\n\t\t\t<xsd:enumeration
+        value=\"T\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"Services2\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element maxOccurs=\"unbounded\"
+        name=\"Service\" type=\"tns:Service2\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"Service2\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element name=\"ServiceType\"
+        type=\"tns:ServiceType2\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"ServiceValue\"
+        type=\"tns:Money2\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"CurrencyCode\"
+        type=\"tns:CurrencyCode2\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"PaymentCode\"
+        type=\"tns:PaymentCode2\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"StartDate\"
+        type=\"xsd:date\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"EndDate\" type=\"xsd:date\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"TextInstruction\" type=\"tns:TextType2\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"ServiceType2\">\n\t\t<xsd:restriction base=\"xsd:string\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:minLength value=\"1\"/>\n\t\t\t<xsd:maxLength
+        value=\"3\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"Money2\">\n\t\t<xsd:restriction base=\"xsd:decimal\">\n\t\t\t<xsd:totalDigits
+        value=\"12\"/>\n\t\t\t<xsd:fractionDigits value=\"2\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"CurrencyCode2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"3\"/>\n\t\t\t<xsd:maxLength value=\"3\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"PaymentCode2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"3\"/>\n\t\t\t<xsd:maxLength value=\"3\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"TextType2\">\n\t\t<xsd:restriction base=\"xsd:string\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:maxLength value=\"50\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n</xsd:schema><xsd:schema
+        targetNamespace=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/DeleteShipmentResponse\">\n\t<xsd:element
+        name=\"DeleteResponse\" type=\"s5:docTypeRef_DeleteResponseType\"/>\n\t<xsd:complexType
+        name=\"docTypeRef_DeleteResponseType\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element
+        name=\"Notification\" type=\"s5:docTypeRef_NotificationType\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"docTypeRef_NotificationType\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element
+        name=\"Message\">\n\t\t\t\t<xsd:simpleType>\n\t\t\t\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t\t\t</xsd:restriction>\n\t\t\t\t</xsd:simpleType>\n\t\t\t</xsd:element>\n\t\t</xsd:sequence>\n\t\t<xsd:attribute
+        name=\"code\" type=\"s5:_x0040_code\">\n\t\t\t<xsd:annotation>\n\t\t\t\t<xsd:documentation>Notification
+        code: valid values are 0=SUCCESS, 1=ERROR.</xsd:documentation>\n\t\t\t</xsd:annotation>\n\t\t</xsd:attribute>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"_x0040_code\">\n\t\t<xsd:restriction base=\"xsd:nonNegativeInteger\">\n\t\t\t<xsd:totalDigits
+        value=\"6\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n</xsd:schema><xsd:schema
+        targetNamespace=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/DeleteShipmentRequest\">\n\t<xsd:element
+        name=\"DeleteRequest\" type=\"s4:docTypeRef_DeleteRequestType\"/>\n\t<xsd:complexType
+        name=\"docTypeRef_DeleteRequestType\">\n\t\t<xsd:all>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"ClientDetail\" type=\"s4:docTypeRef_ClientDetailType\"/>\n\t\t\t<xsd:element
+        name=\"PickupDate\" type=\"xsd:date\"/>\n\t\t\t<xsd:element name=\"PickupCountry\"
+        type=\"s4:CountryCode\"/>\n\t\t\t<xsd:element name=\"DispatchConfirmationNumber\"
+        type=\"s4:ConfirmationNumberType\"/>\n\t\t\t<xsd:element name=\"RequestorName\"
+        type=\"s4:PersonName3\"/>\n\t\t\t<xsd:element minOccurs=\"0\" name=\"Reason\"
+        type=\"s4:CustomerReferences\"/>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"docTypeRef_ClientDetailType\">\n\t\t<xsd:all>\n\t\t\t<xsd:element minOccurs=\"0\"
+        name=\"sso\">\n\t\t\t\t<xsd:simpleType>\n\t\t\t\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t\t\t</xsd:restriction>\n\t\t\t\t</xsd:simpleType>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"plant\">\n\t\t\t\t<xsd:simpleType>\n\t\t\t\t\t<xsd:restriction
+        base=\"xsd:token\">\n\t\t\t\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t\t\t\t</xsd:restriction>\n\t\t\t\t</xsd:simpleType>\n\t\t\t</xsd:element>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"ShipmentIdentificationNumber\">\n\t\t<xsd:restriction base=\"xsd:string\">\n\t\t\t<xsd:whiteSpace
+        value=\"preserve\"/>\n\t\t\t<xsd:minLength value=\"1\"/>\n\t\t\t<xsd:maxLength
+        value=\"10\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"CountryCode\">\n\t\t<xsd:restriction base=\"xsd:string\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:minLength value=\"2\"/>\n\t\t\t<xsd:maxLength
+        value=\"2\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"ConfirmationNumberType\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"PersonName3\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:maxLength value=\"45\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t\t<xsd:simpleType
+        name=\"CustomerReferences\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:maxLength value=\"50\"/>\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n</xsd:schema><xsd:schema
+        targetNamespace=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/RateMsgResponse\">\n\t<xsd:element
+        name=\"RateResponse\" type=\"s1:docTypeRef_RateResponseType\"/>\n\t<xsd:complexType
+        name=\"docTypeRef_RateResponseType\">\n\t\t<xsd:sequence maxOccurs=\"unbounded\"
+        minOccurs=\"0\">\n\t\t\t<xsd:element maxOccurs=\"unbounded\" minOccurs=\"0\"
+        name=\"Provider\" type=\"s1:docTypeRef_ProviderType\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"docTypeRef_ProviderType\">\n\t\t<xsd:sequence maxOccurs=\"unbounded\">\n\t\t\t<xsd:element
+        name=\"Notification\" type=\"s1:docTypeRef_NotificationType3\"/>\n\t\t\t<xsd:element
+        maxOccurs=\"unbounded\" minOccurs=\"0\" name=\"Service\" type=\"s1:docTypeRef_ServiceType\"/>\n\t\t</xsd:sequence>\n\t\t<xsd:attribute
+        name=\"code\" type=\"s1:_x0040_code3\"/>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"_x0040_code3\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"docTypeRef_NotificationType3\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element
+        name=\"Message\" type=\"s1:Message2\"/>\n\t\t</xsd:sequence>\n\t\t<xsd:attribute
+        name=\"code\" type=\"s1:_x0040_code4\">\n\t\t\t<xsd:annotation>\n\t\t\t\t<xsd:documentation>Notification
+        code: valid values are 0=SUCCESS, other value=ERROR</xsd:documentation>\n\t\t\t</xsd:annotation>\n\t\t</xsd:attribute>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"_x0040_code4\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"Message2\">\n\t\t<xsd:restriction base=\"xsd:string\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"docTypeRef_ServiceType\">\n\t\t<xsd:all>\n\t\t\t<xsd:element name=\"TotalNet\"
+        type=\"s1:docTypeRef_TotalNetType\"/>\n\t\t\t<xsd:element minOccurs=\"0\"
+        name=\"Charges\" type=\"s1:docTypeRef_ChargesType\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"DeliveryTime\" type=\"xsd:dateTime\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>\n
+        \   \t\t\t\t\tIdentifies the date and time the package is\n    \t\t\t\t\ttendered.
+        Both the date and time portions of the\n    \t\t\t\t\tstring are expected
+        to be used. The date should\n    \t\t\t\t\tnot be a past date or a date more
+        than 10 days\n    \t\t\t\t\tin the future. The time is the local time of the\n
+        \   \t\t\t\t\tshipment based on the shipper's time zone. The\n    \t\t\t\t\tdate
+        component must be in the format:\n    \t\t\t\t\tYYYY-MM-DD; the time component
+        must be in the\n    \t\t\t\t\tformat: HH:MM:SS using a 24 hour clock. The
+        date\n    \t\t\t\t\tand time parts are separated by the letter T\n    \t\t\t\t\t(e.g.
+        2006-06-26T17:00:00).</xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"CutoffTime\" type=\"xsd:dateTime\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>\n
+        \   \t\t\t\t\tIdentifies the cutoff date and time the package needs to be
+        tendered to the shipper, in order to meet the estimated delivery time.The
+        time is the local time of the shipment based on the shipper's time zone. The
+        date component must be in the format:YYYY-MM-DD; the time component must be
+        in the format: HH:MM:SS using a 24 hour clock. The date and time parts are
+        separated by the letter T (e.g. 2006-06-26T17:00:00).</xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"NextBusinessDayInd\" type=\"s1:NextBusinessDayInd2\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>\n
+        \   \t\t\t\t\tThis indicator demonstrates whether the pickup date is the next
+        business day (Y) or the requested business day (N).  If the requested ship
+        date is beyond the cutoff for that business day (or it is requested on weekend),
+        the indicator will be set to Y.  If it is on the same business day as requested,
+        the value is set to N.</xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t</xsd:all>\n\t\t<xsd:attribute
+        name=\"type\" type=\"s1:_x0040_type\">\n\t\t\t<xsd:annotation>\n\t\t\t\t<xsd:documentation>The
+        service type provided from the currier.</xsd:documentation>\n\t\t\t</xsd:annotation>\n\t\t</xsd:attribute>\n\t\t<xsd:attribute
+        name=\"account\" type=\"s1:_x0040_account\">\n\t\t\t<xsd:annotation>\n\t\t\t\t<xsd:documentation>The
+        rate type of the charges for this package. Possible returned rate types are:\n\t\t\t\t
+        PAYOR_ACCOUNT, RATED_ACCOUNT.</xsd:documentation>\n\t\t\t</xsd:annotation>\n\t\t</xsd:attribute>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"_x0040_type\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"_x0040_account\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:minLength
+        value=\"1\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t\t<xsd:enumeration
+        value=\"PAYOR_ACCOUNT\"/>\n\t\t\t<xsd:enumeration value=\"RATED_ACCOUNT\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"docTypeRef_TotalNetType\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element
+        name=\"Currency\" type=\"xsd:token\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>Identifies
+        the currency of the rate</xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t\t<xsd:element
+        name=\"Amount\" type=\"xsd:token\">\n\t\t\t\t<xsd:annotation>\n\t\t\t\t\t<xsd:documentation>Identifies
+        the rate price.</xsd:documentation>\n\t\t\t\t</xsd:annotation>\n\t\t\t</xsd:element>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"docTypeRef_ChargesType\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element name=\"Currency\"
+        type=\"xsd:token\"/>\n\t\t\t<xsd:element maxOccurs=\"unbounded\" name=\"Charge\"
+        type=\"s1:docTypeRef_ChargeType\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"docTypeRef_ChargeType\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element name=\"ChargeType\"
+        type=\"xsd:token\"/>\n\t\t\t<xsd:element name=\"ChargeAmount\" type=\"xsd:token\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"NextBusinessDayInd2\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:enumeration value=\"Y\"/>\n\t\t\t<xsd:enumeration
+        value=\"N\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n</xsd:schema><xsd:schema
+        targetNamespace=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/ShipmentMsgResponse\">\n\t<xsd:element
+        name=\"ShipmentResponse\" type=\"s2:docTypeRef_ShipmentDetailType\"/>\n\t<xsd:complexType
+        name=\"docTypeRef_ShipmentDetailType\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element
+        maxOccurs=\"unbounded\" name=\"Notification\" type=\"s2:docTypeRef_NotificationType2\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"PackagesResult\" type=\"s2:docTypeRef_PackagesResultsType\"/>\n\t\t\t<xsd:element
+        maxOccurs=\"unbounded\" minOccurs=\"0\" name=\"LabelImage\" type=\"s2:docTypeRef_LabelImageType\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"ShipmentIdentificationNumber\" type=\"s2:ShipmentIdentificationNumber3\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"DispatchConfirmationNumber\" type=\"xsd:token\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"docTypeRef_NotificationType2\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element
+        name=\"Message\" type=\"s2:Message\"/>\n\t\t</xsd:sequence>\n\t\t<xsd:attribute
+        name=\"code\" type=\"s2:_x0040_code2\"/>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"_x0040_code2\">\n\t\t<xsd:restriction base=\"xsd:nonNegativeInteger\">\n\t\t\t<xsd:totalDigits
+        value=\"6\"/>\n\t\t\t<xsd:whiteSpace value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"Message\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"docTypeRef_PackagesResultsType\">\n\t\t<xsd:sequence>\n\t\t\t<xsd:element
+        maxOccurs=\"unbounded\" name=\"PackageResult\" type=\"s2:docTypeRef_PackageResultType\"/>\n\t\t</xsd:sequence>\n\t</xsd:complexType>\n\t<xsd:complexType
+        name=\"docTypeRef_PackageResultType\">\n\t\t<xsd:all>\n\t\t\t<xsd:element
+        name=\"TrackingNumber\" type=\"s2:TrackingNumber\"/>\n\t\t</xsd:all>\n\t\t<xsd:attribute
+        name=\"number\" type=\"s2:_x0040_number2\"/>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"_x0040_number2\">\n\t\t<xsd:restriction base=\"xsd:int\">\n\t\t\t<xsd:minInclusive
+        value=\"1\"/>\n\t\t\t<xsd:maxInclusive value=\"50\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"TrackingNumber\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:minLength value=\"1\"/>\n\t\t\t<xsd:maxLength
+        value=\"35\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:complexType
+        name=\"docTypeRef_LabelImageType\">\n\t\t<xsd:all>\n\t\t\t<xsd:element name=\"LabelImageFormat\"
+        type=\"s2:LabelImageFormat\"/>\n\t\t\t<xsd:element name=\"GraphicImage\" type=\"xsd:base64Binary\"/>\n\t\t\t<xsd:element
+        minOccurs=\"0\" name=\"HTMLImage\" type=\"xsd:base64Binary\"/>\n\t\t</xsd:all>\n\t</xsd:complexType>\n\t<xsd:simpleType
+        name=\"LabelImageFormat\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:maxLength value=\"3\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n\t<xsd:simpleType
+        name=\"ShipmentIdentificationNumber3\">\n\t\t<xsd:restriction base=\"xsd:token\">\n\t\t\t<xsd:whiteSpace
+        value=\"collapse\"/>\n\t\t\t<xsd:minLength value=\"10\"/>\n\t\t\t<xsd:maxLength
+        value=\"35\"/>\n\t\t</xsd:restriction>\n\t</xsd:simpleType>\n</xsd:schema><xsd:schema
+        targetNamespace=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/providerServices/ShipmentHandlingServices\">\n
+        \        <!--xmlns:ship=&quot;http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/ShipmentHandlingSchema&quot;-->\n
+        \        <xsd:import namespace=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/RateMsgRequest\"/>\n
+        \        <xsd:import namespace=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/RateMsgResponse\"/>\n
+        \        <xsd:import namespace=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/ShipmentMsgResponse\"/>\n
+        \        <xsd:import namespace=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/ShipmentMsgRequest\"/>\n
+        \        <xsd:import namespace=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/DeleteShipmentRequest\"/>\n
+        \       <xsd:import namespace=\"http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/DeleteShipmentResponse\"/>\n
+        \        \n     </xsd:schema></wsdl:types><wsdl:message name=\"getRateRequestIn\"><wsdl:part
+        name=\"parameters\" element=\"tns:RateRequest\"/></wsdl:message><wsdl:message
+        name=\"getRateRequestOut\"><wsdl:part name=\"parameters\" element=\"s1:RateResponse\"/></wsdl:message><wsdl:message
+        name=\"createShipmentRequestIn\"><wsdl:part name=\"parameters\" element=\"s3:ShipmentRequest\"/></wsdl:message><wsdl:message
+        name=\"createShipmentRequestOut\"><wsdl:part name=\"parameters\" element=\"s2:ShipmentResponse\"/></wsdl:message><wsdl:message
+        name=\"deleteShipmentRequestIn\"><wsdl:part name=\"parameters\" element=\"s4:DeleteRequest\"/></wsdl:message><wsdl:message
+        name=\"deleteShipmentRequestOut\"><wsdl:part name=\"parameters\" element=\"s5:DeleteResponse\"/></wsdl:message><wsdl:portType
+        name=\"amerGEeuExpressRateBook\"><wsdl:operation name=\"getRateRequest\"><wsdl:input
+        message=\"tns:getRateRequestIn\"/><wsdl:output message=\"tns:getRateRequestOut\"/></wsdl:operation><wsdl:operation
+        name=\"createShipmentRequest\"><wsdl:input message=\"tns:createShipmentRequestIn\"/><wsdl:output
+        message=\"tns:createShipmentRequestOut\"/></wsdl:operation><wsdl:operation
+        name=\"deleteShipmentRequest\"><wsdl:input message=\"tns:deleteShipmentRequestIn\"/><wsdl:output
+        message=\"tns:deleteShipmentRequestOut\"/></wsdl:operation></wsdl:portType><wsdl:binding
+        name=\"amerGEeuExpressRateBook\" type=\"tns:amerGEeuExpressRateBook\"><soap:binding
+        style=\"document\" transport=\"http://schemas.xmlsoap.org/soap/http\"/><wsdl:operation
+        name=\"getRateRequest\"><soap:operation soapAction=\"euExpressRateBook_providerServices_ShipmentHandlingServices_Binder_getRateRequest\"
+        style=\"document\"/><wsdl:input><soap:body use=\"literal\" parts=\"parameters\"/></wsdl:input><wsdl:output><soap:body
+        use=\"literal\" parts=\"parameters\"/></wsdl:output></wsdl:operation><wsdl:operation
+        name=\"createShipmentRequest\"><soap:operation soapAction=\"euExpressRateBook_providerServices_ShipmentHandlingServices_Binder_createShipmentRequest\"
+        style=\"document\"/><wsdl:input><soap:body use=\"literal\" parts=\"parameters\"/></wsdl:input><wsdl:output><soap:body
+        use=\"literal\" parts=\"parameters\"/></wsdl:output></wsdl:operation><wsdl:operation
+        name=\"deleteShipmentRequest\"><soap:operation soapAction=\"euExpressRateBook_providerServices_ShipmentHandlingServices_Binder_deleteShipmentRequest\"
+        style=\"document\"/><wsdl:input><soap:body use=\"literal\" parts=\"parameters\"/></wsdl:input><wsdl:output><soap:body
+        use=\"literal\" parts=\"parameters\"/></wsdl:output></wsdl:operation></wsdl:binding><wsdl:service
+        name=\"amerGEeuExpressRateBook\"><wsdl:port name=\"amerGEeuExpressRateBook\"
+        binding=\"tns:amerGEeuExpressRateBook\"><soap:address location=\"https://wsbuat.dhl.com:8300/amer/GEeuExpressRateBook\"/></wsdl:port></wsdl:service></wsdl:definitions>"
+    http_version:
+  recorded_at: Wed, 08 May 2013 12:36:29 GMT
+- request:
+    method: post
+    uri: https://wsbuat.dhl.com:8300/amer/GEeuExpressRateBook
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:s3="http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/RateMsgRequest"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ins0="http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/ShipmentMsgRequest"
+        xmlns:ins1="http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/DeleteShipmentResponse"
+        xmlns:ins2="http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/DeleteShipmentRequest"
+        xmlns:ins3="http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/RateMsgResponse"
+        xmlns:ins4="http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/ShipmentMsgResponse"><env:Header><wsse:Security
+        xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"><wsse:UsernameToken
+        wsu:Id="UsernameToken-1" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsse:Username>username</wsse:Username><wsse:Password
+        Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">password</wsse:Password></wsse:UsernameToken><wsu:Timestamp
+        wsu:Id="Timestamp-2" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsu:Created>2013-05-08T12:36:29Z</wsu:Created><wsu:Expires>2013-05-08T12:37:29Z</wsu:Expires></wsu:Timestamp></wsse:Security></env:Header><env:Body><s3:ShipmentRequest><RequestedShipment><ShipmentInfo><DropOffType>REGULAR_PICKUP</DropOffType><ServiceType>N</ServiceType><Currency>EUR</Currency><UnitOfMeasurement>SI</UnitOfMeasurement><Account>123456789</Account></ShipmentInfo><ShipTimestamp>2013-05-09T14:36:26GMT+02:00</ShipTimestamp><PaymentInfo>DDP</PaymentInfo><InternationalDetail><Commodities><NumberOfPieces>2</NumberOfPieces><Description>General
+        goods</Description></Commodities></InternationalDetail><Ship><Shipper><Contact><PersonName>John
+        Doe</PersonName><CompanyName>ACME Inc</CompanyName><PhoneNumber>+391234567890</PhoneNumber><EmailAddress>john@example.com</EmailAddress></Contact><Address><StreetLines>Piazza
+        Duomo, 1234</StreetLines><StreetLines2>Scala B</StreetLines2><City>Milano</City><PostalCode>20121</PostalCode><CountryCode>IT</CountryCode><StreetName>Piazza
+        Duomo</StreetName><StreetNumber>1234</StreetNumber><StateOrProvinceCode>MI</StateOrProvinceCode></Address></Shipper><Recipient><Contact><PersonName>John
+        Doe</PersonName><CompanyName>ACME Inc</CompanyName><PhoneNumber>+391234567890</PhoneNumber><EmailAddress>john@example.com</EmailAddress></Contact><Address><StreetLines>Piazza
+        Duomo, 1234</StreetLines><StreetLines2>Scala B</StreetLines2><City>Milano</City><PostalCode>20121</PostalCode><CountryCode>IT</CountryCode><StreetName>Piazza
+        Duomo</StreetName><StreetNumber>1234</StreetNumber><StateOrProvinceCode>MI</StateOrProvinceCode></Address></Recipient></Ship><Packages><RequestedPackages
+        number="1"><Weight>50</Weight><Dimensions><Width>10</Width><Height>15</Height><Length>20</Length></Dimensions><CustomerReferences>Ref
+        1</CustomerReferences></RequestedPackages><RequestedPackages number="2"><Weight>100</Weight><Dimensions><Width>40</Width><Height>45</Height><Length>35</Length></Dimensions><CustomerReferences>Ref
+        2</CustomerReferences></RequestedPackages></Packages></RequestedShipment></s3:ShipmentRequest></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - '"euExpressRateBook_providerServices_ShipmentHandlingServices_Binder_createShipmentRequest"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '3359'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 08 May 2013 12:36:31 GMT
+      Server:
+      - ACE XML Gateway
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '14808'
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <SOAP-ENV:Header xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"></SOAP-ENV:Header><SOAP-ENV:Body>
+        <shipresp:ShipmentResponse xmlns:shipresp="http://scxgxtt.phx-dc.dhl.com/euExpressRateBook/ShipmentMsgResponse">
+          <Notification code="0">
+            <Message></Message>
+          </Notification>
+          <PackagesResult>
+            <PackageResult number="1">
+              <TrackingNumber>JD012038742880323158</TrackingNumber>
+            </PackageResult>
+            <PackageResult number="2">
+              <TrackingNumber>JD012038742880323159</TrackingNumber>
+            </PackageResult>
+          </PackagesResult>
+          <LabelImage>
+            <LabelImageFormat>PDF</LabelImageFormat>
+            <GraphicImage>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NWNwuY+D5z/AKigvONOVjeq2ZAwu1CPGXrHJ25oxuNDHec9lOs77jqde6aivy7znP7XCjNGx6es68z0XaCgvsBDOA0+5sEHNmxjGPiXIAOeBp1zpqM+wTlhfMWMoNHXGRXQnf3QQceZkv8OGqdDUQjb1e98qlSzlPL/i1K+US+0fqH/z0efUNnz+TPp4mpMlUo9Wj+C3QLsztg9/pH//B/oZy74KZW5kc3RyZWFtCmVuZG9iago2IDAgb2JqCjw8L1R5cGUvRm9udC9CYXNlRm9udC9IZWx2ZXRpY2EtQm9sZC9TdWJ0eXBlL1R5cGUxL0VuY29kaW5nL1dpbkFuc2lFbmNvZGluZz4+CmVuZG9iago3IDAgb2JqCjw8L1R5cGUvRm9udC9CYXNlRm9udC9IZWx2ZXRpY2EvU3VidHlwZS9UeXBlMS9FbmNvZGluZy9XaW5BbnNpRW5jb2Rpbmc+PgplbmRvYmoKNCAwIG9iago8PC9GaWx0ZXIvRmxhdGVEZWNvZGUvTGVuZ3RoIDUxPj5zdHJlYW0KeJwr5HIK4TJQMDUz07M0VghJ4XIN4QrkKlQwVDAAQgiZnKugH5FmqOCSrxDIBQD9nwpWCmVuZHN0cmVhbQplbmRvYmoKMSAwIG9iago8PC9UeXBlL1BhZ2UvQ29udGVudHMgNCAwIFIvUGFyZW50IDMgMCBSL1Jlc291cmNlczw8L1Byb2NTZXRbL1BERi9UZXh0L0ltYWdlQi9JbWFnZUMvSW1hZ2VJXS9YT2JqZWN0PDwvWGYxIDUgMCBSPj4+Pi9NZWRpYUJveFswIDAgMjgwLjYzIDU2Ni45M10+PgplbmRvYmoKMyAwIG9iago8PC9Db3VudCAyL1R5cGUvUGFnZXMvS2lkc1sxIDAgUiAyIDAgUl0+PgplbmRvYmoKMTIgMCBvYmoKPDwvVHlwZS9DYXRhbG9nL1BhZ2VzIDMgMCBSPj4KZW5kb2JqCjEzIDAgb2JqCjw8L0NyZWF0aW9uRGF0ZShEOjIwMTMwNTA4MTIzNjQ0WikvUHJvZHVjZXIoaVRleHQgMi4xLjQgXChieSBsb3dhZ2llLmNvbVwpKS9Nb2REYXRlKEQ6MjAxMzA1MDgxMjM2NDRaKT4+CmVuZG9iagp4cmVmCjAgMTQKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDA5NDgwIDAwMDAwIG4gCjAwMDAwMDQ2NzEgMDAwMDAgbiAKMDAwMDAwOTY0MiAwMDAwMCBuIAowMDAwMDA5MzYzIDAwMDAwIG4gCjAwMDAwMDQ4MzMgMDAwMDAgbiAKMDAwMDAwOTE4MiAwMDAwMCBuIAowMDAwMDA5Mjc1IDAwMDAwIG4gCjAwMDAwMDQ1NTQgMDAwMDAgbiAKMDAwMDAwMDAxNSAwMDAwMCBuIAowMDAwMDA0MzcxIDAwMDAwIG4gCjAwMDAwMDQ0NjUgMDAwMDAgbiAKMDAwMDAwOTY5OSAwMDAwMCBuIAowMDAwMDA5NzQ1IDAwMDAwIG4gCnRyYWlsZXIKPDwvSUQgWzxiMTMwYzE1YzM3ZGNhMjJlOGFjNzAzYjM5NTJmMDVlNT48NDI0NzU2OTg4NGNiY2QwNTkwZGZjODY2NTViZGZiNjY+XS9Sb290IDEyIDAgUi9TaXplIDE0L0luZm8gMTMgMCBSPj4Kc3RhcnR4cmVmCjk4NjYKJSVFT0YK</GraphicImage>
+          </LabelImage>
+          <ShipmentIdentificationNumber>9085882330</ShipmentIdentificationNumber>
+        </shipresp:ShipmentResponse></SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+    http_version:
+  recorded_at: Wed, 08 May 2013 12:36:47 GMT
+recorded_with: VCR 2.4.0

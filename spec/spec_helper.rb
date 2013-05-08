@@ -14,6 +14,11 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = 'random'
+
+  config.after(:all) do
+    FileUtils.rm_rf('labels')
+  end
+
 end
 
 require_relative '../lib/dhl'
@@ -24,3 +29,13 @@ require 'time'
 require 'factory_girl'
 FactoryGirl.find_definitions
 require 'pry'
+
+require 'rspec/autorun'
+require 'webmock/rspec'
+require 'vcr'
+
+#VCR config
+VCR.configure do |config|
+  config.cassette_library_dir = 'spec/fixtures/dhl_cassettes'
+  config.hook_into :webmock
+end
