@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Dhl::VERSION
   spec.authors       = ["Alessandro Mencarini"]
   spec.email         = ["a.mencarini@freegoweb.it"]
-  spec.description   = %q{This gem will provide a wrapper to DHL SOAP API. Given DHL credentials and the addresses, will generate a shipping label. }
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{A wrapper for DHL SOAP interface. }
+  spec.summary       = %q{This gem will provide a wrapper to DHL SOAP API. Given DHL credentials and the addresses, will generate a shipping label.}
+  spec.homepage      = "http://momitians.github.io/dhl"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -23,4 +23,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec"
 end
