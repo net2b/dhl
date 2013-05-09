@@ -50,11 +50,13 @@ module Dhl
       shipment_identification_number = response.body[:shipment_response][:shipment_identification_number]
       shipping_label_filename = "#{shipment_identification_number}.#{image_format.downcase}"
       Dir.mkdir('labels') unless File.exists?('labels')
+      result = {}
       File.open("labels/#{shipping_label_filename}", 'wb') do |f|
         f.write( Base64.decode64( response.body[:shipment_response][:label_image][:graphic_image]) )
+        result[:shipping_label] = File.absolute_path(f)
       end
-      result = {}
-      result[:tracking_numbers] = response.body[:shipment_response][:packages_result][:package_result].map{|r| r[:tracking_number]}
+      package_result = response.body[:shipment_response][:packages_result][:package_result]
+      result[:tracking_numbers] = package_result.is_a?(Array) ? package_result.map{|r| r[:tracking_number]} : package_result[:tracking_number]
       result
     end
 

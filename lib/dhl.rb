@@ -12,7 +12,7 @@ require "dhl/tracking_request"
 module Dhl
 
   def self.setup
-    yield self.configuration
+    yield self.config
   end
 
   def self.config
