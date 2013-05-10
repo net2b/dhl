@@ -1,0 +1,262 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://wsbuat.dhl.com:8300/gbl/glDHLExpressTrack
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://scxgxtt.phx-dc.dhl.com/glDHLExpressTrack/providers/services/trackShipment"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ins0="http://www.dhl.com"
+        xmlns:dhl="http://www.dhl.com"><env:Header><wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"><wsse:UsernameToken
+        wsu:Id="UsernameToken-1" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsse:Username>antoniolisrl</wsse:Username><wsse:Password
+        Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">f4$H1()n</wsse:Password></wsse:UsernameToken><wsu:Timestamp
+        wsu:Id="Timestamp-2" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsu:Created>2013-05-10T14:51:52Z</wsu:Created><wsu:Expires>2013-05-10T14:52:52Z</wsu:Expires></wsu:Timestamp></wsse:Security></env:Header><env:Body><tns:trackShipmentRequest><trackingRequest><dhl:TrackingRequest><Request><ServiceHeader><MessageTime>2013-05-10T14:51:52+00:00</MessageTime><MessageReference>1234567890123456789012345678</MessageReference></ServiceHeader></Request><AWBNumber><ArrayOfAWBNumberItem>5223300596</ArrayOfAWBNumberItem></AWBNumber><LevelOfDetails>ALL_CHECK_POINTS</LevelOfDetails><PiecesEnabled>B</PiecesEnabled></dhl:TrackingRequest></trackingRequest></tns:trackShipmentRequest></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - '"glDHLExpressTrack_providers_services_trackShipment_Binder_trackShipmentRequest"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '1592'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 10 May 2013 14:51:53 GMT
+      Server:
+      - ACE XML Gateway
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '9572'
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="utf-8"?>
+        <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <SOAP-ENV:Header xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"></SOAP-ENV:Header><SOAP-ENV:Body>
+        <ser-root:trackShipmentRequestResponse xmlns:ser-root="http://scxgxtt.phx-dc.dhl.com/glDHLExpressTrack/providers/services/trackShipment"><trackingResponse xmlns:ns="http://www.dhl.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <ns:TrackingResponse>
+          <Response>
+            <ServiceHeader>
+              <MessageTime>2013-05-10T14:51:54Z</MessageTime>
+              <MessageReference>27873bb0b98111e2a4b9de21ff334b6b</MessageReference>
+            </ServiceHeader>
+          </Response>
+          <AWBInfo>
+            <ArrayOfAWBInfoItem>
+              <AWBNumber>5223300596</AWBNumber>
+              <Status>
+                <ActionStatus>Success</ActionStatus>
+              </Status>
+              <ShipmentInfo>
+                <OriginServiceArea>
+                  <ServiceAreaCode>AOI</ServiceAreaCode>
+                  <Description>Ancona - Italy</Description>
+                </OriginServiceArea>
+                <DestinationServiceArea>
+                  <ServiceAreaCode>GOA</ServiceAreaCode>
+                  <Description>Genoa - Italy</Description>
+                  <FacilityCode>CSD</FacilityCode>
+                </DestinationServiceArea>
+                <ShipperName>ERICSSON TELECOMUNICAZIONI ITALIA            </ShipperName>
+                <ConsigneeName>ERICSSON TELECOMUNICAZIONI S.P.A.            </ConsigneeName>
+                <ShipmentDate>2013-05-06T00:00:00+02:00</ShipmentDate>
+                <Pieces>1</Pieces>
+                <Weight>0.500</Weight>
+              </ShipmentInfo>
+              <Pieces>
+                <PieceInfo>
+                  <ArrayOfPieceInfoItem>
+                    <PieceDetails>
+                      <AWBNumber>5223300596</AWBNumber>
+                      <LicensePlate>JD012959581720046780</LicensePlate>
+                      <ActualDepth>0.000</ActualDepth>
+                      <ActualWidth>0.000</ActualWidth>
+                      <ActualHeight>0.000</ActualHeight>
+                      <Depth>0.000</Depth>
+                      <Width>0.000</Width>
+                      <Height>0.000</Height>
+                      <Weight>0.500</Weight>
+                      <PackageType></PackageType>
+                      <DimWeight>0.160</DimWeight>
+                      <WeightUnit>KG</WeightUnit>
+                    </PieceDetails>
+                    <PieceEvent>
+                      <ArrayOfPieceEventItem>
+                        <Date>2013-05-07</Date>
+                        <Time>09:22:00</Time>
+                        <ServiceEvent>
+                          <EventCode>OK</EventCode>
+                          <Description>Delivery </Description>
+                        </ServiceEvent>
+                        <Signatory>BERTOLA</Signatory>
+                        <ServiceArea>
+                          <ServiceAreaCode>GOA</ServiceAreaCode>
+                          <Description>Genoa - Italy</Description>
+                        </ServiceArea>
+                        <ShipperReference xsi:nil="true"></ShipperReference>
+                      </ArrayOfPieceEventItem>
+                      <ArrayOfPieceEventItem>
+                        <Date>2013-05-07</Date>
+                        <Time>08:49:00</Time>
+                        <ServiceEvent>
+                          <EventCode>WC</EventCode>
+                          <Description>With Delivering Courier </Description>
+                        </ServiceEvent>
+                        <ServiceArea>
+                          <ServiceAreaCode>GOA</ServiceAreaCode>
+                          <Description>Genoa - Italy</Description>
+                        </ServiceArea>
+                        <ShipperReference xsi:nil="true"></ShipperReference>
+                      </ArrayOfPieceEventItem>
+                      <ArrayOfPieceEventItem>
+                        <Date>2013-05-07</Date>
+                        <Time>07:56:31</Time>
+                        <ServiceEvent>
+                          <EventCode>AR</EventCode>
+                          <Description>Arrival in Delivery Facility</Description>
+                        </ServiceEvent>
+                        <ServiceArea>
+                          <ServiceAreaCode>GOA</ServiceAreaCode>
+                          <Description>Genoa - Italy</Description>
+                        </ServiceArea>
+                        <ShipperReference xsi:nil="true"></ShipperReference>
+                      </ArrayOfPieceEventItem>
+                      <ArrayOfPieceEventItem>
+                        <Date>2013-05-07</Date>
+                        <Time>05:10:26</Time>
+                        <ServiceEvent>
+                          <EventCode>DF</EventCode>
+                          <Description>Depart Facility </Description>
+                        </ServiceEvent>
+                        <ServiceArea>
+                          <ServiceAreaCode>BLQ</ServiceAreaCode>
+                          <Description>Bologna - Italy</Description>
+                        </ServiceArea>
+                        <ShipperReference xsi:nil="true"></ShipperReference>
+                      </ArrayOfPieceEventItem>
+                      <ArrayOfPieceEventItem>
+                        <Date>2013-05-07</Date>
+                        <Time>00:11:33</Time>
+                        <ServiceEvent>
+                          <EventCode>PL</EventCode>
+                          <Description>Processed at Location </Description>
+                        </ServiceEvent>
+                        <ServiceArea>
+                          <ServiceAreaCode>BLQ</ServiceAreaCode>
+                          <Description>Bologna - Italy</Description>
+                        </ServiceArea>
+                        <ShipperReference xsi:nil="true"></ShipperReference>
+                      </ArrayOfPieceEventItem>
+                      <ArrayOfPieceEventItem>
+                        <Date>2013-05-07</Date>
+                        <Time>00:07:26</Time>
+                        <ServiceEvent>
+                          <EventCode>PL</EventCode>
+                          <Description>Processed at Location </Description>
+                        </ServiceEvent>
+                        <ServiceArea>
+                          <ServiceAreaCode>BLQ</ServiceAreaCode>
+                          <Description>Bologna - Italy</Description>
+                        </ServiceArea>
+                        <ShipperReference xsi:nil="true"></ShipperReference>
+                      </ArrayOfPieceEventItem>
+                      <ArrayOfPieceEventItem>
+                        <Date>2013-05-06</Date>
+                        <Time>23:28:17</Time>
+                        <ServiceEvent>
+                          <EventCode>RW</EventCode>
+                          <Description>Weigh and Dimension </Description>
+                        </ServiceEvent>
+                        <ServiceArea>
+                          <ServiceAreaCode>BLQ</ServiceAreaCode>
+                          <Description>Bologna - Italy</Description>
+                        </ServiceArea>
+                        <ShipperReference xsi:nil="true"></ShipperReference>
+                      </ArrayOfPieceEventItem>
+                      <ArrayOfPieceEventItem>
+                        <Date>2013-05-06</Date>
+                        <Time>23:28:13</Time>
+                        <ServiceEvent>
+                          <EventCode>PL</EventCode>
+                          <Description>Processed at Location </Description>
+                        </ServiceEvent>
+                        <ServiceArea>
+                          <ServiceAreaCode>BLQ</ServiceAreaCode>
+                          <Description>Bologna - Italy</Description>
+                        </ServiceArea>
+                        <ShipperReference xsi:nil="true"></ShipperReference>
+                      </ArrayOfPieceEventItem>
+                      <ArrayOfPieceEventItem>
+                        <Date>2013-05-06</Date>
+                        <Time>20:02:12</Time>
+                        <ServiceEvent>
+                          <EventCode>DF</EventCode>
+                          <Description>Depart Facility </Description>
+                        </ServiceEvent>
+                        <ServiceArea>
+                          <ServiceAreaCode>AOI</ServiceAreaCode>
+                          <Description>Ancona - Italy</Description>
+                        </ServiceArea>
+                        <ShipperReference xsi:nil="true"></ShipperReference>
+                      </ArrayOfPieceEventItem>
+                      <ArrayOfPieceEventItem>
+                        <Date>2013-05-06</Date>
+                        <Time>17:07:00</Time>
+                        <ServiceEvent>
+                          <EventCode>PL</EventCode>
+                          <Description>Processed at Location </Description>
+                        </ServiceEvent>
+                        <ServiceArea>
+                          <ServiceAreaCode>AOI</ServiceAreaCode>
+                          <Description>Ancona - Italy</Description>
+                        </ServiceArea>
+                        <ShipperReference xsi:nil="true"></ShipperReference>
+                      </ArrayOfPieceEventItem>
+                      <ArrayOfPieceEventItem>
+                        <Date>2013-05-06</Date>
+                        <Time>17:07:00</Time>
+                        <ServiceEvent>
+                          <EventCode>RW</EventCode>
+                          <Description>Weigh and Dimension </Description>
+                        </ServiceEvent>
+                        <ServiceArea>
+                          <ServiceAreaCode>AOI</ServiceAreaCode>
+                          <Description>Ancona - Italy</Description>
+                        </ServiceArea>
+                        <ShipperReference xsi:nil="true"></ShipperReference>
+                      </ArrayOfPieceEventItem>
+                      <ArrayOfPieceEventItem>
+                        <Date>2013-05-06</Date>
+                        <Time>15:13:00</Time>
+                        <ServiceEvent>
+                          <EventCode>PU</EventCode>
+                          <Description>Shipment Pickup </Description>
+                        </ServiceEvent>
+                        <ServiceArea>
+                          <ServiceAreaCode>AOI</ServiceAreaCode>
+                          <Description>Ancona - Italy</Description>
+                        </ServiceArea>
+                        <ShipperReference xsi:nil="true"></ShipperReference>
+                      </ArrayOfPieceEventItem>
+                    </PieceEvent>
+                  </ArrayOfPieceInfoItem>
+                </PieceInfo>
+              </Pieces>
+            </ArrayOfAWBInfoItem>
+          </AWBInfo>
+        </ns:TrackingResponse></trackingResponse></ser-root:trackShipmentRequestResponse></SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+    http_version: 
+  recorded_at: Fri, 10 May 2013 14:51:55 GMT
+recorded_with: VCR 2.4.0

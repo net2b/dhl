@@ -37,12 +37,10 @@ describe Dhl::Client do
   end
 
   describe '#track' do
-    # before do
-    #   VCR.insert_cassette 'tracking', record: :new_episodes
-    # end
 
     context 'the shipment has been fully delivered' do
-      let(:response) { client.track ["5223281416"] }
+      before { VCR.insert_cassette 'tracking/5223281416', record: :new_episodes}
+      let(:response) { client.track "5223281416" }
 
       it 'should provide a track response with shipment info' do
         response.shipment_info.should_not be_nil
@@ -56,6 +54,41 @@ describe Dhl::Client do
       it { should be_delivered }
 
     end
+
+    context 'shipment status to be checked' do
+      before { VCR.insert_cassette 'tracking/9786162326', record: :new_episodes}
+      let(:response) { client.track "9786162326" }
+
+      it 'boh' do
+        response.shipment_info.should_not be_nil
+      end
+    end
+
+    context 'shipment status to be checked' do
+      before { VCR.insert_cassette 'tracking/5223300596', record: :new_episodes}
+      let(:response) { client.track "5223300596" }
+
+      it 'boh' do
+        response.shipment_info.should_not be_nil
+      end
+    end
+    context 'shipment status to be checked' do
+      before { VCR.insert_cassette 'tracking/6676848415', record: :new_episodes}
+      let(:response) { client.track "6676848415" }
+
+      it 'boh' do
+        response.shipment_info.should_not be_nil
+      end
+    end
+    context 'shipment status to be checked' do
+      before { VCR.insert_cassette 'tracking/6676848301', record: :new_episodes}
+      let(:response) { client.track "6676848301" }
+
+      it 'boh' do
+        response.shipment_info.should_not be_nil
+      end
+    end
+
   end
 
 end

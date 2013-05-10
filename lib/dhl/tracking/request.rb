@@ -5,8 +5,8 @@ module Dhl
       attr_accessor :tracking_number
 
       # Accepts and array of tracking numbers
-      def initialize(numbers)
-        @tracking_numbers = numbers
+      def initialize(number)
+        @tracking_number = number
       end
 
       def to_hash
@@ -20,7 +20,7 @@ module Dhl
                 }
               },
               a_w_b_number: {
-                array_of_a_w_b_number_item: @tracking_numbers
+                array_of_a_w_b_number_item: @tracking_number
               },
               # lp_number: nil, # Inactive in API
               level_of_details: 'ALL_CHECK_POINTS', # LAST_CHECK_POINT_ONLY for partial tracking

@@ -67,8 +67,8 @@ module Dhl
       result
     end
 
-    def track(numbers)
-      request = Tracking::Request.new(numbers)
+    def track(number)
+      request = Tracking::Request.new(number)
       response = tracking_soap_client.call(:track_shipment_request, message: request.to_hash)
       Tracking::Response.new(response.body)
     end
