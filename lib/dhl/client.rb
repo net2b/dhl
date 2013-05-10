@@ -5,33 +5,32 @@ module Dhl
       Dhl.config
     end
 
+    def client_options
+      {
+        wsse_auth: [config.username, config.password],
+        wsse_timestamp: true,
+        convert_request_keys_to: :camelcase
+      }
+    end
+
     def initialize(options)
       config.username ||= options[:username]
+      raise 'Provide a username (e.g.: `export DHL_USERNAME=dhlusername`).' if !config.username
+
       config.password ||= options[:password]
-      raise 'Provide username and password (e.g.: `export DHL_USERNAME=dhlusername`).' if !config.username || !config.password
+      raise 'Provide a password (e.g.: `export DHL_PASSWORD=dhlpassword`).' if !config.password
 
       config.account ||= options[:account]
       raise 'Provide a DHL account number (e.g.: `export DHL_ACCOUNT=123456789`).' if !config.account
 
-      @soap_client = Savon.client(
-        wsdl: "https://wsbuat.dhl.com:8300/amer/GEeuExpressRateBook?WSDL",
-        wsse_auth: [config.username, config.password],
-        wsse_timestamp: true,
-        convert_request_keys_to: :camelcase
-      )
-
-      @tracking_soap_client = Savon.client(
-        wsdl: "https://wsbuat.dhl.com:8300/gbl/glDHLExpressTrack?WSDL",
-        wsse_auth: [config.username, config.password],
-        wsse_timestamp: true,
-        convert_request_keys_to: :camelcase
-      )
+      @requests_soap_client = Savon.client(wsdl: "https://wsbuat.dhl.com:8300/amer/GEeuExpressRateBook?WSDL", client_options)
+      @tracking_soap_client = Savon.client(wsdl: "https://wsbuat.dhl.com:8300/gbl/glDHLExpressTrack?WSDL", client_options)
     end
 
-    def soap_client
+    def requests_soap_client
       # SOAP Client operations:
       # => [:get_rate_request, :create_shipment_request, :delete_shipment_request]
-      @soap_client
+      @requests_soap_client
     end
 
     def tracking_soap_client
@@ -42,21 +41,26 @@ module Dhl
 
 
     def request_shipment(shipment_request)
-      response = @soap_client.call(:create_shipment_request, message: shipment_request.to_hash )
+      response = requests_soap_client.call(:create_shipment_request, message: shipment_request.to_hash )
+
       if response.body[:shipment_response][:notification][:@code] != '0'
         raise "Error: #{response.body[:shipment_response][:notification][:message]}"
       end
+
+      result = {}
+
       image_format = response.body[:shipment_response][:label_image][:label_image_format]
       shipment_identification_number = response.body[:shipment_response][:shipment_identification_number]
       shipping_label_filename = "#{shipment_identification_number}.#{image_format.downcase}"
       Dir.mkdir('labels') unless File.exists?('labels')
-      result = {}
       File.open("labels/#{shipping_label_filename}", 'wb') do |f|
         f.write( Base64.decode64( response.body[:shipment_response][:label_image][:graphic_image]) )
         result[:shipping_label] = File.absolute_path(f)
       end
+
       package_result = response.body[:shipment_response][:packages_result][:package_result]
       result[:tracking_numbers] = package_result.is_a?(Array) ? package_result.map{|r| r[:tracking_number]} : package_result[:tracking_number]
+
       result
     end
 
