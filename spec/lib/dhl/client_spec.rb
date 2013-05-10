@@ -52,41 +52,31 @@ describe Dhl::Client do
 
       subject { response }
       it { should be_delivered }
-
     end
 
-    context 'shipment status to be checked' do
-      before { VCR.insert_cassette 'tracking/9786162326', record: :new_episodes}
-      let(:response) { client.track "9786162326" }
-
-      it 'boh' do
-        response.shipment_info.should_not be_nil
-      end
-    end
-
-    context 'shipment status to be checked' do
-      before { VCR.insert_cassette 'tracking/5223300596', record: :new_episodes}
-      let(:response) { client.track "5223300596" }
-
-      it 'boh' do
-        response.shipment_info.should_not be_nil
-      end
-    end
-    context 'shipment status to be checked' do
-      before { VCR.insert_cassette 'tracking/6676848415', record: :new_episodes}
-      let(:response) { client.track "6676848415" }
-
-      it 'boh' do
-        response.shipment_info.should_not be_nil
-      end
-    end
-    context 'shipment status to be checked' do
+    context 'the shipment is not yet delivered' do
       before { VCR.insert_cassette 'tracking/6676848301', record: :new_episodes}
-      let(:response) { client.track "6676848301" }
+      subject { client.track "6676848301" }
+      it { should_not be_delivered }
+    end
 
-      it 'boh' do
-        response.shipment_info.should_not be_nil
-      end
+    # More VCR cassettes for testing purposes
+    context 'the shipment has been fully delivered' do
+      before { VCR.insert_cassette 'tracking/9786162326', record: :new_episodes}
+      subject { client.track "9786162326" }
+      it { should be_delivered }
+    end
+
+    context 'the shipment has been fully delivered' do
+      before { VCR.insert_cassette 'tracking/5223300596', record: :new_episodes}
+      subject { client.track "5223300596" }
+      it { should be_delivered }
+    end
+
+    context 'the shipment has been fully delivered' do
+      before { VCR.insert_cassette 'tracking/6676848415', record: :new_episodes}
+      subject { client.track "6676848415" }
+      it { should be_delivered }
     end
 
   end

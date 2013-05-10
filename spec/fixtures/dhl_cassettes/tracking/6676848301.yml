@@ -109,20 +109,6 @@ http_interactions:
                     <PieceEvent>
                       <ArrayOfPieceEventItem>
                         <Date>2013-05-07</Date>
-                        <Time>10:42:00</Time>
-                        <ServiceEvent>
-                          <EventCode>OK</EventCode>
-                          <Description>Delivery </Description>
-                        </ServiceEvent>
-                        <Signatory>ECKHARDT</Signatory>
-                        <ServiceArea>
-                          <ServiceAreaCode>HAM</ServiceAreaCode>
-                          <Description>Hamburg - Germany</Description>
-                        </ServiceArea>
-                        <ShipperReference xsi:nil="true"></ShipperReference>
-                      </ArrayOfPieceEventItem>
-                      <ArrayOfPieceEventItem>
-                        <Date>2013-05-07</Date>
                         <Time>10:03:00</Time>
                         <ServiceEvent>
                           <EventCode>WC</EventCode>
@@ -324,7 +310,7 @@ http_interactions:
           </AWBInfo>
         </ns:TrackingResponse></trackingResponse></ser-root:trackShipmentRequestResponse></SOAP-ENV:Body>
         </SOAP-ENV:Envelope>
-    http_version: 
+    http_version:
   recorded_at: Fri, 10 May 2013 14:51:52 GMT
 - request:
     method: get
@@ -583,6 +569,6 @@ http_interactions:
         use=\"literal\" parts=\"parameters\"/></wsdl:output></wsdl:operation></wsdl:binding><wsdl:service
         name=\"gblDHLExpressTrack\"><wsdl:port name=\"gblDHLExpressTrack\" binding=\"tns:gblDHLExpressTrack\"><soap:address
         location=\"https://wsbuat.dhl.com:8300/gbl/glDHLExpressTrack\"/></wsdl:port></wsdl:service></wsdl:definitions>"
-    http_version: 
+    http_version:
   recorded_at: Fri, 10 May 2013 14:52:47 GMT
 recorded_with: VCR 2.4.0
