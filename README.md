@@ -2,7 +2,7 @@
 
 This gem will provide a wrapper to DHL SOAP API. Given DHL credentials and the addresses, will generate a shipping label.
 
-This refers to DHL test environment and cannot be used as of yet for production environments.
+It refers to the DHL test environment and cannot be used, as of yet, for production environments.
 
 ## Installation
 
@@ -60,10 +60,14 @@ shipment_request.shipment.pickup_time = Time.new(2013, 05, 20, 10, 00, 00, "-08:
 # Add Packages with weight, width, height, length and a reference string
 shipment_request.packages.add(10, 15, 5, 20, 'Pack')
 
+# Execute the reeuqest
 result = Dhl.client.request_shipment(shipment_request)
-# tracking_numbers: Shipment tracking number
-# shipping_label: Path to the shipping label PDF
+
 ```
+
+If everything goes well, result will be a hash with:
+* tracking_numbers: Shipment tracking number
+* shipping_label: Path to the shipping label PDF
 
 ## Contributing
 
@@ -72,3 +76,7 @@ result = Dhl.client.request_shipment(shipment_request)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Licence
+
+Released under the [MIT License](http://www.opensource.org/licenses/MIT). © 2013 [Momit S.r.l.](http://momit.it/)
