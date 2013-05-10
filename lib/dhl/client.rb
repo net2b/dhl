@@ -23,8 +23,8 @@ module Dhl
       config.account ||= options[:account]
       raise 'Provide a DHL account number (e.g.: `export DHL_ACCOUNT=123456789`).' if !config.account
 
-      @requests_soap_client = Savon.client(wsdl: "https://wsbuat.dhl.com:8300/amer/GEeuExpressRateBook?WSDL", client_options)
-      @tracking_soap_client = Savon.client(wsdl: "https://wsbuat.dhl.com:8300/gbl/glDHLExpressTrack?WSDL", client_options)
+      @requests_soap_client = Savon.client(client_options.merge(wsdl: "https://wsbuat.dhl.com:8300/amer/GEeuExpressRateBook?WSDL"))
+      @tracking_soap_client = Savon.client(client_options.merge(wsdl: "https://wsbuat.dhl.com:8300/gbl/glDHLExpressTrack?WSDL"))
     end
 
     def requests_soap_client
