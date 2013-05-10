@@ -4,9 +4,8 @@ require_relative '../../spec_helper'
 
 describe Dhl::Client do
 
-  # let(:client) { Dhl.client(username: 'username', password: 'password', account: 123456789) }
+  let(:client) { Dhl.client(username: 'username', password: 'password', account: 123456789) }
 
-let(:client) { Dhl.client(username: 'antoniolisrl', password: 'f4$H1()n', account: 105315001) }
   after do
     VCR.eject_cassette
   end
