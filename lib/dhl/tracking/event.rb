@@ -14,6 +14,9 @@ module Dhl
         @area_name = data[:service_area][:description]
       end
 
+      def delivered?
+        @code == 'OK'
+      end
     end
   end
 end
