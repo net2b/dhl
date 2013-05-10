@@ -69,6 +69,14 @@ If everything goes well, result will be a hash with:
 * tracking_numbers: Shipment tracking number
 * shipping_label: Path to the shipping label PDF
 
+## Testing
+
+For testing purposes please set the timezone to UTC
+
+```shell
+$ export TZ=UTC
+```
+
 ## Contributing
 
 1. Fork it

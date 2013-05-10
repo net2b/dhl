@@ -1,5 +1,5 @@
-require "dhl/version"
 require 'savon'
+
 require "dhl/client"
 require "dhl/configuration"
 require "dhl/contact"
@@ -8,6 +8,8 @@ require "dhl/package"
 require "dhl/shipment"
 require "dhl/shipment_request"
 require "dhl/tracking_request"
+
+require "dhl/version"
 
 module Dhl
 
