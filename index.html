@@ -31,32 +31,101 @@
         <hr>
 
         <section id="main_content">
-          <h3>Welcome to GitHub Pages.</h3>
+          <h1>DHL</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p><a href="https://travis-ci.org/momitians/dhl"><img src="https://travis-ci.org/momitians/dhl.png?branch=master" alt="Build Status"></a>
+<a href="https://codeclimate.com/github/momitians/dhl"><img src="https://codeclimate.com/github/momitians/dhl.png" alt="Code Climate"></a></p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<p>This gem will provide a wrapper to DHL SOAP API. Given DHL credentials and the addresses, will generate a shipping label.</p>
+
+<p>It refers to the DHL test environment and cannot be used, as of yet, for production environments.</p>
+
+<h2>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<pre><code>gem 'dhl'
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>And then execute:</p>
 
-<h3>Designer Templates</h3>
+<pre><code>$ bundle
+</code></pre>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>Or install it yourself as:</p>
 
-<h3>Rather Drive Stick?</h3>
+<pre><code>$ gem install dhl
+</code></pre>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<h2>Usage</h2>
 
-<h3>Authors and Contributors</h3>
+<h3>Package Tracking</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>TBD</p>
 
-<h3>Support or Contact</h3>
+<h3>Request Shipment</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<div class="highlight"><pre><span class="c1"># Start by creating a new shipment request</span>
+<span class="n">shipment_request</span> <span class="o">=</span> <span class="ss">Dhl</span><span class="p">:</span><span class="ss">:ShipmentRequest</span><span class="o">.</span><span class="n">new</span>
+
+<span class="c1"># Set sender info</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">shipper</span><span class="o">.</span><span class="n">name</span>         <span class="o">=</span> <span class="s1">'Package Sender'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">shipper</span><span class="o">.</span><span class="n">company</span>      <span class="o">=</span> <span class="s1">'The Packs Inc'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">shipper</span><span class="o">.</span><span class="n">phone</span>        <span class="o">=</span> <span class="s1">'555-4321'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">shipper</span><span class="o">.</span><span class="n">email</span>        <span class="o">=</span> <span class="s1">'ps@example.com'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">shipper</span><span class="o">.</span><span class="n">address</span>      <span class="o">=</span> <span class="s1">'Geary Boulevard, 1234'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">shipper</span><span class="o">.</span><span class="n">address2</span>     <span class="o">=</span> <span class="s1">'First floor, Apt 2'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">shipper</span><span class="o">.</span><span class="n">postal_code</span>  <span class="o">=</span> <span class="s1">'54321'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">shipper</span><span class="o">.</span><span class="n">city</span>         <span class="o">=</span> <span class="s1">'San Francisco'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">shipper</span><span class="o">.</span><span class="n">state_name</span>   <span class="o">=</span> <span class="s1">'CA'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">shipper</span><span class="o">.</span><span class="n">country_code</span> <span class="o">=</span> <span class="s1">'USA'</span>
+
+<span class="c1"># Set recipient info</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">recipient</span><span class="o">.</span><span class="n">name</span>         <span class="o">=</span> <span class="s1">'Package Receiver'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">recipient</span><span class="o">.</span><span class="n">company</span>      <span class="o">=</span> <span class="s1">'Pack It Ltd'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">recipient</span><span class="o">.</span><span class="n">phone</span>        <span class="o">=</span> <span class="s1">'555-1234'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">recipient</span><span class="o">.</span><span class="n">email</span>        <span class="o">=</span> <span class="s1">'pr@example.com'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">recipient</span><span class="o">.</span><span class="n">address</span>      <span class="o">=</span> <span class="s1">'Times Square, 1234'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">recipient</span><span class="o">.</span><span class="n">address2</span>     <span class="o">=</span> <span class="s1">'Third floor, Apt 5'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">recipient</span><span class="o">.</span><span class="n">postal_code</span>  <span class="o">=</span> <span class="s1">'12345'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">recipient</span><span class="o">.</span><span class="n">city</span>         <span class="o">=</span> <span class="s1">'New York'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">recipient</span><span class="o">.</span><span class="n">state_name</span>   <span class="o">=</span> <span class="s1">'NY'</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">recipient</span><span class="o">.</span><span class="n">country_code</span> <span class="o">=</span> <span class="s1">'USA'</span>
+
+<span class="c1"># Set a pickup date and time</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">shipment</span><span class="o">.</span><span class="n">pickup_time</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mo">05</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mo">00</span><span class="p">,</span> <span class="mo">00</span><span class="p">,</span> <span class="s2">"-08:00"</span><span class="p">)</span>
+
+<span class="c1"># Add Packages with weight, width, height, length and a reference string</span>
+<span class="n">shipment_request</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">'Pack'</span><span class="p">)</span>
+
+<span class="c1"># Execute the reeuqest</span>
+<span class="n">result</span> <span class="o">=</span> <span class="no">Dhl</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">request_shipment</span><span class="p">(</span><span class="n">shipment_request</span><span class="p">)</span>
+
+</pre></div>
+
+<p>If everything goes well, result will be a hash with:</p>
+
+<ul>
+<li>tracking_numbers: Shipment tracking number</li>
+<li>shipping_label: Path to the shipping label PDF</li>
+</ul><h2>Testing</h2>
+
+<p>For testing purposes please set the timezone to UTC</p>
+
+<pre lang="shell"><code>$ export TZ=UTC
+</code></pre>
+
+<h2>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol><h2>Licence</h2>
+
+<p>Released under the <a href="http://www.opensource.org/licenses/MIT">MIT License</a>. © 2013 <a href="http://momit.it/">Momit S.r.l.</a></p>
         </section>
 
         <footer>
