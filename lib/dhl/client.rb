@@ -10,7 +10,6 @@ module Dhl
         wsse_auth: [config.username, config.password],
         wsse_timestamp: true,
         convert_request_keys_to: :camelcase,
-        env_namespace: :soapenv,
         namespaces: {
           "xmlns:dhl" => "http://www.dhl.com"
         }
