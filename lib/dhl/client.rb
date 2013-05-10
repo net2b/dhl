@@ -62,7 +62,7 @@ module Dhl
       end
 
       package_result = response.body[:shipment_response][:packages_result][:package_result]
-      result[:tracking_numbers] = package_result.is_a?(Array) ? package_result.map{|r| r[:tracking_number]} : package_result[:tracking_number]
+      result[:tracking_number] = shipment_identification_number
 
       result
     end

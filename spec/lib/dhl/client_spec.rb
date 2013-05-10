@@ -4,8 +4,9 @@ require_relative '../../spec_helper'
 
 describe Dhl::Client do
 
-  let(:client) { Dhl.client(username: 'username', password: 'password', account: 123456789) }
+  # let(:client) { Dhl.client(username: 'username', password: 'password', account: 123456789) }
 
+let(:client) { Dhl.client(username: 'antoniolisrl', password: 'f4$H1()n', account: 105315001) }
   after do
     VCR.eject_cassette
   end
@@ -31,19 +32,21 @@ describe Dhl::Client do
       packages.add(100, 40, 45, 35, 'Ref 2')
 
       response = client.request_shipment(shipment_request)
-      response[:tracking_numbers].should == ["JD012038742880323158", "JD012038742880323159"]
+      response[:tracking_number].should == '9085882330'
       File.exists?('labels/9085882330.pdf').should be_true
     end
   end
 
   describe '#track' do
-    before do
-      VCR.insert_cassette 'tracking', record: :new_episodes
-    end
+    # before do
+    #   VCR.insert_cassette 'tracking', record: :new_episodes
+    # end
 
     it "should give back a tracking status" do
-      response = client.track ["5223281416"]
+      response = client.track "9085882330"
       response[:tracking_response][:awb_info][:array].should_have 1.item
+
+
     end
   end
 
