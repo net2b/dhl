@@ -41,9 +41,20 @@ describe Dhl::Client do
       VCR.insert_cassette 'tracking', record: :new_episodes
     end
 
-    it "should give back a tracking status" do
-      response = client.track ["5223281416"]
-      response[:tracking_response][:awb_info][:array].should_have 1.item
+    context 'the shipment has been fully delivered' do
+      let(:response) { client.track ["5223281416"] }
+
+      it 'should provide a track response with shipment info' do
+        response.shipment_info.should_not be_nil
+      end
+
+      it 'should provide one or more events' do
+        response.should have_at_least(1).event
+      end
+
+      subject { response }
+      it { should be_delivered }
+
     end
   end
 

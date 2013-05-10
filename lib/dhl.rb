@@ -7,10 +7,7 @@ require "dhl/packages"
 require "dhl/package"
 require "dhl/shipment"
 require "dhl/shipment_request"
-require "dhl/tracking/request"
-require "dhl/tracking/response"
-require "dhl/tracking/item"
-require "dhl/tracking/event"
+require "dhl/tracking"
 
 require "dhl/version"
 
