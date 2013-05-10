@@ -9,7 +9,11 @@ module Dhl
       {
         wsse_auth: [config.username, config.password],
         wsse_timestamp: true,
-        convert_request_keys_to: :camelcase
+        convert_request_keys_to: :camelcase,
+        env_namespace: :soapenv,
+        namespaces: {
+          "xmlns:dhl" => "http://www.dhl.com"
+        }
       }
     end
 
@@ -65,9 +69,9 @@ module Dhl
     end
 
     def track(numbers)
-      request = Dhl::TrackingRequest.new(numbers)
+      request = Tracking::Request.new(numbers)
       response = tracking_soap_client.call(:track_shipment_request, message: request.to_hash)
-      response.body
+      Tracking::Response.new(response.body)
     end
 
     # def request_rate

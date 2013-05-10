@@ -36,15 +36,15 @@ describe Dhl::Client do
     end
   end
 
-  # describe '#track' do
-  #   before do
-  #     VCR.insert_cassette 'tracking', record: :new_episodes
-  #   end
+  describe '#track' do
+    before do
+      VCR.insert_cassette 'tracking', record: :new_episodes
+    end
 
-  #   it "should give back a tracking status" do
-  #     response = client.track ["JD012038742880323158"]
-  #     response[:tracking_response][:awb_info][:array].should_have 1.item
-  #   end
-  # end
+    it "should give back a tracking status" do
+      response = client.track ["5223281416"]
+      response[:tracking_response][:awb_info][:array].should_have 1.item
+    end
+  end
 
 end
