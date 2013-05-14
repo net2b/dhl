@@ -22,6 +22,8 @@ module Dhl
           [collection].flatten.map do |element|
             Event.new(element)
           end
+        rescue
+          []
         end
     end
   end
