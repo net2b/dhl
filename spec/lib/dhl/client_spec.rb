@@ -19,18 +19,16 @@ describe Dhl::Client do
     let(:recipient) { FactoryGirl.build(:contact) }
     let(:packages) { shipment_request.packages }
     let(:shipment) { FactoryGirl.build(:shipment) }
+    let(:response) { client.request_shipment(shipment_request) }
 
-    let(:response) do
+    it "should return a PDF shipping label" do
       shipment_request.shipper = shipper
       shipment_request.recipient = recipient
       shipment.pickup_time = (Time.now + 86400)
       shipment_request.shipment = shipment
       packages.add(50, 10, 15, 20, 'Ref 1')
       packages.add(100, 40, 45, 35, 'Ref 2')
-      client.request_shipment(shipment_request)
-    end
 
-    it "should return a PDF shipping label" do
       response[:tracking_number].should == '9085882330'
       File.exists?('labels/9085882330.pdf').should be_true
     end
@@ -41,14 +39,8 @@ describe Dhl::Client do
       before { VCR.insert_cassette 'tracking/5223281416', record: :new_episodes}
       let(:response) { client.track "5223281416" }
 
-      it 'should provide a track response with shipment info' do
-        response.shipment_info.should_not be_nil
-      end
-
-      it 'should provide one or more events' do
-        response.should have_at_least(1).event
-      end
-
+      its(:shipment_info) { should_not be_nil }
+      it { should have_at_least(1).event }
       it { should be_delivered }
     end
 

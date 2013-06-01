@@ -1,6 +1,265 @@
 ---
 http_interactions:
 - request:
+    method: get
+    uri: https://wsbuat.dhl.com:8300/gbl/glDHLExpressTrack?WSDL
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 01 Jun 2013 07:10:35 GMT
+      Server:
+      - ACE XML Gateway
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '18870'
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<wsdl:definitions xmlns:s0=\"http://www.dhl.com\"
+        xmlns:mime=\"http://schemas.xmlsoap.org/wsdl/mime/\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\"
+        xmlns:http=\"http://schemas.xmlsoap.org/wsdl/http/\" xmlns:tm=\"http://microsoft.com/wsdl/mime/textMatching/\"
+        xmlns:tns=\"http://scxgxtt.phx-dc.dhl.com/glDHLExpressTrack/providers/services/trackShipment\"
+        xmlns:soap12=\"http://schemas.xmlsoap.org/wsdl/soap12/\" xmlns:soap=\"http://schemas.xmlsoap.org/wsdl/soap/\"
+        xmlns:s1=\"http://www.reactivity.com/xsdbundle/\" xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\"
+        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" targetNamespace=\"http://scxgxtt.phx-dc.dhl.com/glDHLExpressTrack/providers/services/trackShipment\"><wsdl:types><xsd:schema
+        targetNamespace=\"http://www.dhl.com\">\n          \n          <xsd:import
+        namespace=\"http://scxgxtt.phx-dc.dhl.com/glDHLExpressTrack/providers/services/trackShipment\"/>\n
+        \         <xsd:element name=\"TrackingRequest\" type=\"s0:TrackingRequest\"/>\n
+        \         <xsd:element name=\"TrackingResponse\" type=\"s0:TrackingResponse\"/>\n
+        \         <xsd:complexType name=\"TrackingRequest\">\n            <xsd:sequence>\n
+        \             <xsd:element name=\"Request\" type=\"s0:Request\"/>\n              <xsd:element
+        minOccurs=\"0\" name=\"AWBNumber\" type=\"s0:ArrayOfAWBNumber\"/>\n              <xsd:element
+        minOccurs=\"0\" name=\"LPNumber\" type=\"s0:ArrayOfTrackingPieceID\"/>\n              <xsd:element
+        name=\"LevelOfDetails\" type=\"s0:LevelOfDetails\"/>\n              <xsd:element
+        minOccurs=\"0\" name=\"PiecesEnabled\" type=\"tns:PiecesEnabled\"/>\n            </xsd:sequence>\n
+        \         </xsd:complexType>\n          <xsd:complexType name=\"Request\">\n
+        \           <xsd:sequence>\n              <xsd:element name=\"ServiceHeader\"
+        type=\"s0:ServiceHeader\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n
+        \         <xsd:complexType name=\"ServiceHeader\">\n            <xsd:sequence>\n
+        \             <xsd:element name=\"MessageTime\" type=\"xsd:dateTime\"/>\n
+        \             <xsd:element name=\"MessageReference\" type=\"s0:MessageReference\"/>\n
+        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:simpleType
+        name=\"MessageReference\">\n            <xsd:restriction base=\"xsd:string\">\n
+        \             <xsd:whiteSpace value=\"preserve\"/>\n              <xsd:minLength
+        value=\"28\"/>\n              <xsd:maxLength value=\"32\"/>\n            </xsd:restriction>\n
+        \         </xsd:simpleType>\n          <xsd:simpleType name=\"AWBNumber\">\n
+        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
+        value=\"preserve\"/>\n              <xsd:maxLength value=\"11\"/>\n            </xsd:restriction>\n
+        \         </xsd:simpleType>\n          <xsd:complexType name=\"ArrayOfAWBNumber\">\n<xsd:sequence>\n\t\t\t<xsd:element
+        maxOccurs=\"unbounded\" name=\"ArrayOfAWBNumberItem\" type=\"s0:AWBNumber\"/>\n\t\t</xsd:sequence>\n\n
+        \         </xsd:complexType>\n          <xsd:simpleType name=\"TrackingPieceID\">\n
+        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
+        value=\"preserve\"/>\n              <xsd:minLength value=\"1\"/>\n              <xsd:maxLength
+        value=\"35\"/>\n            </xsd:restriction>\n          </xsd:simpleType>\n
+        \         <xsd:complexType name=\"ArrayOfTrackingPieceID\">\n<xsd:sequence>\n\t\t\t<xsd:element
+        maxOccurs=\"unbounded\" name=\"ArrayOfTrackingPieceIDItem\" type=\"s0:TrackingPieceID\"/>\n\t\t</xsd:sequence>\n\n
+        \         </xsd:complexType>\n          <xsd:simpleType name=\"LevelOfDetails\">\n
+        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
+        value=\"preserve\"/>\n              <xsd:enumeration value=\"LAST_CHECK_POINT_ONLY\"/>\n
+        \             <xsd:enumeration value=\"ALL_CHECK_POINTS\"/>\n            </xsd:restriction>\n
+        \         </xsd:simpleType>\n          <xsd:complexType name=\"TrackingResponse\">\n
+        \           <xsd:sequence>\n              <xsd:element name=\"Response\" type=\"s0:Response\"/>\n
+        \             <xsd:element name=\"AWBInfo\" type=\"s0:ArrayOfAWBInfo\"/>\n
+        \             <xsd:element minOccurs=\"0\" name=\"Fault\" type=\"s0:Fault\"/>\n
+        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType
+        name=\"Response\">\n            <xsd:sequence>\n              <xsd:element
+        name=\"ServiceHeader\" type=\"s0:ServiceHeader\"/>\n            </xsd:sequence>\n
+        \         </xsd:complexType>\n          <xsd:complexType name=\"AWBInfo\">\n
+        \           <xsd:sequence>\n              <xsd:element name=\"AWBNumber\"
+        type=\"s0:AWBNumber\"/>\n              <xsd:element name=\"Status\" type=\"s0:Status\"/>\n
+        \             <xsd:element minOccurs=\"0\" name=\"ShipmentInfo\" type=\"s0:ShipmentInfo\"/>\n
+        \             <xsd:element minOccurs=\"0\" name=\"Pieces\" type=\"s0:TrackingPieces\"/>\n
+        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType
+        name=\"Status\">\n            <xsd:sequence>\n              <xsd:element name=\"ActionStatus\"
+        type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\" name=\"Condition\"
+        type=\"s0:ArrayOfCondition\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n
+        \         <xsd:complexType name=\"Condition\">\n            <xsd:sequence>\n
+        \             <xsd:element name=\"ConditionCode\" type=\"xsd:string\"/>\n
+        \             <xsd:element minOccurs=\"0\" name=\"ConditionData\" type=\"xsd:string\"/>\n
+        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType
+        name=\"ArrayOfCondition\">\n<xsd:sequence>\n\t\t\t<xsd:element maxOccurs=\"unbounded\"
+        name=\"ArrayOfConditionItem\" type=\"s0:Condition\"/>\n\t\t</xsd:sequence>\n\n
+        \         </xsd:complexType>\n          <xsd:complexType name=\"ShipmentInfo\">\n
+        \           <xsd:sequence>\n              <xsd:element name=\"OriginServiceArea\"
+        type=\"s0:OriginServiceArea\"/>\n              <xsd:element name=\"DestinationServiceArea\"
+        type=\"s0:DestinationServiceArea\"/>\n              <xsd:element name=\"ShipperName\"
+        type=\"s0:PersonName\"/>\n              <xsd:element minOccurs=\"0\" name=\"ShipperAccountNumber\"
+        type=\"s0:AccountNumber\"/>\n              <xsd:element name=\"ConsigneeName\"
+        type=\"s0:PersonName\"/>\n              <xsd:element name=\"ShipmentDate\"
+        type=\"xsd:dateTime\"/>\n              <xsd:element minOccurs=\"0\" name=\"Pieces\"
+        type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\" name=\"Weight\"
+        type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\" name=\"WeightUnit\"
+        type=\"tns:WeightUnit\"/>\n              <xsd:element minOccurs=\"0\" name=\"ShipmentEvent\"
+        type=\"s0:ArrayOfShipmentEvent\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"ShipperReference\" type=\"s0:Reference\"/>\n            </xsd:sequence>\n
+        \         </xsd:complexType>\n          <xsd:complexType name=\"OriginServiceArea\">\n
+        \           <xsd:sequence>\n              <xsd:element minOccurs=\"0\" name=\"ServiceAreaCode\"
+        type=\"s0:ServiceAreaCode\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"Description\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"OutboundSortCode\" type=\"s0:OutboundSortCode\"/>\n            </xsd:sequence>\n
+        \         </xsd:complexType>\n          <xsd:simpleType name=\"ServiceAreaCode\">\n
+        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
+        value=\"preserve\"/>\n              <xsd:length value=\"3\"/>\n            </xsd:restriction>\n
+        \         </xsd:simpleType>\n          <xsd:simpleType name=\"OutboundSortCode\">\n
+        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
+        value=\"preserve\"/>\n              <xsd:length value=\"4\"/>\n            </xsd:restriction>\n
+        \         </xsd:simpleType>\n          <xsd:complexType name=\"DestinationServiceArea\">\n
+        \           <xsd:sequence>\n              <xsd:element minOccurs=\"0\" name=\"ServiceAreaCode\"
+        type=\"s0:ServiceAreaCode\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"Description\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"FacilityCode\" type=\"s0:FacilityCode\"/>\n              <xsd:element
+        minOccurs=\"0\" name=\"InboundSortCode\" type=\"s0:InboundSortCode\"/>\n            </xsd:sequence>\n
+        \         </xsd:complexType>\n          <xsd:simpleType name=\"FacilityCode\">\n
+        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
+        value=\"preserve\"/>\n              <xsd:length value=\"3\"/>\n            </xsd:restriction>\n
+        \         </xsd:simpleType>\n          <xsd:simpleType name=\"InboundSortCode\">\n
+        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
+        value=\"preserve\"/>\n              <xsd:length value=\"4\"/>\n            </xsd:restriction>\n
+        \         </xsd:simpleType>\n          <xsd:simpleType name=\"PersonName\">\n
+        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
+        value=\"preserve\"/>\n              <xsd:maxLength value=\"35\"/>\n            </xsd:restriction>\n
+        \         </xsd:simpleType>\n          <xsd:simpleType name=\"AccountNumber\">\n
+        \           <xsd:restriction base=\"xsd:positiveInteger\">\n              <xsd:minInclusive
+        value=\"100000000\"/>\n              <xsd:maxInclusive value=\"9999999999\"/>\n
+        \           </xsd:restriction>\n          </xsd:simpleType>\n          <xsd:complexType
+        name=\"ShipmentEvent\">\n            <xsd:sequence>\n              <xsd:element
+        name=\"Date\" type=\"xsd:date\"/>\n              <xsd:element name=\"Time\"
+        type=\"xsd:time\"/>\n              <xsd:element name=\"ServiceEvent\" type=\"s0:ServiceEvent\"/>\n
+        \             <xsd:element minOccurs=\"0\" name=\"Signatory\" type=\"tns:Signatory\"/>\n
+        \             <xsd:element name=\"ServiceArea\" type=\"s0:ServiceArea\"/>\n
+        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType
+        name=\"ServiceEvent\">\n            <xsd:sequence>\n              <xsd:element
+        name=\"EventCode\" type=\"tns:EventCode\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"Description\" type=\"xsd:string\"/>\n            </xsd:sequence>\n
+        \         </xsd:complexType>\n          <xsd:complexType name=\"ServiceArea\">\n
+        \           <xsd:sequence>\n              <xsd:element minOccurs=\"0\" name=\"ServiceAreaCode\"
+        type=\"s0:ServiceAreaCode\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"Description\" type=\"xsd:string\"/>\n            </xsd:sequence>\n
+        \         </xsd:complexType>\n          <xsd:complexType name=\"ArrayOfShipmentEvent\">\n<xsd:sequence>\n\t\t\t<xsd:element
+        maxOccurs=\"unbounded\" name=\"ArrayOfShipmentEventItem\" type=\"s0:ShipmentEvent\"/>\n\t\t</xsd:sequence>\n\n
+        \         </xsd:complexType>\n          <xsd:complexType name=\"Reference\">\n
+        \           <xsd:sequence>\n              <xsd:element name=\"ReferenceID\"
+        type=\"s0:ReferenceID\"/>\n              <xsd:element minOccurs=\"0\" name=\"ReferenceType\"
+        type=\"s0:ReferenceType\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n
+        \         <xsd:simpleType name=\"ReferenceID\">\n            <xsd:restriction
+        base=\"xsd:string\">\n              <xsd:whiteSpace value=\"preserve\"/>\n
+        \             <xsd:maxLength value=\"35\"/>\n            </xsd:restriction>\n
+        \         </xsd:simpleType>\n          <xsd:simpleType name=\"ReferenceType\">\n
+        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
+        value=\"preserve\"/>\n              <xsd:length value=\"2\"/>\n            </xsd:restriction>\n
+        \         </xsd:simpleType>\n          <xsd:complexType name=\"TrackingPieces\">\n
+        \           <xsd:sequence>\n              <xsd:element name=\"PieceInfo\"
+        type=\"s0:ArrayOfPieceInfo\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n
+        \         <xsd:complexType name=\"PieceInfo\">\n            <xsd:sequence>\n
+        \             <xsd:element name=\"PieceDetails\" type=\"s0:PieceDetails\"/>\n
+        \             <xsd:element name=\"PieceEvent\" type=\"s0:ArrayOfPieceEvent\"/>\n
+        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType
+        name=\"PieceDetails\">\n            <xsd:sequence>\n              <xsd:element
+        name=\"AWBNumber\" type=\"xsd:string\"/>\n              <xsd:element name=\"LicensePlate\"
+        type=\"s0:TrackingPieceID\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"PieceNumber\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"ActualDepth\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"ActualWidth\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"ActualHeight\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"ActualWeight\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"Depth\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"Width\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"Height\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"Weight\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
+        name=\"PackageType\" type=\"s0:PackageType\"/>\n              <xsd:element
+        minOccurs=\"0\" name=\"DimWeight\" type=\"xsd:string\"/>\n              <xsd:element
+        minOccurs=\"0\" name=\"WeightUnit\" type=\"xsd:string\"/>\n              <xsd:element
+        minOccurs=\"0\" name=\"PieceContents\" type=\"xsd:string\"/>\n            </xsd:sequence>\n
+        \         </xsd:complexType>\n          <xsd:simpleType name=\"PackageType\">\n
+        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
+        value=\"preserve\"/>\n              <xsd:maxLength value=\"2\"/>\n            </xsd:restriction>\n
+        \         </xsd:simpleType>\n          <xsd:complexType name=\"PieceEvent\">\n
+        \           <xsd:sequence>\n              <xsd:element name=\"Date\" type=\"xsd:date\"/>\n
+        \             <xsd:element name=\"Time\" type=\"xsd:time\"/>\n              <xsd:element
+        name=\"ServiceEvent\" type=\"s0:ServiceEvent\"/>\n              <xsd:element
+        minOccurs=\"0\" name=\"Signatory\" type=\"tns:Signatory2\"/>\n              <xsd:element
+        name=\"ServiceArea\" type=\"s0:ServiceArea\"/>\n              <xsd:element
+        name=\"ShipperReference\" nillable=\"true\" type=\"tns:ShipperReference\"/>\n
+        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType
+        name=\"ArrayOfPieceEvent\">\n<xsd:sequence>\n\t\t\t<xsd:element maxOccurs=\"unbounded\"
+        name=\"ArrayOfPieceEventItem\" type=\"s0:PieceEvent\"/>\n\t\t</xsd:sequence>\n\n
+        \         </xsd:complexType>\n          <xsd:complexType name=\"ArrayOfPieceInfo\">\n<xsd:sequence>\n\t\t\t<xsd:element
+        maxOccurs=\"unbounded\" name=\"ArrayOfPieceInfoItem\" type=\"s0:PieceInfo\"/>\n\t\t</xsd:sequence>\n\n
+        \         </xsd:complexType>\n          <xsd:complexType name=\"ArrayOfAWBInfo\">\n<xsd:sequence>\n\t\t\t<xsd:element
+        maxOccurs=\"unbounded\" name=\"ArrayOfAWBInfoItem\" type=\"s0:AWBInfo\"/>\n\t\t</xsd:sequence>\n\n
+        \         </xsd:complexType>\n          <xsd:complexType name=\"Fault\">\n
+        \           <xsd:sequence>\n              <xsd:element name=\"PieceFault\"
+        type=\"s0:ArrayOfPieceFault\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n
+        \         <xsd:complexType name=\"PieceFault\">\n            <xsd:sequence>\n
+        \             <xsd:element name=\"PieceID\" type=\"s0:TrackingPieceID\"/>\n
+        \             <xsd:element name=\"ConditionCode\" type=\"xsd:string\"/>\n
+        \             <xsd:element name=\"ConditionData\" type=\"xsd:string\"/>\n
+        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType
+        name=\"ArrayOfPieceFault\">\n<xsd:sequence>\n\t\t\t<xsd:element maxOccurs=\"unbounded\"
+        name=\"ArrayOfPieceFaultItem\" type=\"s0:PieceFault\"/>\n\t\t</xsd:sequence>\n\n
+        \         </xsd:complexType>\n        \t</xsd:schema><xsd:schema targetNamespace=\"http://scxgxtt.phx-dc.dhl.com/glDHLExpressTrack/providers/services/trackShipment\">\n
+        \         <xsd:import namespace=\"http://www.dhl.com\"/>\n          <xsd:complexType
+        name=\"trackShipmentRequest\">\n            <xsd:sequence>\n              <xsd:element
+        name=\"trackingRequest\" nillable=\"true\" type=\"tns:pubTrackingRequest\"/>\n
+        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType
+        name=\"pubTrackingRequest\">\n            <xsd:sequence>\n              <xsd:element
+        ref=\"s0:TrackingRequest\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n
+        \         <xsd:simpleType name=\"PiecesEnabled\">\n            <xsd:restriction
+        base=\"xsd:string\">\n              <xsd:whiteSpace value=\"preserve\"/>\n
+        \             <xsd:enumeration value=\"S\"/>\n              <xsd:enumeration
+        value=\"B\"/>\n              <xsd:enumeration value=\"P\"/>\n            </xsd:restriction>\n
+        \         </xsd:simpleType>\n          <xsd:complexType name=\"trackShipmentRequestResponse\">\n
+        \           <xsd:sequence>\n              <xsd:element name=\"trackingResponse\"
+        nillable=\"true\" type=\"tns:pubTrackingResponse\"/>\n            </xsd:sequence>\n
+        \         </xsd:complexType>\n          <xsd:complexType name=\"pubTrackingResponse\">\n
+        \           <xsd:sequence>\n              <xsd:element ref=\"s0:TrackingResponse\"/>\n
+        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:simpleType
+        name=\"WeightUnit\">\n            <xsd:restriction base=\"xsd:string\">\n
+        \             <xsd:whiteSpace value=\"preserve\"/>\n              <xsd:enumeration
+        value=\"L\"/>\n              <xsd:enumeration value=\"K\"/>\n              <xsd:enumeration
+        value=\"G\"/>\n            </xsd:restriction>\n          </xsd:simpleType>\n
+        \         <xsd:simpleType name=\"EventCode\">\n            <xsd:restriction
+        base=\"xsd:string\">\n              <xsd:whiteSpace value=\"preserve\"/>\n
+        \             <xsd:length value=\"2\"/>\n            </xsd:restriction>\n
+        \         </xsd:simpleType>\n          <xsd:simpleType name=\"Signatory\">\n
+        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
+        value=\"preserve\"/>\n            </xsd:restriction>\n          </xsd:simpleType>\n
+        \         <xsd:simpleType name=\"Signatory2\">\n            <xsd:restriction
+        base=\"xsd:string\">\n              <xsd:whiteSpace value=\"preserve\"/>\n
+        \           </xsd:restriction>\n          </xsd:simpleType>\n          <xsd:complexType
+        name=\"ShipperReference\">\n            <xsd:sequence>\n              <xsd:element
+        name=\"ReferenceID\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element
+        minOccurs=\"0\" name=\"ReferenceType\" nillable=\"true\" type=\"xsd:string\"/>\n
+        \           </xsd:sequence>\n          </xsd:complexType>\n        \t\t\t<xsd:element
+        name=\"trackShipmentRequest\" type=\"tns:trackShipmentRequest\"/>\n\t\t\t<xsd:element
+        name=\"trackShipmentRequestResponse\" type=\"tns:trackShipmentRequestResponse\"/>\n\t</xsd:schema></wsdl:types><wsdl:message
+        name=\"trackShipmentRequestIn\"><wsdl:part name=\"parameters\" element=\"tns:trackShipmentRequest\"/></wsdl:message><wsdl:message
+        name=\"trackShipmentRequestOut\"><wsdl:part name=\"parameters\" element=\"tns:trackShipmentRequestResponse\"/></wsdl:message><wsdl:portType
+        name=\"gblDHLExpressTrack\"><wsdl:operation name=\"trackShipmentRequest\"><wsdl:input
+        message=\"tns:trackShipmentRequestIn\"/><wsdl:output message=\"tns:trackShipmentRequestOut\"/></wsdl:operation></wsdl:portType><wsdl:binding
+        name=\"gblDHLExpressTrack\" type=\"tns:gblDHLExpressTrack\"><soap:binding
+        style=\"document\" transport=\"http://schemas.xmlsoap.org/soap/http\"/><wsdl:operation
+        name=\"trackShipmentRequest\"><soap:operation soapAction=\"glDHLExpressTrack_providers_services_trackShipment_Binder_trackShipmentRequest\"
+        style=\"document\"/><wsdl:input><soap:body use=\"literal\" parts=\"parameters\"/></wsdl:input><wsdl:output><soap:body
+        use=\"literal\" parts=\"parameters\"/></wsdl:output></wsdl:operation></wsdl:binding><wsdl:service
+        name=\"gblDHLExpressTrack\"><wsdl:port name=\"gblDHLExpressTrack\" binding=\"tns:gblDHLExpressTrack\"><soap:address
+        location=\"https://wsbuat.dhl.com:8300/gbl/glDHLExpressTrack\"/></wsdl:port></wsdl:service></wsdl:definitions>"
+    http_version:
+  recorded_at: Sat, 01 Jun 2013 07:10:36 GMT
+- request:
     method: post
     uri: https://wsbuat.dhl.com:8300/gbl/glDHLExpressTrack
     body:
@@ -9,9 +268,9 @@ http_interactions:
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://scxgxtt.phx-dc.dhl.com/glDHLExpressTrack/providers/services/trackShipment"
         xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ins0="http://www.dhl.com"
         xmlns:dhl="http://www.dhl.com"><env:Header><wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"><wsse:UsernameToken
-        wsu:Id="UsernameToken-1" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsse:Username>antoniolisrl</wsse:Username><wsse:Password
-        Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">f4$H1()n</wsse:Password></wsse:UsernameToken><wsu:Timestamp
-        wsu:Id="Timestamp-2" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsu:Created>2013-05-10T14:51:55Z</wsu:Created><wsu:Expires>2013-05-10T14:52:55Z</wsu:Expires></wsu:Timestamp></wsse:Security></env:Header><env:Body><tns:trackShipmentRequest><trackingRequest><dhl:TrackingRequest><Request><ServiceHeader><MessageTime>2013-05-10T14:51:55+00:00</MessageTime><MessageReference>1234567890123456789012345678</MessageReference></ServiceHeader></Request><AWBNumber><ArrayOfAWBNumberItem>5223281416</ArrayOfAWBNumberItem></AWBNumber><LevelOfDetails>ALL_CHECK_POINTS</LevelOfDetails><PiecesEnabled>B</PiecesEnabled></dhl:TrackingRequest></trackingRequest></tns:trackShipmentRequest></env:Body></env:Envelope>
+        wsu:Id="UsernameToken-1" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsse:Username>username</wsse:Username><wsse:Password
+        Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">password</wsse:Password></wsse:UsernameToken><wsu:Timestamp
+        wsu:Id="Timestamp-2" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsu:Created>2013-06-01T07:10:36Z</wsu:Created><wsu:Expires>2013-06-01T07:11:36Z</wsu:Expires></wsu:Timestamp></wsse:Security></env:Header><env:Body><tns:trackShipmentRequest><trackingRequest><dhl:TrackingRequest><Request><ServiceHeader><MessageTime>2013-06-01T07:10:33+00:00</MessageTime><MessageReference>1234567890123456789012345678</MessageReference></ServiceHeader></Request><AWBNumber><ArrayOfAWBNumberItem>5223281416</ArrayOfAWBNumberItem></AWBNumber><LevelOfDetails>ALL_CHECK_POINTS</LevelOfDetails><PiecesEnabled>B</PiecesEnabled></dhl:TrackingRequest></trackingRequest></tns:trackShipmentRequest></env:Body></env:Envelope>
     headers:
       Soapaction:
       - '"glDHLExpressTrack_providers_services_trackShipment_Binder_trackShipmentRequest"'
@@ -31,7 +290,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 10 May 2013 14:51:57 GMT
+      - Sat, 01 Jun 2013 07:10:38 GMT
       Server:
       - ACE XML Gateway
       Content-Type:
@@ -48,8 +307,8 @@ http_interactions:
         <ns:TrackingResponse>
           <Response>
             <ServiceHeader>
-              <MessageTime>2013-05-10T14:51:59Z</MessageTime>
-              <MessageReference>295bfbb0b98111e2a52fdaf33d24525a</MessageReference>
+              <MessageTime>2013-06-01T07:10:39Z</MessageTime>
+              <MessageReference>5cc5a310ca8a11e2ba65db8895cd5f09</MessageReference>
             </ServiceHeader>
           </Response>
           <AWBInfo>
@@ -506,265 +765,6 @@ http_interactions:
           </AWBInfo>
         </ns:TrackingResponse></trackingResponse></ser-root:trackShipmentRequestResponse></SOAP-ENV:Body>
         </SOAP-ENV:Envelope>
-    http_version: 
-  recorded_at: Fri, 10 May 2013 14:52:00 GMT
-- request:
-    method: get
-    uri: https://wsbuat.dhl.com:8300/gbl/glDHLExpressTrack?WSDL
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - '*/*'
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Sat, 01 Jun 2013 07:05:28 GMT
-      Server:
-      - ACE XML Gateway
-      Content-Type:
-      - text/xml
-      Content-Length:
-      - '18870'
-    body:
-      encoding: UTF-8
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<wsdl:definitions xmlns:s0=\"http://www.dhl.com\"
-        xmlns:mime=\"http://schemas.xmlsoap.org/wsdl/mime/\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\"
-        xmlns:http=\"http://schemas.xmlsoap.org/wsdl/http/\" xmlns:tm=\"http://microsoft.com/wsdl/mime/textMatching/\"
-        xmlns:tns=\"http://scxgxtt.phx-dc.dhl.com/glDHLExpressTrack/providers/services/trackShipment\"
-        xmlns:soap12=\"http://schemas.xmlsoap.org/wsdl/soap12/\" xmlns:soap=\"http://schemas.xmlsoap.org/wsdl/soap/\"
-        xmlns:s1=\"http://www.reactivity.com/xsdbundle/\" xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\"
-        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" targetNamespace=\"http://scxgxtt.phx-dc.dhl.com/glDHLExpressTrack/providers/services/trackShipment\"><wsdl:types><xsd:schema
-        targetNamespace=\"http://www.dhl.com\">\n          \n          <xsd:import
-        namespace=\"http://scxgxtt.phx-dc.dhl.com/glDHLExpressTrack/providers/services/trackShipment\"/>\n
-        \         <xsd:element name=\"TrackingRequest\" type=\"s0:TrackingRequest\"/>\n
-        \         <xsd:element name=\"TrackingResponse\" type=\"s0:TrackingResponse\"/>\n
-        \         <xsd:complexType name=\"TrackingRequest\">\n            <xsd:sequence>\n
-        \             <xsd:element name=\"Request\" type=\"s0:Request\"/>\n              <xsd:element
-        minOccurs=\"0\" name=\"AWBNumber\" type=\"s0:ArrayOfAWBNumber\"/>\n              <xsd:element
-        minOccurs=\"0\" name=\"LPNumber\" type=\"s0:ArrayOfTrackingPieceID\"/>\n              <xsd:element
-        name=\"LevelOfDetails\" type=\"s0:LevelOfDetails\"/>\n              <xsd:element
-        minOccurs=\"0\" name=\"PiecesEnabled\" type=\"tns:PiecesEnabled\"/>\n            </xsd:sequence>\n
-        \         </xsd:complexType>\n          <xsd:complexType name=\"Request\">\n
-        \           <xsd:sequence>\n              <xsd:element name=\"ServiceHeader\"
-        type=\"s0:ServiceHeader\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n
-        \         <xsd:complexType name=\"ServiceHeader\">\n            <xsd:sequence>\n
-        \             <xsd:element name=\"MessageTime\" type=\"xsd:dateTime\"/>\n
-        \             <xsd:element name=\"MessageReference\" type=\"s0:MessageReference\"/>\n
-        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:simpleType
-        name=\"MessageReference\">\n            <xsd:restriction base=\"xsd:string\">\n
-        \             <xsd:whiteSpace value=\"preserve\"/>\n              <xsd:minLength
-        value=\"28\"/>\n              <xsd:maxLength value=\"32\"/>\n            </xsd:restriction>\n
-        \         </xsd:simpleType>\n          <xsd:simpleType name=\"AWBNumber\">\n
-        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
-        value=\"preserve\"/>\n              <xsd:maxLength value=\"11\"/>\n            </xsd:restriction>\n
-        \         </xsd:simpleType>\n          <xsd:complexType name=\"ArrayOfAWBNumber\">\n<xsd:sequence>\n\t\t\t<xsd:element
-        maxOccurs=\"unbounded\" name=\"ArrayOfAWBNumberItem\" type=\"s0:AWBNumber\"/>\n\t\t</xsd:sequence>\n\n
-        \         </xsd:complexType>\n          <xsd:simpleType name=\"TrackingPieceID\">\n
-        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
-        value=\"preserve\"/>\n              <xsd:minLength value=\"1\"/>\n              <xsd:maxLength
-        value=\"35\"/>\n            </xsd:restriction>\n          </xsd:simpleType>\n
-        \         <xsd:complexType name=\"ArrayOfTrackingPieceID\">\n<xsd:sequence>\n\t\t\t<xsd:element
-        maxOccurs=\"unbounded\" name=\"ArrayOfTrackingPieceIDItem\" type=\"s0:TrackingPieceID\"/>\n\t\t</xsd:sequence>\n\n
-        \         </xsd:complexType>\n          <xsd:simpleType name=\"LevelOfDetails\">\n
-        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
-        value=\"preserve\"/>\n              <xsd:enumeration value=\"LAST_CHECK_POINT_ONLY\"/>\n
-        \             <xsd:enumeration value=\"ALL_CHECK_POINTS\"/>\n            </xsd:restriction>\n
-        \         </xsd:simpleType>\n          <xsd:complexType name=\"TrackingResponse\">\n
-        \           <xsd:sequence>\n              <xsd:element name=\"Response\" type=\"s0:Response\"/>\n
-        \             <xsd:element name=\"AWBInfo\" type=\"s0:ArrayOfAWBInfo\"/>\n
-        \             <xsd:element minOccurs=\"0\" name=\"Fault\" type=\"s0:Fault\"/>\n
-        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType
-        name=\"Response\">\n            <xsd:sequence>\n              <xsd:element
-        name=\"ServiceHeader\" type=\"s0:ServiceHeader\"/>\n            </xsd:sequence>\n
-        \         </xsd:complexType>\n          <xsd:complexType name=\"AWBInfo\">\n
-        \           <xsd:sequence>\n              <xsd:element name=\"AWBNumber\"
-        type=\"s0:AWBNumber\"/>\n              <xsd:element name=\"Status\" type=\"s0:Status\"/>\n
-        \             <xsd:element minOccurs=\"0\" name=\"ShipmentInfo\" type=\"s0:ShipmentInfo\"/>\n
-        \             <xsd:element minOccurs=\"0\" name=\"Pieces\" type=\"s0:TrackingPieces\"/>\n
-        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType
-        name=\"Status\">\n            <xsd:sequence>\n              <xsd:element name=\"ActionStatus\"
-        type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\" name=\"Condition\"
-        type=\"s0:ArrayOfCondition\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n
-        \         <xsd:complexType name=\"Condition\">\n            <xsd:sequence>\n
-        \             <xsd:element name=\"ConditionCode\" type=\"xsd:string\"/>\n
-        \             <xsd:element minOccurs=\"0\" name=\"ConditionData\" type=\"xsd:string\"/>\n
-        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType
-        name=\"ArrayOfCondition\">\n<xsd:sequence>\n\t\t\t<xsd:element maxOccurs=\"unbounded\"
-        name=\"ArrayOfConditionItem\" type=\"s0:Condition\"/>\n\t\t</xsd:sequence>\n\n
-        \         </xsd:complexType>\n          <xsd:complexType name=\"ShipmentInfo\">\n
-        \           <xsd:sequence>\n              <xsd:element name=\"OriginServiceArea\"
-        type=\"s0:OriginServiceArea\"/>\n              <xsd:element name=\"DestinationServiceArea\"
-        type=\"s0:DestinationServiceArea\"/>\n              <xsd:element name=\"ShipperName\"
-        type=\"s0:PersonName\"/>\n              <xsd:element minOccurs=\"0\" name=\"ShipperAccountNumber\"
-        type=\"s0:AccountNumber\"/>\n              <xsd:element name=\"ConsigneeName\"
-        type=\"s0:PersonName\"/>\n              <xsd:element name=\"ShipmentDate\"
-        type=\"xsd:dateTime\"/>\n              <xsd:element minOccurs=\"0\" name=\"Pieces\"
-        type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\" name=\"Weight\"
-        type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\" name=\"WeightUnit\"
-        type=\"tns:WeightUnit\"/>\n              <xsd:element minOccurs=\"0\" name=\"ShipmentEvent\"
-        type=\"s0:ArrayOfShipmentEvent\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"ShipperReference\" type=\"s0:Reference\"/>\n            </xsd:sequence>\n
-        \         </xsd:complexType>\n          <xsd:complexType name=\"OriginServiceArea\">\n
-        \           <xsd:sequence>\n              <xsd:element minOccurs=\"0\" name=\"ServiceAreaCode\"
-        type=\"s0:ServiceAreaCode\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"Description\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"OutboundSortCode\" type=\"s0:OutboundSortCode\"/>\n            </xsd:sequence>\n
-        \         </xsd:complexType>\n          <xsd:simpleType name=\"ServiceAreaCode\">\n
-        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
-        value=\"preserve\"/>\n              <xsd:length value=\"3\"/>\n            </xsd:restriction>\n
-        \         </xsd:simpleType>\n          <xsd:simpleType name=\"OutboundSortCode\">\n
-        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
-        value=\"preserve\"/>\n              <xsd:length value=\"4\"/>\n            </xsd:restriction>\n
-        \         </xsd:simpleType>\n          <xsd:complexType name=\"DestinationServiceArea\">\n
-        \           <xsd:sequence>\n              <xsd:element minOccurs=\"0\" name=\"ServiceAreaCode\"
-        type=\"s0:ServiceAreaCode\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"Description\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"FacilityCode\" type=\"s0:FacilityCode\"/>\n              <xsd:element
-        minOccurs=\"0\" name=\"InboundSortCode\" type=\"s0:InboundSortCode\"/>\n            </xsd:sequence>\n
-        \         </xsd:complexType>\n          <xsd:simpleType name=\"FacilityCode\">\n
-        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
-        value=\"preserve\"/>\n              <xsd:length value=\"3\"/>\n            </xsd:restriction>\n
-        \         </xsd:simpleType>\n          <xsd:simpleType name=\"InboundSortCode\">\n
-        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
-        value=\"preserve\"/>\n              <xsd:length value=\"4\"/>\n            </xsd:restriction>\n
-        \         </xsd:simpleType>\n          <xsd:simpleType name=\"PersonName\">\n
-        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
-        value=\"preserve\"/>\n              <xsd:maxLength value=\"35\"/>\n            </xsd:restriction>\n
-        \         </xsd:simpleType>\n          <xsd:simpleType name=\"AccountNumber\">\n
-        \           <xsd:restriction base=\"xsd:positiveInteger\">\n              <xsd:minInclusive
-        value=\"100000000\"/>\n              <xsd:maxInclusive value=\"9999999999\"/>\n
-        \           </xsd:restriction>\n          </xsd:simpleType>\n          <xsd:complexType
-        name=\"ShipmentEvent\">\n            <xsd:sequence>\n              <xsd:element
-        name=\"Date\" type=\"xsd:date\"/>\n              <xsd:element name=\"Time\"
-        type=\"xsd:time\"/>\n              <xsd:element name=\"ServiceEvent\" type=\"s0:ServiceEvent\"/>\n
-        \             <xsd:element minOccurs=\"0\" name=\"Signatory\" type=\"tns:Signatory\"/>\n
-        \             <xsd:element name=\"ServiceArea\" type=\"s0:ServiceArea\"/>\n
-        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType
-        name=\"ServiceEvent\">\n            <xsd:sequence>\n              <xsd:element
-        name=\"EventCode\" type=\"tns:EventCode\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"Description\" type=\"xsd:string\"/>\n            </xsd:sequence>\n
-        \         </xsd:complexType>\n          <xsd:complexType name=\"ServiceArea\">\n
-        \           <xsd:sequence>\n              <xsd:element minOccurs=\"0\" name=\"ServiceAreaCode\"
-        type=\"s0:ServiceAreaCode\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"Description\" type=\"xsd:string\"/>\n            </xsd:sequence>\n
-        \         </xsd:complexType>\n          <xsd:complexType name=\"ArrayOfShipmentEvent\">\n<xsd:sequence>\n\t\t\t<xsd:element
-        maxOccurs=\"unbounded\" name=\"ArrayOfShipmentEventItem\" type=\"s0:ShipmentEvent\"/>\n\t\t</xsd:sequence>\n\n
-        \         </xsd:complexType>\n          <xsd:complexType name=\"Reference\">\n
-        \           <xsd:sequence>\n              <xsd:element name=\"ReferenceID\"
-        type=\"s0:ReferenceID\"/>\n              <xsd:element minOccurs=\"0\" name=\"ReferenceType\"
-        type=\"s0:ReferenceType\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n
-        \         <xsd:simpleType name=\"ReferenceID\">\n            <xsd:restriction
-        base=\"xsd:string\">\n              <xsd:whiteSpace value=\"preserve\"/>\n
-        \             <xsd:maxLength value=\"35\"/>\n            </xsd:restriction>\n
-        \         </xsd:simpleType>\n          <xsd:simpleType name=\"ReferenceType\">\n
-        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
-        value=\"preserve\"/>\n              <xsd:length value=\"2\"/>\n            </xsd:restriction>\n
-        \         </xsd:simpleType>\n          <xsd:complexType name=\"TrackingPieces\">\n
-        \           <xsd:sequence>\n              <xsd:element name=\"PieceInfo\"
-        type=\"s0:ArrayOfPieceInfo\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n
-        \         <xsd:complexType name=\"PieceInfo\">\n            <xsd:sequence>\n
-        \             <xsd:element name=\"PieceDetails\" type=\"s0:PieceDetails\"/>\n
-        \             <xsd:element name=\"PieceEvent\" type=\"s0:ArrayOfPieceEvent\"/>\n
-        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType
-        name=\"PieceDetails\">\n            <xsd:sequence>\n              <xsd:element
-        name=\"AWBNumber\" type=\"xsd:string\"/>\n              <xsd:element name=\"LicensePlate\"
-        type=\"s0:TrackingPieceID\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"PieceNumber\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"ActualDepth\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"ActualWidth\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"ActualHeight\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"ActualWeight\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"Depth\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"Width\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"Height\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"Weight\" type=\"xsd:string\"/>\n              <xsd:element minOccurs=\"0\"
-        name=\"PackageType\" type=\"s0:PackageType\"/>\n              <xsd:element
-        minOccurs=\"0\" name=\"DimWeight\" type=\"xsd:string\"/>\n              <xsd:element
-        minOccurs=\"0\" name=\"WeightUnit\" type=\"xsd:string\"/>\n              <xsd:element
-        minOccurs=\"0\" name=\"PieceContents\" type=\"xsd:string\"/>\n            </xsd:sequence>\n
-        \         </xsd:complexType>\n          <xsd:simpleType name=\"PackageType\">\n
-        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
-        value=\"preserve\"/>\n              <xsd:maxLength value=\"2\"/>\n            </xsd:restriction>\n
-        \         </xsd:simpleType>\n          <xsd:complexType name=\"PieceEvent\">\n
-        \           <xsd:sequence>\n              <xsd:element name=\"Date\" type=\"xsd:date\"/>\n
-        \             <xsd:element name=\"Time\" type=\"xsd:time\"/>\n              <xsd:element
-        name=\"ServiceEvent\" type=\"s0:ServiceEvent\"/>\n              <xsd:element
-        minOccurs=\"0\" name=\"Signatory\" type=\"tns:Signatory2\"/>\n              <xsd:element
-        name=\"ServiceArea\" type=\"s0:ServiceArea\"/>\n              <xsd:element
-        name=\"ShipperReference\" nillable=\"true\" type=\"tns:ShipperReference\"/>\n
-        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType
-        name=\"ArrayOfPieceEvent\">\n<xsd:sequence>\n\t\t\t<xsd:element maxOccurs=\"unbounded\"
-        name=\"ArrayOfPieceEventItem\" type=\"s0:PieceEvent\"/>\n\t\t</xsd:sequence>\n\n
-        \         </xsd:complexType>\n          <xsd:complexType name=\"ArrayOfPieceInfo\">\n<xsd:sequence>\n\t\t\t<xsd:element
-        maxOccurs=\"unbounded\" name=\"ArrayOfPieceInfoItem\" type=\"s0:PieceInfo\"/>\n\t\t</xsd:sequence>\n\n
-        \         </xsd:complexType>\n          <xsd:complexType name=\"ArrayOfAWBInfo\">\n<xsd:sequence>\n\t\t\t<xsd:element
-        maxOccurs=\"unbounded\" name=\"ArrayOfAWBInfoItem\" type=\"s0:AWBInfo\"/>\n\t\t</xsd:sequence>\n\n
-        \         </xsd:complexType>\n          <xsd:complexType name=\"Fault\">\n
-        \           <xsd:sequence>\n              <xsd:element name=\"PieceFault\"
-        type=\"s0:ArrayOfPieceFault\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n
-        \         <xsd:complexType name=\"PieceFault\">\n            <xsd:sequence>\n
-        \             <xsd:element name=\"PieceID\" type=\"s0:TrackingPieceID\"/>\n
-        \             <xsd:element name=\"ConditionCode\" type=\"xsd:string\"/>\n
-        \             <xsd:element name=\"ConditionData\" type=\"xsd:string\"/>\n
-        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType
-        name=\"ArrayOfPieceFault\">\n<xsd:sequence>\n\t\t\t<xsd:element maxOccurs=\"unbounded\"
-        name=\"ArrayOfPieceFaultItem\" type=\"s0:PieceFault\"/>\n\t\t</xsd:sequence>\n\n
-        \         </xsd:complexType>\n        \t</xsd:schema><xsd:schema targetNamespace=\"http://scxgxtt.phx-dc.dhl.com/glDHLExpressTrack/providers/services/trackShipment\">\n
-        \         <xsd:import namespace=\"http://www.dhl.com\"/>\n          <xsd:complexType
-        name=\"trackShipmentRequest\">\n            <xsd:sequence>\n              <xsd:element
-        name=\"trackingRequest\" nillable=\"true\" type=\"tns:pubTrackingRequest\"/>\n
-        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType
-        name=\"pubTrackingRequest\">\n            <xsd:sequence>\n              <xsd:element
-        ref=\"s0:TrackingRequest\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n
-        \         <xsd:simpleType name=\"PiecesEnabled\">\n            <xsd:restriction
-        base=\"xsd:string\">\n              <xsd:whiteSpace value=\"preserve\"/>\n
-        \             <xsd:enumeration value=\"S\"/>\n              <xsd:enumeration
-        value=\"B\"/>\n              <xsd:enumeration value=\"P\"/>\n            </xsd:restriction>\n
-        \         </xsd:simpleType>\n          <xsd:complexType name=\"trackShipmentRequestResponse\">\n
-        \           <xsd:sequence>\n              <xsd:element name=\"trackingResponse\"
-        nillable=\"true\" type=\"tns:pubTrackingResponse\"/>\n            </xsd:sequence>\n
-        \         </xsd:complexType>\n          <xsd:complexType name=\"pubTrackingResponse\">\n
-        \           <xsd:sequence>\n              <xsd:element ref=\"s0:TrackingResponse\"/>\n
-        \           </xsd:sequence>\n          </xsd:complexType>\n          <xsd:simpleType
-        name=\"WeightUnit\">\n            <xsd:restriction base=\"xsd:string\">\n
-        \             <xsd:whiteSpace value=\"preserve\"/>\n              <xsd:enumeration
-        value=\"L\"/>\n              <xsd:enumeration value=\"K\"/>\n              <xsd:enumeration
-        value=\"G\"/>\n            </xsd:restriction>\n          </xsd:simpleType>\n
-        \         <xsd:simpleType name=\"EventCode\">\n            <xsd:restriction
-        base=\"xsd:string\">\n              <xsd:whiteSpace value=\"preserve\"/>\n
-        \             <xsd:length value=\"2\"/>\n            </xsd:restriction>\n
-        \         </xsd:simpleType>\n          <xsd:simpleType name=\"Signatory\">\n
-        \           <xsd:restriction base=\"xsd:string\">\n              <xsd:whiteSpace
-        value=\"preserve\"/>\n            </xsd:restriction>\n          </xsd:simpleType>\n
-        \         <xsd:simpleType name=\"Signatory2\">\n            <xsd:restriction
-        base=\"xsd:string\">\n              <xsd:whiteSpace value=\"preserve\"/>\n
-        \           </xsd:restriction>\n          </xsd:simpleType>\n          <xsd:complexType
-        name=\"ShipperReference\">\n            <xsd:sequence>\n              <xsd:element
-        name=\"ReferenceID\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element
-        minOccurs=\"0\" name=\"ReferenceType\" nillable=\"true\" type=\"xsd:string\"/>\n
-        \           </xsd:sequence>\n          </xsd:complexType>\n        \t\t\t<xsd:element
-        name=\"trackShipmentRequest\" type=\"tns:trackShipmentRequest\"/>\n\t\t\t<xsd:element
-        name=\"trackShipmentRequestResponse\" type=\"tns:trackShipmentRequestResponse\"/>\n\t</xsd:schema></wsdl:types><wsdl:message
-        name=\"trackShipmentRequestIn\"><wsdl:part name=\"parameters\" element=\"tns:trackShipmentRequest\"/></wsdl:message><wsdl:message
-        name=\"trackShipmentRequestOut\"><wsdl:part name=\"parameters\" element=\"tns:trackShipmentRequestResponse\"/></wsdl:message><wsdl:portType
-        name=\"gblDHLExpressTrack\"><wsdl:operation name=\"trackShipmentRequest\"><wsdl:input
-        message=\"tns:trackShipmentRequestIn\"/><wsdl:output message=\"tns:trackShipmentRequestOut\"/></wsdl:operation></wsdl:portType><wsdl:binding
-        name=\"gblDHLExpressTrack\" type=\"tns:gblDHLExpressTrack\"><soap:binding
-        style=\"document\" transport=\"http://schemas.xmlsoap.org/soap/http\"/><wsdl:operation
-        name=\"trackShipmentRequest\"><soap:operation soapAction=\"glDHLExpressTrack_providers_services_trackShipment_Binder_trackShipmentRequest\"
-        style=\"document\"/><wsdl:input><soap:body use=\"literal\" parts=\"parameters\"/></wsdl:input><wsdl:output><soap:body
-        use=\"literal\" parts=\"parameters\"/></wsdl:output></wsdl:operation></wsdl:binding><wsdl:service
-        name=\"gblDHLExpressTrack\"><wsdl:port name=\"gblDHLExpressTrack\" binding=\"tns:gblDHLExpressTrack\"><soap:address
-        location=\"https://wsbuat.dhl.com:8300/gbl/glDHLExpressTrack\"/></wsdl:port></wsdl:service></wsdl:definitions>"
-    http_version: 
-  recorded_at: Sat, 01 Jun 2013 07:05:29 GMT
+    http_version:
+  recorded_at: Sat, 01 Jun 2013 07:10:40 GMT
 recorded_with: VCR 2.5.0
