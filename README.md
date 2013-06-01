@@ -1,6 +1,7 @@
 # DHL
 
 [![Build Status](https://travis-ci.org/momitians/dhl.png?branch=master)](https://travis-ci.org/momitians/dhl)
+[![Dependency Status](https://gemnasium.com/momitians/dhl.png)](https://gemnasium.com/momitians/dhl)
 [![Code Climate](https://codeclimate.com/github/momitians/dhl.png)](https://codeclimate.com/github/momitians/dhl)
 
 This gem will provide a wrapper to DHL SOAP API. Given DHL credentials and the addresses, will generate a shipping label.
