@@ -15,6 +15,7 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 
+  # Deletes all existing shipping labels when done
   config.after(:all) do
     FileUtils.rm_rf('labels')
   end
@@ -34,7 +35,6 @@ require 'rspec/autorun'
 require 'webmock/rspec'
 require 'vcr'
 
-#VCR config
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/dhl_cassettes'
   config.hook_into :webmock
