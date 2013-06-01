@@ -5,15 +5,14 @@ require_relative '../../spec_helper'
 describe Dhl::Client do
 
   let(:client) { Dhl.client(username: 'username', password: 'password', account: 123456789) }
+  subject { response }
 
   after do
     VCR.eject_cassette
   end
 
   describe '#request_shipment' do
-    before do
-      VCR.insert_cassette 'shipment', record: :new_episodes
-    end
+    before { VCR.insert_cassette 'shipment', record: :new_episodes }
 
     let(:shipment_request) { Dhl::ShipmentRequest.new }
     let(:shipper) { FactoryGirl.build(:contact) }
@@ -21,23 +20,23 @@ describe Dhl::Client do
     let(:packages) { shipment_request.packages }
     let(:shipment) { FactoryGirl.build(:shipment) }
 
-    it "should return a PDF shipping label" do
+    let(:response) do
       shipment_request.shipper = shipper
       shipment_request.recipient = recipient
       shipment.pickup_time = (Time.now + 86400)
       shipment_request.shipment = shipment
-
       packages.add(50, 10, 15, 20, 'Ref 1')
       packages.add(100, 40, 45, 35, 'Ref 2')
+      client.request_shipment(shipment_request)
+    end
 
-      response = client.request_shipment(shipment_request)
+    it "should return a PDF shipping label" do
       response[:tracking_number].should == '9085882330'
       File.exists?('labels/9085882330.pdf').should be_true
     end
   end
 
   describe '#track' do
-
     context 'the shipment has been fully delivered' do
       before { VCR.insert_cassette 'tracking/5223281416', record: :new_episodes}
       let(:response) { client.track "5223281416" }
@@ -50,35 +49,33 @@ describe Dhl::Client do
         response.should have_at_least(1).event
       end
 
-      subject { response }
       it { should be_delivered }
     end
 
     context 'the shipment is not yet delivered' do
       before { VCR.insert_cassette 'tracking/6676848301', record: :new_episodes}
-      subject { client.track "6676848301" }
+      let(:response) { client.track "6676848301" }
       it { should_not be_delivered }
     end
 
     # More VCR cassettes for testing purposes
     context 'the shipment has been fully delivered' do
       before { VCR.insert_cassette 'tracking/9786162326', record: :new_episodes}
-      subject { client.track "9786162326" }
+      let(:response) { client.track "9786162326" }
       it { should be_delivered }
     end
 
     context 'the shipment has been fully delivered' do
       before { VCR.insert_cassette 'tracking/5223300596', record: :new_episodes}
-      subject { client.track "5223300596" }
+      let(:response) { client.track "5223300596" }
       it { should be_delivered }
     end
 
     context 'the shipment has been fully delivered' do
       before { VCR.insert_cassette 'tracking/6676848415', record: :new_episodes}
-      subject { client.track "6676848415" }
+      let(:response) { client.track "6676848415" }
       it { should be_delivered }
     end
-
   end
 
 end
