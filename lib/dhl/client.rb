@@ -46,9 +46,10 @@ module Dhl
     def request_shipment(shipment_request)
       response = requests_soap_client.call(:create_shipment_request, message: shipment_request.to_hash )
 
-      if response.body[:shipment_response][:notification][:@code] != '0'
-        raise "Error: #{response.body[:shipment_response][:notification][:message]}"
-      end
+      data = response.body[:shipment_response][:notification]
+      notification = data.include?(:@code) ? data : data.first
+
+      raise Dhl::Error::Generic.new(notification[:@code], notification[:message]) unless notification[:@code] == '0'
 
       result = {}
 

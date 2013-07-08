@@ -8,6 +8,7 @@ require "dhl/package"
 require "dhl/shipment"
 require "dhl/shipment_request"
 require "dhl/tracking"
+require "dhl/error"
 
 require "dhl/version"
 
