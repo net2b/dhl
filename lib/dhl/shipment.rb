@@ -13,7 +13,7 @@ module Dhl
           account: Dhl.config.account
         },
         ship_timestamp: @pickup_time.strftime('%Y-%m-%dT%H:%M:%SGMT%:z'), # When is the shipment going to be ready for pickup?
-        payment_info: @domestic ? '' : 'DDP',
+        payment_info: @domestic ? 'DOM' : 'DDP',
         international_detail: {
           commodities: {
             number_of_pieces: 2,
