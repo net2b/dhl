@@ -12,6 +12,7 @@ describe Dhl::Shipment do
       shipment.pickup_time = Time.parse("16:45:10 31/12/2013 GMT+2")
       shipment.pieces = 2
       shipment.description = 'General goods'
+      shipment.domestic = true
 
       hash = shipment.to_hash
       hash.should == {
@@ -23,7 +24,6 @@ describe Dhl::Shipment do
           account: 123456789
         },
         ship_timestamp: '2013-12-31T16:45:10GMT+00:00', # When is the shipment going to be ready for pickup?
-        payment_info: 'DDP',
         international_detail: {
           commodities: {
             number_of_pieces: 2,
