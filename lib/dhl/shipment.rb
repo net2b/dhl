@@ -4,7 +4,7 @@ module Dhl
     attr_accessor :pickup_time, :pieces, :description, :domestic
 
     def to_hash
-      hash = {
+      {
         shipment_info: {
           drop_off_type: "REGULAR_PICKUP",
           service_type: 'N',
@@ -13,6 +13,7 @@ module Dhl
           account: Dhl.config.account
         },
         ship_timestamp: @pickup_time.strftime('%Y-%m-%dT%H:%M:%SGMT%:z'), # When is the shipment going to be ready for pickup?
+        payment_info: @domestic ? '' : 'DDP',
         international_detail: {
           commodities: {
             number_of_pieces: 2,
@@ -20,8 +21,6 @@ module Dhl
           }
         }
       }
-      hash.merge!({payment_info: 'DDP'}) unless @domestic
-      hash
     end
 
 
