@@ -24,6 +24,7 @@ describe Dhl::Shipment do
           account: 123456789
         },
         ship_timestamp: '2013-12-31T16:45:10GMT+00:00', # When is the shipment going to be ready for pickup?
+        payment_info: 'DDP',
         international_detail: {
           commodities: {
             number_of_pieces: 2,
