@@ -1,13 +1,13 @@
 module Dhl
   class Shipment
 
-    attr_accessor :pickup_time, :pieces, :description, :domestic
+    attr_accessor :pickup_time, :pieces, :description, :domestic, :customs_value, :service_type
 
     def to_hash
       {
         shipment_info: {
           drop_off_type: "REGULAR_PICKUP",
-          service_type: 'N',
+          service_type: @service_type || 'N', # N: Domestic, U: EU, D: Extra-EU documents, P: Extra-EU parcels
           currency: 'EUR',
           unit_of_measurement: 'SI', # Or SU, UK, US
           account: Dhl.config.account
@@ -17,10 +17,11 @@ module Dhl
         international_detail: {
           commodities: {
             number_of_pieces: 2,
-            description: 'General goods'
+            description: 'General goods',
+            customs_value: @customs_value
           }
         }
-      }
+      }.remove_empty
     end
 
 
