@@ -9,7 +9,7 @@ describe Dhl::Shipment do
   describe '#to_hash' do
     it "should return the expected hash structure" do
       Dhl.config.account = 123456789
-      shipment.pickup_time = Time.parse("16:45:10 31/12/2013 UTC")
+      shipment.pickup_time = Time.parse("31/12/2013 16:45:10 GMT")
       shipment.pieces = 2
       shipment.description = 'General goods'
       shipment.domestic = true
