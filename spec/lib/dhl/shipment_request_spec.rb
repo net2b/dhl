@@ -30,7 +30,7 @@ describe Dhl::ShipmentRequest do
             unit_of_measurement: 'SI', # Or SU, UK, US
             account: 123456789
           },
-          ship_timestamp: '2013-12-31T16:45:10GMT+00:00', # When is the shipment going to be ready for pickup?
+          ship_timestamp: '2013-12-31T16:45:10GMT+01:00', # When is the shipment going to be ready for pickup?
           payment_info: 'DDP',
           international_detail: {
             commodities: {
