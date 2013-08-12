@@ -16,8 +16,8 @@ module Dhl
         payment_info: 'DDP',
         international_detail: {
           commodities: {
-            number_of_pieces: 2,
-            description: 'General goods',
+            number_of_pieces: @pieces,
+            description: @description,
             customs_value: @customs_value
           }
         }
