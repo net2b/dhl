@@ -33,7 +33,7 @@ module Dhl
       return @requests_soap_client if @requests_soap_client
 
       if config.environment == 'production'
-        wsdl = "https://wsb.dhl.com:443/amer/GEeuExpressRateBook"
+        wsdl = "https://wsb.dhl.com:443/amer/GEeuExpressRateBook?WSDL"
       else
         wsdl = "https://wsbuat.dhl.com:8300/amer/GEeuExpressRateBook?WSDL"
       end
