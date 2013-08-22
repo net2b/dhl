@@ -25,21 +25,34 @@ module Dhl
 
       config.account ||= options[:account]
       raise 'Provide a DHL account number (e.g.: `export DHL_ACCOUNT=123456789`).' if !config.account
-
-      @requests_soap_client = Savon.client(client_options.merge(wsdl: "https://wsbuat.dhl.com:8300/amer/GEeuExpressRateBook?WSDL"))
-      @tracking_soap_client = Savon.client(client_options.merge(wsdl: "https://wsbuat.dhl.com:8300/gbl/glDHLExpressTrack?WSDL"))
     end
 
     def requests_soap_client
       # SOAP Client operations:
       # => [:get_rate_request, :create_shipment_request, :delete_shipment_request]
-      @requests_soap_client
+      return @requests_soap_client if @requests_soap_client
+
+      if config.environment == 'production'
+        wsdl = "https://wsb.dhl.com:443/amer/GEeuExpressRateBook?WSDL"
+      else
+        wsdl = "https://wsbuat.dhl.com:8300/amer/GEeuExpressRateBook?WSDL"
+      end
+
+      @requests_soap_client = Savon.client(client_options.merge(wsdl: wsdl))
     end
 
     def tracking_soap_client
       # SOAP Client operations:
       # => [:track_shipment_request]
-      @tracking_soap_client
+      return @tracking_soap_client if @tracking_soap_client
+
+      if config.environment == 'production'
+        wsdl = "https://wsbuat.dhl.com:8300/gbl/glDHLExpressTrack?WSDL"
+      else
+        wsdl = "https://wsbuat.dhl.com:8300/gbl/glDHLExpressTrack?WSDL"
+      end
+
+      @tracking_soap_client = Savon.client(client_options.merge(wsdl: wsdl))
     end
 
 
@@ -77,6 +90,6 @@ module Dhl
     # def request_rate
     #   response = @soap_client.call(:get_rate_request, message: request_rate_hash )
     # end
-
   end
+
 end
