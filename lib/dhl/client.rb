@@ -12,7 +12,8 @@ module Dhl
         convert_request_keys_to: :camelcase,
         namespaces: {
           "xmlns:dhl" => "http://www.dhl.com"
-        }
+        },
+        ssl_verify_mode: :none # Until we can figure what's wrong with SSL
       }
     end
 
