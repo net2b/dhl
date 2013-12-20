@@ -1,7 +1,7 @@
 module Dhl
   class Shipment
 
-    attr_accessor :pickup_time, :pieces, :description, :domestic, :customs_value, :service_type
+    attr_accessor :pickup_time, :pieces, :description, :domestic, :customs_value, :service_type, :payment_info
 
     def to_hash
       {
@@ -13,7 +13,7 @@ module Dhl
           account: Dhl.config.account
         },
         ship_timestamp: @pickup_time.strftime('%Y-%m-%dT%H:%M:%SGMT%:z'), # When is the shipment going to be ready for pickup?
-        payment_info: 'DDP',
+        payment_info: @payment_info || 'DDP',
         international_detail: {
           commodities: {
             number_of_pieces: @pieces,
