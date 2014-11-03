@@ -1,6 +1,5 @@
 module Dhl
   class Shipment
-
     attr_accessor :pickup_time, :pieces, :description, :domestic, :customs_value, :service_type, :payment_info
     attr_accessor :shipment_identification_number
     attr_accessor :country_of_manufacture
@@ -11,7 +10,7 @@ module Dhl
     def to_hash
       {
         shipment_info: {
-          drop_off_type: "REGULAR_PICKUP",
+          drop_off_type: 'REGULAR_PICKUP',
           service_type: @service_type || 'N', # N: Domestic, U: EU, D: Extra-EU documents, P: Extra-EU parcels
           currency: 'EUR',
           unit_of_measurement: 'SI', # Or SU, UK, US
@@ -34,7 +33,5 @@ module Dhl
         }
       }.remove_empty
     end
-
-
   end
 end
