@@ -15,6 +15,11 @@ module Dhl
           currency: 'EUR',
           unit_of_measurement: 'SI', # Or SU, UK, US
           account: Dhl.config.account,
+          special_services: {
+            service: {
+              service_type: @special_service_type
+            }
+          },
           shipment_identification_number: @shipment_identification_number
         },
         ship_timestamp: @pickup_time.strftime('%Y-%m-%dT%H:%M:%SGMT%:z'), # When is the shipment going to be ready for pickup?
