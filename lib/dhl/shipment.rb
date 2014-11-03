@@ -1,6 +1,6 @@
 module Dhl
   class Shipment
-    attr_accessor :pickup_time, :pieces, :description, :domestic, :customs_value, :service_type, :payment_info
+    attr_accessor :pickup_time, :pieces, :description, :domestic, :customs_value, :service_type, :payment_info, :special_service_type
     attr_accessor :shipment_identification_number
     attr_accessor :country_of_manufacture
     attr_accessor :quantity
@@ -8,18 +8,13 @@ module Dhl
     attr_accessor :customs_value
 
     def to_hash
-      {
+      hsh = {
         shipment_info: {
           drop_off_type: 'REGULAR_PICKUP',
           service_type: @service_type || 'N', # N: Domestic, U: EU, D: Extra-EU documents, P: Extra-EU parcels
           currency: 'EUR',
           unit_of_measurement: 'SI', # Or SU, UK, US
           account: Dhl.config.account,
-          special_services: {
-            service: {
-              service_type: @special_service_type
-            }
-          },
           shipment_identification_number: @shipment_identification_number
         },
         ship_timestamp: @pickup_time.strftime('%Y-%m-%dT%H:%M:%SGMT%:z'), # When is the shipment going to be ready for pickup?
@@ -36,7 +31,13 @@ module Dhl
           },
           content: 'NON_DOCUMENTS'
         }
-      }.remove_empty
+      }
+
+      if @special_service_type
+        hsh[:shipment_info].merge!(special_services: { service: { service_type: @special_service_type } })
+      end
+
+      hsh.remove_empty
     end
   end
 end
