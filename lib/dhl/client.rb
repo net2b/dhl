@@ -14,7 +14,7 @@ module Dhl
           "xmlns:dhl" => "http://www.dhl.com"
         },
         ssl_verify_mode: :none, # Until we can figure what's wrong with SSL
-        log_level: config.logger_level || :info,
+        log_level: config.log_level || :info,
         logger: config.logger || Logger.new($stdout)
       }
     end
