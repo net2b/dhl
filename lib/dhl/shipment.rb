@@ -1,6 +1,6 @@
 module Dhl
   class Shipment
-    attr_accessor :pickup_time, :pieces, :description, :domestic, :customs_value, :service_type, :payment_info, :special_service_type
+    attr_accessor :pickup_time, :pieces, :description, :domestic, :service_type, :payment_info, :special_service_type
     attr_accessor :shipment_identification_number
     attr_accessor :country_of_manufacture
     attr_accessor :quantity
@@ -26,8 +26,7 @@ module Dhl
             customs_value: @customs_value,
             country_of_manufacture: @country_of_manufacture || 'IT',
             quantity: @quantity,
-            unit_price: @unit_price,
-            customs_value: @customs_value
+            unit_price: @unit_price
           },
           content: 'NON_DOCUMENTS'
         }
