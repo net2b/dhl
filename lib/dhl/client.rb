@@ -15,11 +15,13 @@ module Dhl
         },
         ssl_verify_mode: :none, # Until we can figure what's wrong with SSL
         log_level: config.log_level || :info,
-        logger: config.logger || Logger.new($stdout)
+        logger: config.logger || Logger.new($stdout),
+        log: true
       }
     end
 
     def initialize(options)
+      ap options
       config.username ||= options[:username]
       raise 'Provide a username (e.g.: `export DHL_USERNAME=dhlusername`).' if !config.username
 
