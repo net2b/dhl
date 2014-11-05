@@ -21,7 +21,6 @@ module Dhl
     end
 
     def initialize(options)
-      ap options
       config.username ||= options[:username]
       raise 'Provide a username (e.g.: `export DHL_USERNAME=dhlusername`).' if !config.username
 
