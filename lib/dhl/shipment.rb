@@ -32,9 +32,10 @@ module Dhl
         }
       }
 
-      if @special_service_type
-        hsh[:shipment_info].merge!(special_services: { service: { service_type: @special_service_type } })
-      end
+      # TODO: re-enable when testing this feature with DHL production servers
+      # if @special_service_type
+      #   hsh[:shipment_info].merge!(special_services: { service: { service_type: @special_service_type } })
+      # end
 
       hsh.remove_empty
     end
