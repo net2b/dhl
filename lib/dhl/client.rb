@@ -1,34 +1,26 @@
 module Dhl
   class Client
-
-    def config
-      Dhl.config
-    end
-
     def client_options
       {
-        wsse_auth: [config.username, config.password],
+        wsse_auth: [@config.username, @config.password],
         wsse_timestamp: true,
         convert_request_keys_to: :camelcase,
         namespaces: {
           "xmlns:dhl" => "http://www.dhl.com"
         },
         ssl_verify_mode: :none, # Until we can figure what's wrong with SSL
-        log_level: config.log_level || :info,
-        logger: config.logger || Logger.new($stdout),
+        log_level: @config.log_level || :info,
+        logger: @config.logger || Logger.new($stdout),
         log: true
       }
     end
 
     def initialize(options)
-      config.username ||= options[:username]
-      raise 'Provide a username (e.g.: `export DHL_USERNAME=dhlusername`).' if !config.username
+      fail 'Provide a username.'           unless options[:username]
+      fail 'Provide a password.'           unless options[:password]
+      fail 'Provide a DHL account number.' unless options[:account]
 
-      config.password ||= options[:password]
-      raise 'Provide a password (e.g.: `export DHL_PASSWORD=dhlpassword`).' if !config.password
-
-      config.account ||= options[:account]
-      raise 'Provide a DHL account number (e.g.: `export DHL_ACCOUNT=123456789`).' if !config.account
+      @config = Dhl::Configuration.new(options)
     end
 
     def requests_soap_client
@@ -36,7 +28,7 @@ module Dhl
       # => [:get_rate_request, :create_shipment_request, :delete_shipment_request]
       return @requests_soap_client if @requests_soap_client
 
-      if config.environment == 'production'
+      if @config.environment == 'production'
         wsdl = "https://wsb.dhl.com:443/gbl/expressRateBook?WSDL"
       else
         wsdl = "https://wsb.dhl.com:443/sndpt/expressRateBook?WSDL"
@@ -50,7 +42,7 @@ module Dhl
       # => [:track_shipment_request]
       return @tracking_soap_client if @tracking_soap_client
 
-      if config.environment == 'production'
+      if @config.environment == 'production'
         wsdl = "https://wsb.dhl.com:443/gbl/gblDHLExpressTrack?WSDL"
       else
         wsdl = "https://wsb.dhl.com:443/sndpt/gblDHLExpressTrack?WSDL"

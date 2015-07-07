@@ -12,20 +12,6 @@ require 'dhl/error'
 
 require 'dhl/version'
 
-module Dhl
-  def self.setup
-    yield config
-  end
-
-  def self.config
-    @config ||= Configuration.new
-  end
-
-  def self.client(options = {})
-    @client ||= Client.new(options)
-  end
-end
-
 class Hash
   def deep_reject(&blk)
     dup.deep_reject!(&blk)
