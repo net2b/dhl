@@ -37,9 +37,9 @@ module Dhl
       return @requests_soap_client if @requests_soap_client
 
       if config.environment == 'production'
-        wsdl = "https://wsb.dhl.com:443/gbl/expressRateBook?WSDL"
+        wsdl = "https://wsbexpress.dhl.com/gbl/expressRateBook?WSDL"
       else
-        wsdl = "https://wsb.dhl.com:443/sndpt/expressRateBook?WSDL"
+        wsdl = "https://wsbexpress.dhl.com/sndpt/expressRateBook?WSDL"
       end
 
       @requests_soap_client = Savon.client(client_options.merge(wsdl: wsdl))
@@ -51,9 +51,9 @@ module Dhl
       return @tracking_soap_client if @tracking_soap_client
 
       if config.environment == 'production'
-        wsdl = "https://wsb.dhl.com:443/gbl/gblDHLExpressTrack?WSDL"
+        wsdl = "https://wsbexpress.dhl.com/gbl/glDHLExpressTrack?WSDL"
       else
-        wsdl = "https://wsb.dhl.com:443/sndpt/gblDHLExpressTrack?WSDL"
+        wsdl = "https://wsbexpress.dhl.com/sndpt/glDHLExpressTrack?WSDL"
       end
 
       @tracking_soap_client = Savon.client(client_options.merge(wsdl: wsdl))
