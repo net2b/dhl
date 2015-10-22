@@ -28,10 +28,10 @@ module Dhl
       # => [:get_rate_request, :create_shipment_request, :delete_shipment_request]
       return @requests_soap_client if @requests_soap_client
 
-      if @config.environment == 'production'
-        wsdl = "https://wsb.dhl.com:443/gbl/expressRateBook?WSDL"
+      if config.environment == 'production'
+        wsdl = "https://wsbexpress.dhl.com:443/gbl/expressRateBook?WSDL"
       else
-        wsdl = "https://wsb.dhl.com:443/sndpt/expressRateBook?WSDL"
+        wsdl = "https://wsbexpress.dhl.com:443/sndpt/expressRateBook?WSDL"
       end
 
       @requests_soap_client = Savon.client(client_options.merge(wsdl: wsdl))
@@ -42,10 +42,10 @@ module Dhl
       # => [:track_shipment_request]
       return @tracking_soap_client if @tracking_soap_client
 
-      if @config.environment == 'production'
-        wsdl = "https://wsb.dhl.com:443/gbl/gblDHLExpressTrack?WSDL"
+      if config.environment == 'production'
+        wsdl = "https://wsbexpress.dhl.com:443/gbl/glDHLExpressTrack?WSDL"
       else
-        wsdl = "https://wsb.dhl.com:443/sndpt/gblDHLExpressTrack?WSDL"
+        wsdl = "https://wsbexpress.dhl.com:443/sndpt/glDHLExpressTrack?WSDL"
       end
 
       @tracking_soap_client = Savon.client(client_options.merge(wsdl: wsdl))
