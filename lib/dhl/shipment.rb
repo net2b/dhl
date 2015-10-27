@@ -14,7 +14,7 @@ module Dhl
           service_type: @service_type || 'N', # N: Domestic, U: EU, D: Extra-EU documents, P: Extra-EU parcels
           currency: 'EUR',
           unit_of_measurement: 'SI', # Or SU, UK, US
-          account: Dhl.config.account,
+          account: Dhl::Configuration.new.account,
           shipment_identification_number: @shipment_identification_number
         },
         ship_timestamp: @pickup_time.strftime('%Y-%m-%dT%H:%M:%SGMT%:z'), # When is the shipment going to be ready for pickup?

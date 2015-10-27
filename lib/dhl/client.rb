@@ -15,11 +15,7 @@ module Dhl
       }
     end
 
-    def initialize(options)
-      fail 'Provide a username.'           unless options[:username]
-      fail 'Provide a password.'           unless options[:password]
-      fail 'Provide a DHL account number.' unless options[:account]
-
+    def initialize(options = {})
       @config = Dhl::Configuration.new(options)
     end
 
@@ -27,6 +23,8 @@ module Dhl
       # SOAP Client operations:
       # => [:get_rate_request, :create_shipment_request, :delete_shipment_request]
       return @requests_soap_client if @requests_soap_client
+
+      config = Dhl::Configuration.new
 
       if config.environment == 'production'
         wsdl = "https://wsbexpress.dhl.com:443/gbl/expressRateBook?WSDL"
@@ -41,6 +39,8 @@ module Dhl
       # SOAP Client operations:
       # => [:track_shipment_request]
       return @tracking_soap_client if @tracking_soap_client
+
+      config = Dhl::Configuration.new
 
       if config.environment == 'production'
         wsdl = "https://wsbexpress.dhl.com:443/gbl/glDHLExpressTrack?WSDL"

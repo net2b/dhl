@@ -19,12 +19,13 @@ RSpec.configure do |config|
   config.after(:all) do
     FileUtils.rm_rf('labels')
   end
-
 end
 
 require_relative '../lib/dhl'
 # For Ruby < 1.9.3, use this instead of require_relative
 # require(File.expand_path('../../lib/dish', __FILE__))
+
+require 'support/env_helpers'
 
 require 'time'
 require 'factory_girl'
@@ -40,3 +41,5 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.allow_http_connections_when_no_cassette = true
 end
+
+include EnvHelpers

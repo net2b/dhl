@@ -3,8 +3,9 @@
 require_relative '../../spec_helper'
 
 describe Dhl::Client do
+  stub_dhl_env_variables!
 
-  let(:client) { Dhl.client(username: 'username', password: 'password', account: 123456789) }
+  let(:client) { Dhl::Client.new }
   subject { response }
 
   after do

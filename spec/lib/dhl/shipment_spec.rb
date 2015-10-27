@@ -7,8 +7,9 @@ describe Dhl::Shipment do
   let(:shipment) { Dhl::Shipment.new }
 
   describe '#to_hash' do
+    stub_dhl_env_variables!
+
     it "should return the expected hash structure" do
-      Dhl.config.account = 123456789
       shipment.pickup_time = Time.parse("31/12/2013 16:45:10 GMT")
       shipment.pieces = 2
       shipment.description = 'General goods'
@@ -23,13 +24,15 @@ describe Dhl::Shipment do
           unit_of_measurement: 'SI', # Or SU, UK, US
           account: 123456789
         },
-        ship_timestamp: '2013-12-31T16:45:10GMT+00:00', # When is the shipment going to be ready for pickup?
-        payment_info: 'DDP',
+        ship_timestamp: '2013-12-31T17:45:10GMT+01:00', # When is the shipment going to be ready for pickup?
+        payment_info: 'DAP',
         international_detail: {
           commodities: {
             number_of_pieces: 2,
-            description: 'General goods'
-          }
+            description: 'General goods',
+            country_of_manufacture: "IT"
+          },
+          content: "NON_DOCUMENTS"
         }
       }
     end
