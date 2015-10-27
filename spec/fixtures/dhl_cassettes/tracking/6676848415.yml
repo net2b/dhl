@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://wsbexpress.dhl.com/sndpt/glDHLExpressTrack
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://scxgxtt.phx-dc.dhl.com/glDHLExpressTrack/providers/services/trackShipment"
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ins0="http://www.dhl.com"
+        xmlns:dhl="http://www.dhl.com"><env:Header><wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"><wsse:UsernameToken
+        wsu:Id="UsernameToken-1" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsse:Username>username</wsse:Username><wsse:Password
+        Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">password</wsse:Password></wsse:UsernameToken><wsu:Timestamp
+        wsu:Id="Timestamp-2" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsu:Created>2015-10-27T16:49:04Z</wsu:Created><wsu:Expires>2015-10-27T16:50:04Z</wsu:Expires></wsu:Timestamp></wsse:Security></env:Header><env:Body><tns:trackShipmentRequest><trackingRequest><dhl:TrackingRequest><Request><ServiceHeader><MessageTime>2015-10-27T17:49:04+01:00</MessageTime><MessageReference>1234567890123456789012345678</MessageReference></ServiceHeader></Request><AWBNumber><ArrayOfAWBNumberItem>6676848415</ArrayOfAWBNumberItem></AWBNumber><LevelOfDetails>ALL_CHECK_POINTS</LevelOfDetails><PiecesEnabled>B</PiecesEnabled></dhl:TrackingRequest></trackingRequest></tns:trackShipmentRequest></env:Body></env:Envelope>
+    headers:
+      Soapaction:
+      - '"glDHLExpressTrack_providers_services_trackShipment_Binder_trackShipmentRequest"'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '1588'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Tue, 27 Oct 2015 16:48:50 GMT
+      Server:
+      - Gateway
+      Connection:
+      - close
+      X-Correlationid:
+      - Id-f2aa2f562c9d03be17a6b985 0
+      Accept:
+      - "*/*"
+      Clientside:
+      - 79.0.151.27
+      Host:
+      - wsbexpress.dhl.com
+      Soapaction:
+      - '"glDHLExpressTrack_providers_services_trackShipment_Binder_trackShipmentRequest"'
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - text/xml
+    body:
+      encoding: UTF-8
+      string: "<env:Envelope xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n
+        \  <env:Header></env:Header>\r\n   <env:Body>\r\n      <env:Fault>\r\n         <faultcode>env:Server</faultcode>\r\n
+        \        <faultstring></faultstring>\r\n         <detail fault:type=\"Unauthorized\"
+        xmlns:fault=\"http://www.dhl.com/soapfaults\"></detail>\r\n      </env:Fault>\r\n
+        \  </env:Body>\r\n</env:Envelope>"
+    http_version: 
+  recorded_at: Tue, 27 Oct 2015 16:49:05 GMT
+recorded_with: VCR 2.5.0

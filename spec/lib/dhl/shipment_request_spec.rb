@@ -30,13 +30,15 @@ describe Dhl::ShipmentRequest do
             unit_of_measurement: 'SI', # Or SU, UK, US
             account: 123456789
           },
-          ship_timestamp: '2013-12-31T16:45:10GMT+00:00', # When is the shipment going to be ready for pickup?
-          payment_info: 'DDP',
+          ship_timestamp: '2013-12-31T17:45:10GMT+01:00', # When is the shipment going to be ready for pickup?
+          payment_info: 'DAP',
           international_detail: {
             commodities: {
               number_of_pieces: 2,
-              description: 'General goods'
-            }
+              description: 'General goods',
+              country_of_manufacture: "IT"
+            },
+            content: "NON_DOCUMENTS"
           },
           ship: {
             shipper: {
