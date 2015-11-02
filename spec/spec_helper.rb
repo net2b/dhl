@@ -25,8 +25,6 @@ require_relative '../lib/dhl'
 # For Ruby < 1.9.3, use this instead of require_relative
 # require(File.expand_path('../../lib/dish', __FILE__))
 
-require 'support/env_helpers'
-
 require 'time'
 require 'factory_girl'
 FactoryGirl.find_definitions
@@ -46,5 +44,3 @@ VCR.configure do |config|
   config.filter_sensitive_data('<wsse:Password>') { ENV['DHL_PASSWORD'] }
   config.filter_sensitive_data("<wsse:Account>")  { ENV['DHL_ACCOUNT'] }
 end
-
-include EnvHelpers

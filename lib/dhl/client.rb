@@ -24,9 +24,7 @@ module Dhl
       # => [:get_rate_request, :create_shipment_request, :delete_shipment_request]
       return @requests_soap_client if @requests_soap_client
 
-      config = Dhl::Configuration.new
-
-      if config.environment == 'production'
+      if @config.environment == 'production'
         wsdl = "https://wsbexpress.dhl.com:443/gbl/expressRateBook?WSDL"
       else
         wsdl = "https://wsbexpress.dhl.com:443/sndpt/expressRateBook?WSDL"
@@ -40,9 +38,7 @@ module Dhl
       # => [:track_shipment_request]
       return @tracking_soap_client if @tracking_soap_client
 
-      config = Dhl::Configuration.new
-
-      if config.environment == 'production'
+      if @config.environment == 'production'
         wsdl = "https://wsbexpress.dhl.com:443/gbl/glDHLExpressTrack?WSDL"
       else
         wsdl = "https://wsbexpress.dhl.com:443/sndpt/glDHLExpressTrack?WSDL"

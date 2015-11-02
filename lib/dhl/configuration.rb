@@ -23,8 +23,8 @@ module Dhl
         username: ENV['DHL_USERNAME'],
         password: ENV['DHL_PASSWORD'],
         account: ENV['DHL_ACCOUNT'],
-        environment: ENV['DHL_ENVIRONMENT'] || :test,
-        log_level: ENV['DHL_LOG_LEVEL'] || :info,
+        environment: ENV['DHL_ENVIRONMENT'],
+        log_level: ENV['DHL_LOG_LEVEL'],
       }
     end
   end
