@@ -39,4 +39,9 @@ VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/dhl_cassettes'
   config.hook_into :webmock
   config.allow_http_connections_when_no_cassette = true
+
+  # Remove sensitive data from VCR cassettes
+  config.filter_sensitive_data("<wsse:Username>") { ENV['DHL_USERNAME'] }
+  config.filter_sensitive_data('<wsse:Password>') { ENV['DHL_PASSWORD'] }
+  config.filter_sensitive_data("<wsse:Account>")  { ENV['DHL_ACCOUNT'] }
 end

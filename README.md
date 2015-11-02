@@ -24,6 +24,14 @@ Or install it yourself as:
 
 ## Usage
 
+Set ENV variables:
+
+```
+export DHL_ACCOUNT='12345678'
+export DHL_USERNAME='username'
+export DHL_PASSWORD='p4ssw0rd'
+```
+
 ### Package Tracking
 
 TBD
@@ -80,6 +88,7 @@ For testing purposes please set the timezone to UTC
 ```shell
 $ export TZ=UTC
 ```
+
 
 ## Contributing
 
