@@ -26,7 +26,7 @@ describe Dhl::Client do
         tracking_number = response[:tracking_number]
 
         tracking_number.should =~ /\w{10}/ # 10 chars tracking number
-        File.exists?("labels/#{tracking_number}.pdf").should be_true
+        File.exists?("#{client.config.tmp_labels_dir}/#{tracking_number}.pdf").should be_true
       end
 
       # Still not sure how to test tracking info
