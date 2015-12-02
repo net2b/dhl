@@ -8,6 +8,7 @@ module Dhl
       @account = ENV['DHL_ACCOUNT']
       @environment = ENV['DHL_ENVIRONMENT'] || :test
       @log_level = ENV['DHL_LOG_LEVEL'] || :info
+      @log = ENV['DHL_LOG']
     end
   end
 end
