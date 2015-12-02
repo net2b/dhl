@@ -1,6 +1,6 @@
 module Dhl
   class Configuration
-    attr_accessor :username, :password, :account, :environment, :log_level, :logger
+    attr_accessor :username, :password, :account, :environment, :log_level, :logger, :log
 
     def initialize
       @username = ENV['DHL_USERNAME']
