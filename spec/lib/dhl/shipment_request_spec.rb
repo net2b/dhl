@@ -3,14 +3,11 @@ require (File.expand_path('./../../../spec_helper', __FILE__))
 # require_relative '../../spec_helper'
 
 describe Dhl::ShipmentRequest do
-
   let(:shipment_request) { Dhl::ShipmentRequest.new }
   let(:shipper) { FactoryGirl.build(:contact) }
   let(:recipient) { FactoryGirl.build(:contact) }
   let(:packages) { shipment_request.packages }
   let(:shipment) { FactoryGirl.build(:shipment) }
-
-  stub_dhl_env_variables!
 
   describe '#to_hash' do
     it "should return the expected hash structure" do
@@ -29,9 +26,9 @@ describe Dhl::ShipmentRequest do
             service_type: 'N',
             currency: 'EUR',
             unit_of_measurement: 'SI', # Or SU, UK, US
-            account: 123456789
+            account: Dhl::Configuration.new.account
           },
-          ship_timestamp: '2013-12-31T17:45:10GMT+01:00', # When is the shipment going to be ready for pickup?
+          ship_timestamp: '2015-12-31T17:45:10GMT+01:00', # When is the shipment going to be ready for pickup?
           payment_info: 'DAP',
           international_detail: {
             commodities: {

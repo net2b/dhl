@@ -1,5 +1,7 @@
 module Dhl
   class Client
+    attr_reader :config
+
     def client_options
       {
         wsse_auth: [@config.username, @config.password],
@@ -24,9 +26,7 @@ module Dhl
       # => [:get_rate_request, :create_shipment_request, :delete_shipment_request]
       return @requests_soap_client if @requests_soap_client
 
-      config = Dhl::Configuration.new
-
-      if config.environment == 'production'
+      if @config.environment == 'production'
         wsdl = "https://wsbexpress.dhl.com:443/gbl/expressRateBook?WSDL"
       else
         wsdl = "https://wsbexpress.dhl.com:443/sndpt/expressRateBook?WSDL"
@@ -40,9 +40,7 @@ module Dhl
       # => [:track_shipment_request]
       return @tracking_soap_client if @tracking_soap_client
 
-      config = Dhl::Configuration.new
-
-      if config.environment == 'production'
+      if @config.environment == 'production'
         wsdl = "https://wsbexpress.dhl.com:443/gbl/glDHLExpressTrack?WSDL"
       else
         wsdl = "https://wsbexpress.dhl.com:443/sndpt/glDHLExpressTrack?WSDL"
@@ -50,7 +48,6 @@ module Dhl
 
       @tracking_soap_client = Savon.client(client_options.merge(wsdl: wsdl))
     end
-
 
     def request_shipment(shipment_request)
       response = requests_soap_client.call(:create_shipment_request, message: shipment_request.to_hash )
@@ -65,8 +62,9 @@ module Dhl
       image_format = response.body[:shipment_response][:label_image][:label_image_format]
       shipment_identification_number = response.body[:shipment_response][:shipment_identification_number]
       shipping_label_filename = "#{shipment_identification_number}.#{image_format.downcase}"
-      Dir.mkdir('labels') unless File.exists?('labels')
-      File.open("labels/#{shipping_label_filename}", 'wb') do |f|
+      labels_directory = @config.tmp_labels_dir
+      Dir.mkdir(labels_directory) unless File.exists?(labels_directory)
+      File.open("#{labels_directory}/#{shipping_label_filename}", 'wb') do |f|
         f.write( Base64.decode64( response.body[:shipment_response][:label_image][:graphic_image]) )
         result[:shipping_label] = File.absolute_path(f)
       end

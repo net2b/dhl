@@ -25,8 +25,6 @@ require_relative '../lib/dhl'
 # For Ruby < 1.9.3, use this instead of require_relative
 # require(File.expand_path('../../lib/dish', __FILE__))
 
-require 'support/env_helpers'
-
 require 'time'
 require 'factory_girl'
 FactoryGirl.find_definitions
@@ -40,6 +38,9 @@ VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/dhl_cassettes'
   config.hook_into :webmock
   config.allow_http_connections_when_no_cassette = true
-end
 
-include EnvHelpers
+  # Remove sensitive data from VCR cassettes
+  config.filter_sensitive_data("<wsse:Username>") { ENV['DHL_USERNAME'] }
+  config.filter_sensitive_data('<wsse:Password>') { ENV['DHL_PASSWORD'] }
+  config.filter_sensitive_data("<wsse:Account>")  { ENV['DHL_ACCOUNT'] }
+end

@@ -7,8 +7,6 @@ describe Dhl::Shipment do
   let(:shipment) { Dhl::Shipment.new }
 
   describe '#to_hash' do
-    stub_dhl_env_variables!
-
     it "should return the expected hash structure" do
       shipment.pickup_time = Time.parse("31/12/2013 16:45:10 GMT")
       shipment.pieces = 2
@@ -22,7 +20,7 @@ describe Dhl::Shipment do
           service_type: 'N',
           currency: 'EUR',
           unit_of_measurement: 'SI', # Or SU, UK, US
-          account: 123456789
+          account: Dhl::Configuration.new.account
         },
         ship_timestamp: '2013-12-31T17:45:10GMT+01:00', # When is the shipment going to be ready for pickup?
         payment_info: 'DAP',
