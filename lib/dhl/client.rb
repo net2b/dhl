@@ -16,7 +16,7 @@ module Dhl
         ssl_verify_mode: :none, # Until we can figure what's wrong with SSL
         log_level: config.log_level || :info,
         logger: config.logger || Logger.new($stdout),
-        log: config.log || true
+        log: config.log
       }
     end
 
