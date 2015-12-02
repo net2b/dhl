@@ -1,6 +1,6 @@
 module Dhl
   class Configuration
-    attr_accessor :username, :password, :account, :environment, :log_level, :logger
+    attr_accessor :username, :password, :account, :environment, :log_level, :logger, :log
 
     def initialize(options = {})
       options.merge!(fetch_dhl_options)
