@@ -15,6 +15,7 @@ module Dhl
       @environment    = options[:environment] || :test
       @log_level      = options[:log_level] || :info
       @tmp_labels_dir = options[:tmp_labels_dir] || 'labels'
+      @log            = options[:log]
     end
 
     private
@@ -27,6 +28,7 @@ module Dhl
         environment: ENV['DHL_ENVIRONMENT'],
         log_level: ENV['DHL_LOG_LEVEL'],
         tmp_labels_dir: ENV['DHL_TMP_LABELS_DIR'],
+        log: ENV['DHL_LOG']
       }
     end
   end
