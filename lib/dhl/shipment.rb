@@ -6,6 +6,7 @@ module Dhl
     attr_accessor :quantity
     attr_accessor :unit_price
     attr_accessor :customs_value
+    attr_accessor :international_detail_content
 
     def to_hash
       hsh = {
@@ -28,7 +29,7 @@ module Dhl
             quantity: @quantity,
             unit_price: @unit_price
           },
-          content: 'NON_DOCUMENTS'
+          content: @international_detail_content || 'DOCUMENTS'
         }
       }
 
