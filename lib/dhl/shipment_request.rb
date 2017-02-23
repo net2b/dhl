@@ -1,6 +1,5 @@
 module Dhl
   class ShipmentRequest
-
     attr_accessor :shipper, :recipient, :packages, :shipment
 
     def initialize
@@ -12,16 +11,12 @@ module Dhl
 
     def to_hash
       {
-        requested_shipment: @shipment.to_hash.merge({
-          ship: {
-            shipper: @shipper.to_hash,
-            recipient: @recipient.to_hash,
-          },
-          packages: @packages.to_hash
-        })
+        requested_shipment: @shipment.to_hash.merge(ship: {
+                                                      shipper: @shipper.to_hash,
+                                                      recipient: @recipient.to_hash
+                                                    },
+                                                    packages: @packages.to_hash)
       }
     end
-
-
   end
 end

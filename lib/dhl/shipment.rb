@@ -7,6 +7,8 @@ module Dhl
     attr_accessor :unit_price
     attr_accessor :customs_value
     attr_accessor :international_detail_content
+    attr_accessor :label_type
+    attr_accessor :label_template
 
     def to_hash
       hsh = {
@@ -34,7 +36,12 @@ module Dhl
       }
 
       if @special_service_type
-        hsh[:shipment_info].merge!(special_services: { service: { service_type: @special_service_type } })
+        hsh[:shipment_info][:special_services] = { service: { service_type: @special_service_type } }
+      end
+
+      if @label_template
+        hsh[:shipment_info][:label_type] = @label_type || 'PDF'
+        hsh[:shipment_info][:label_template] = @label_template
       end
 
       hsh.remove_empty
