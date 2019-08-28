@@ -1,6 +1,6 @@
 module Dhl
   class Shipment
-    attr_accessor :pickup_time, :pieces, :description, :domestic, :service_type, :payment_info, :special_service_type
+    attr_accessor :pickup_time, :pieces, :description, :domestic, :service_type, :payment_info, :taxes_included, :insurance_value
     attr_accessor :shipment_identification_number
     attr_accessor :country_of_manufacture
     attr_accessor :quantity
@@ -9,6 +9,11 @@ module Dhl
     attr_accessor :international_detail_content
     attr_accessor :label_type
     attr_accessor :label_template
+
+    def initialize
+      @taxes_included = false
+      @insurance_value = 0
+    end
 
     def to_hash
       hsh = {
@@ -35,9 +40,10 @@ module Dhl
         }
       }
 
-      if @special_service_type
-        hsh[:shipment_info][:special_services] = { service: { service_type: @special_service_type } }
-      end
+      special_services = []
+      special_services << { service_type: 'DD' } if @taxes_included
+      special_services << { service_type: 'II', service_value: @insurance_value, currency_code: 'EUR' } if @insurance_value.positive?
+      hsh[:shipment_info].merge!(special_services: { service: special_services }) if special_services.present?
 
       if @label_template
         hsh[:shipment_info][:label_type] = @label_type || 'PDF'
