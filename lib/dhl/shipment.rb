@@ -23,7 +23,8 @@ module Dhl
           currency: 'EUR',
           unit_of_measurement: 'SI', # Or SU, UK, US
           account: Dhl::Configuration.new.account,
-          shipment_identification_number: @shipment_identification_number
+          shipment_identification_number: @shipment_identification_number,
+          label_options: { request_waybill_document: 'Y' }
         },
         ship_timestamp: @pickup_time.strftime('%Y-%m-%dT%H:%M:%SGMT%:z'), # When is the shipment going to be ready for pickup?
         payment_info: @payment_info || 'DAP',
